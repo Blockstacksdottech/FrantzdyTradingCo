@@ -65,6 +65,11 @@ export default function Menu({}) {
                   </a>
                   <ul className="dropdown-menu dropdown-menu-dark">
                     <li>
+                      <a className="dropdown-item" href="./panel/cotscanner">
+                        COT SCANNER
+                      </a>
+                    </li>
+                    <li>
                       <a
                         className="dropdown-item"
                         href="./panel/cotpercentchange"
@@ -75,11 +80,6 @@ export default function Menu({}) {
                     <li>
                       <a className="dropdown-item" href="./panel/sentimentdata">
                         SENTIMENT DATA
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="./panel/cotscanner">
-                        COT SCANNER
                       </a>
                     </li>
                   </ul>
@@ -106,8 +106,8 @@ export default function Menu({}) {
                   <a href="./login" className="btn btn-outline-primary">
                     LOGIN
                   </a>
-                  <a href="./joinus" className="btn btn-primary ms-2 ms-lg-3">
-                    JOIN US
+                  <a href="./register" className="btn btn-primary ms-2 ms-lg-3">
+                    REGISTER
                   </a>
                 </>
               )}
@@ -122,10 +122,10 @@ export default function Menu({}) {
                             ? formatImage(image.profile_picture)
                             : "/frontend/images/team/team-1.png"
                         }
-                        className="user-div"
+                        className="user-div me-2"
                         alt="Frantzdy Trading CO - Trading become easier when you trade with us"
                       />
-                      <span className="d-none d-md-inline text-white">
+                      <span className="d-md-inline text-uppercase">
                         {user && user.username}
                       </span>
                     </a>

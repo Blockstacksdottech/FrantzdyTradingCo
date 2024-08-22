@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="row">
             <nav className="col-lg-12 align-self-center mb-1">
               <div className="row">
-                <div className="col-sm-5">
+                <div className="col-sm-6">
                   <img src="./logo.png" className="img-fluid mb-3" />
 
                   <ul className="list-unstyled list-inline mb-1 social-icons">
@@ -66,14 +66,21 @@ export default function Footer() {
                   </ul>
 
                   <p className="mb-0">
-                    &copy; {year} <a href="./">Frantzdy Trading Co</a>
+                    &copy; {year}{" "}
+                    <a href="./" className="me-2">
+                      Frantzdy Trading Co
+                    </a>{" "}
+                    |{" "}
+                    <a href="#" className="ms-2 text-dark">
+                      Sitemap
+                    </a>
                   </p>
                   <p className="mb-0">
                     Designed & Developed by
                     <a href="./"> Blockstacks Technologies Limited</a>
                   </p>
                 </div>
-                <div className="col-sm-4">
+                <div className="col-sm-2">
                   <h5>QUICK LINKS</h5>
                   <ul className="footer-list footer-menu">
                     <li className="list-item text-uppercase">
@@ -96,19 +103,9 @@ export default function Footer() {
                         Contact
                       </a>
                     </li>
-                    <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./privacy">
-                        Privacy Policy
-                      </a>
-                    </li>
-                    <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./terms">
-                        Terms &amp; Conditions
-                      </a>
-                    </li>
                   </ul>
                 </div>
-                <div className="col-sm-3">
+                <div className="col-sm-2">
                   <h5>FOR MEMBERS</h5>
                   <ul className="footer-list footer-menu">
                     <li className="list-item text-uppercase">
@@ -126,9 +123,24 @@ export default function Footer() {
                         Cot Scanner
                       </a>
                     </li>
+                  </ul>
+                </div>
+                <div className="col-sm-2">
+                  <h5>OTHERS</h5>
+                  <ul className="footer-list footer-menu">
                     <li className="list-item text-uppercase">
                       <a className="text-dark" href="./panel/videospdf">
                         Video's & PDF
+                      </a>
+                    </li>
+                    <li className="list-item text-uppercase">
+                      <a className="text-dark" href="./privacy">
+                        Privacy Policy
+                      </a>
+                    </li>
+                    <li className="list-item text-uppercase">
+                      <a className="text-dark" href="./terms">
+                        Terms &amp; Conditions
                       </a>
                     </li>
                   </ul>

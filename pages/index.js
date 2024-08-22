@@ -35,9 +35,9 @@ function Index() {
                   <a
                     type="button"
                     className="btn btn-primary box-shadow"
-                    href="./joinus"
+                    href="./register"
                   >
-                    Join Us Now{" "}
+                    Register Now{" "}
                     <span
                       style={{ fontSize: 14 }}
                       className="ms-2 fas fa-arrow-right"
@@ -205,9 +205,9 @@ function Index() {
                   </p>
                   <a
                     className="btn btn-primary box-shadow mt-4"
-                    href="./joinus"
+                    href="./register"
                   >
-                    Join Us
+                    Register
                   </a>
                 </div>
               </div>
@@ -315,9 +315,9 @@ function Index() {
                     </p>
                     <a
                       className="btn btn-primary box-shadow mt-4"
-                      href="./joinus"
+                      href="./register"
                     >
-                      Join Us
+                      Register
                     </a>
                   </div>
                 </div>
@@ -709,7 +709,7 @@ function Index() {
                       <a
                         type="button"
                         className="btn btn-primary box-shadow px-3"
-                        href="./joinus"
+                        href="./register"
                       >
                         Buy Now
                       </a>
@@ -752,7 +752,7 @@ function Index() {
                       <a
                         type="button"
                         className="btn btn-primary box-shadow px-3"
-                        href="./joinus"
+                        href="./register"
                       >
                         Buy Now
                       </a>
@@ -794,7 +794,7 @@ function Index() {
                       <a
                         type="button"
                         className="btn btn-primary box-shadow px-3"
-                        href="./joinus"
+                        href="./register"
                       >
                         Buy Now
                       </a>
@@ -840,7 +840,7 @@ function Index() {
                       <a
                         type="button"
                         className="btn btn-primary box-shadow px-3"
-                        href="./joinus"
+                        href="./register"
                       >
                         Buy Now
                       </a>

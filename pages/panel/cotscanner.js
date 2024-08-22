@@ -1,6 +1,9 @@
 import Head from "next/head";
-import Navbar from "./components/frontend/navbar";
-import Footer from "./components/frontend/footer";
+import HeadLink from "../components/panel/headlink";
+import Sidebar from "../components/panel/sidebar";
+import Menu from "../components/panel/menu";
+import ScriptLink from "../components/panel/scriptlink";
+import Footer from "../components/panel/footer";
 import React, { Component, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -12,7 +15,7 @@ import {
 } from "@/helpers";
 import { useRouter } from "next/router";
 import Downloader from "react-csv-downloader";
-import Checker from "./components/Checker";
+import Checker from "../components/Checker";
 import { UserContext } from "@/contexts/UserContextData";
 
 const Cotscanner = () => {
@@ -25,7 +28,7 @@ const Cotscanner = () => {
 
   const initDataTable = () => {
     const script = document.createElement("script");
-    script.src = "/dist/js/datatable.js";
+    script.src = "../panel/js/datatable.js";
     script.async = true;
     document.body.appendChild(script);
 
@@ -190,9 +193,21 @@ const Cotscanner = () => {
         />
       </Head>
       <Checker tier={1}>
-        <Navbar user={user} />
+        <HeadLink />
+        <Menu user={user} />
+        <Sidebar />
 
         <div className="content-wrapper">
+          <section className="content-header">
+            <div className="container-fluid">
+              <div className="row mb-2">
+                <div className="col-sm-12">
+                  <h1>COT SCANNER</h1>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {loading && (
             <h4 className="text-white text-center pt-5 blink">
               PLEASE WAIT COT SCANNER LOADING...
@@ -203,13 +218,11 @@ const Cotscanner = () => {
             <>
               <div className="content">
                 <div className="container-fluid">
-                  <div className="row pt-4">
+                  <div className="row">
                     <div className="col-lg-12 ">
-                      <div className="card card-primary card-outline">
+                      <div className="card">
                         <div className="card-header">
-                          <h5 className="card-title mb-0">
-                            COT SCANNER (COMMERCIAL)
-                          </h5>
+                          <h5 className="card-title">COMMERCIAL SIGNAL</h5>
                           <div className="card-tools">
                             {exportableData.length > 0 && (
                               <>
@@ -219,7 +232,7 @@ const Cotscanner = () => {
                                   disabled={false} // Set to true to disable download
                                   datas={exportableData}
                                 >
-                                  <a className="btn btn-sm btn-primary">
+                                  <a className="btn btn-export btn-sm box-shadow">
                                     Export Data
                                   </a>
                                 </Downloader>
@@ -229,22 +242,22 @@ const Cotscanner = () => {
                         </div>
 
                         <div className="card-body">
-                          <div className="table-responsive p-0">
-                            <table className="table table-bordered table-hover table-sm datatable">
+                          <div className="table-responsive">
+                            <table className="table table-borderless table-sm datatable text-center">
                               <thead>
                                 <tr>
-                                  <th>PAIR</th>
-                                  <th>OVERALL SIGNAL</th>
-                                  <th>5 WEEK COT SIGNAL</th>
-                                  <th>5 WEEK % NET SHIFT</th>
-                                  <th>3 WEEK COT SIGNAL</th>
-                                  <th>3 WEEK % NET SHIFT</th>
+                                  <th>Pair</th>
+                                  <th>Overall</th>
+                                  <th>3 Week</th>
+                                  <th>3 Week % Net Shift</th>
+                                  <th>5 Week</th>
+                                  <th>5 Week % Net Shift</th>
                                   <th>ADR</th>
-                                  <th>LONG TERM COT SIGNAL</th>
-                                  <th>SENTIMENT SIGNAL</th>
-                                  <th>% LONG</th>
-                                  <th>% SHORT</th>
-                                  <th>CROWDED MARKET ALERT</th>
+                                  <th>Long Term</th>
+                                  <th>Sentiment</th>
+                                  <th>% Long</th>
+                                  <th>% Short</th>
+                                  <th>Crowded Market Alert</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -397,13 +410,11 @@ const Cotscanner = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="row pt-4">
+                  <div className="row">
                     <div className="col-lg-12 ">
-                      <div className="card card-primary card-outline">
+                      <div className="card">
                         <div className="card-header">
-                          <h5 className="card-title mb-0">
-                            COT SCANNER (NON-COMMERCIAL)
-                          </h5>
+                          <h5 className="card-title">NON-COMMERCIAL SIGNAL</h5>
                           <div className="card-tools">
                             {exportableData.length > 0 && (
                               <>
@@ -413,7 +424,7 @@ const Cotscanner = () => {
                                   disabled={false} // Set to true to disable download
                                   datas={exportableData}
                                 >
-                                  <a className="btn btn-sm btn-primary">
+                                  <a className="btn btn-export btn-sm box-shadow">
                                     Export Data
                                   </a>
                                 </Downloader>
@@ -423,22 +434,21 @@ const Cotscanner = () => {
                         </div>
 
                         <div className="card-body">
-                          <div className="table-responsive p-0">
-                            <table className="table table-bordered table-hover table-sm datatable">
+                          <div className="table-responsive">
+                            <table className="table table-borderless table-sm datatable text-center">
                               <thead>
                                 <tr>
-                                  <th>PAIR</th>
-                                  <th>OVERALL SIGNAL</th>
-                                  <th>5 WEEK COT SIGNAL</th>
-                                  <th>5 WEEK % NET SHIFT</th>
-                                  <th>3 WEEK COT SIGNAL</th>
-                                  <th>3 WEEK % NET SHIFT</th>
-                                  {/* <th>ADR</th> */}
-                                  <th>LONG TERM COT SIGNAL</th>
-                                  <th>SENTIMENT SIGNAL</th>
-                                  <th>% LONG</th>
-                                  <th>% SHORT</th>
-                                  <th>CROWDED MARKET ALERT</th>
+                                  <th>Pair</th>
+                                  <th>Overall</th>
+                                  <th>3 Week</th>
+                                  <th>3 Week % Net Shift</th>
+                                  <th>5 Week</th>
+                                  <th>5 Week % Net Shift</th>
+                                  <th>Long Term</th>
+                                  <th>Sentiment</th>
+                                  <th>% Long</th>
+                                  <th>% Short</th>
+                                  <th>Crowded Market Alert</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -589,15 +599,19 @@ const Cotscanner = () => {
                     </div>
                   </div>
                   <div>
-                    <div className="row pt-4">
-                      <div className="col-lg-12 ">
-                        <div>
-                          <iframe
-                            src="https://widgets.myfxbook.com/widgets/market-volatility.html?symbols=8,47,9,10,1234,11,103,12,46,1245,6,13,14,15,17,18,7,2114,19,20,21,22,1246,23,1,1233,107,24,25,4,2872,137,48,1236,1247,2012,2,1863,3240,26,49,27,28,2090,131,5,29,5779,31,34,3,36,37,38,2076,40,41,42,43,45,3005,3473,50,2115,2603,2119,1815,2521,51,5435,5079,1893&type=0"
-                            width="100%"
-                            height="100%"
-                            frameBorder={0}
-                          />
+                    <div className="row">
+                      <div className="col-lg-12">
+                        <div className="card">
+                          <div className="card-header">
+                            <h3 className="card-title">Forex Volatility</h3>
+                          </div>
+                          <div className="card-body">
+                            <iframe
+                              src="https://widgets.myfxbook.com/widgets/market-volatility.html?symbols=8,47,9,10,1234,11,103,12,46,1245,6,13,14,15,17,18,7,2114,19,20,21,22,1246,23,1,1233,107,24,25,4,2872,137,48,1236,1247,2012,2,1863,3240,26,49,27,28,2090,131,5,29,5779,31,34,3,36,37,38,2076,40,41,42,43,45,3005,3473,50,2115,2603,2119,1815,2521,51,5435,5079,1893&type=0"
+                              width="100%"
+                              height="100%"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -610,6 +624,7 @@ const Cotscanner = () => {
       </Checker>
 
       <Footer />
+      <ScriptLink />
     </>
   );
 };

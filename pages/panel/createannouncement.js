@@ -1,12 +1,21 @@
 import Head from "next/head";
-import Navbar from "./components/frontend/navbar";
-import Footer from "./components/frontend/footer";
+import HeadLink from "../components/panel/headlink";
+import Sidebar from "../components/panel/sidebar";
+import Menu from "../components/panel/menu";
+import ScriptLink from "../components/panel/scriptlink";
+import Footer from "../components/panel/footer";
 import React, { useEffect, useState } from "react";
-import Checker from "./components/Checker";
+import Checker from "../components/Checker";
 import { req, postReq, deleteReq, formatDate } from "@/helpers";
 import { toast } from "react-toastify";
 
 export default function CreateAnnouncement() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "../panel/js/datatable.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
   const [announcements, setAnnouncements] = useState([]);
   const [topic, setTopic] = useState("");
   const [description, setDescription] = useState("");
@@ -48,19 +57,33 @@ export default function CreateAnnouncement() {
   return (
     <>
       <Head>
-        <title>
-          Frantzdy Trading CO - Trading become easier when you trade with us
-        </title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Create Announcement</title>
+        <meta
+          name="description"
+          content="Frantzdy Trading Co - Create Announcement"
+        />
       </Head>
       <Checker only_admin={true}>
-        <Navbar />
+        <HeadLink />
+        <Menu />
+        <Sidebar />
 
         <div className="content-wrapper">
-          <section class="content-header">
-            <div class="container-fluid">
-              <div class="row my-3">
-                <div class="col-lg-12 text-center">
-                  <h1 className="head-text-big text-white">Announcement</h1>
+          <section className="content-header">
+            <div className="container-fluid">
+              <div className="row mb-2">
+                <div className="col-sm-6">
+                  <h1>Create Announcement</h1>
+                </div>
+                <div className="col-sm-6">
+                  <a
+                    class="btn btn-export box-shadow float-right"
+                    href="../panel/announcement"
+                  >
+                    Back to Announcement
+                  </a>
                 </div>
               </div>
             </div>
@@ -71,9 +94,6 @@ export default function CreateAnnouncement() {
                 <div class="row">
                   <div className="col-lg-12">
                     <div className="card">
-                      <div className="card-header">
-                        <h5 className="card-title">Create Announcement</h5>
-                      </div>
                       <div className="card-body">
                         <form>
                           <div className="form-group">
@@ -97,7 +117,7 @@ export default function CreateAnnouncement() {
                           </div>
                           <div className="form-group float-right">
                             <button
-                              className="btn btn-primary"
+                              className="btn btn-table-dark box-shadow-2"
                               onClick={(e) => {
                                 e.preventDefault();
                                 console.log("clicked");
@@ -116,16 +136,15 @@ export default function CreateAnnouncement() {
                   <div className="col-lg-12">
                     <div className="card">
                       <div className="card-header">
-                        <h5 className="card-title">Announcements</h5>
+                        <h5 className="card-title">ANNOUNCEMENTS</h5>
                       </div>
                       <div className="card-body">
-                        <div className="table-responsive p-0">
-                          <table className="table table-bordered table-sm">
+                        <div className="table-responsive">
+                          <table className="table table-borderless datatable">
                             <thead>
                               <tr>
                                 <th>Date</th>
-                                <th>Topic</th>
-                                <th>Description</th>
+                                <th>Announcements</th>
                                 <th></th>
                               </tr>
                             </thead>
@@ -135,8 +154,8 @@ export default function CreateAnnouncement() {
                                   return (
                                     <tr>
                                       <td>{formatDate(new Date(e.date))}</td>
-                                      <td>{e.topic}</td>
-                                      <td style={{ width: "50%" }}>
+                                      <td>
+                                        <h5>{e.topic}</h5>
                                         {e.description}
                                       </td>
                                       <td>
@@ -164,6 +183,7 @@ export default function CreateAnnouncement() {
       </Checker>
 
       <Footer />
+      <ScriptLink />
     </>
   );
 }

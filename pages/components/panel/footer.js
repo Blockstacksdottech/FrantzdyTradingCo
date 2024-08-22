@@ -12,10 +12,10 @@ export default function Footer() {
       <footer className="main-footer">
         <nav className="align-self-center mb-1">
           <div className="row">
-            <div className="col-sm-5">
+            <div className="col-sm-6">
               <img src="../logo.png" className="img-fluid" />
               <ul className="list-unstyled list-inline my-3 social-icons">
-                <li className="list-inline-item me-3">
+                <li className="list-inline-item mr-3">
                   <a
                     title="Telegram"
                     href="https://t.me/frantzdytradingco"
@@ -24,7 +24,7 @@ export default function Footer() {
                     <img src="../telegram.png" className="img-fluid" />
                   </a>
                 </li>
-                <li className="list-inline-item me-3">
+                <li className="list-inline-item mr-3">
                   <a
                     title="Discord"
                     href="https://discord.gg/TaeYTC3n33"
@@ -33,7 +33,7 @@ export default function Footer() {
                     <img src="../discord.png" className="img-fluid" />
                   </a>
                 </li>
-                <li className="list-inline-item me-3">
+                <li className="list-inline-item mr-3">
                   <a
                     title="Linkedin"
                     href="https://www.linkedin.com/in/frantzdy-trading-co-llc-179121318/"
@@ -42,7 +42,7 @@ export default function Footer() {
                     <img src="../linkedin.png" className="img-fluid" />
                   </a>
                 </li>
-                <li className="list-inline-item me-3">
+                <li className="list-inline-item mr-3">
                   <a
                     title="X"
                     href="https://x.com/Frantzdytrading"
@@ -51,26 +51,13 @@ export default function Footer() {
                     <img src="../x-twitter.png" className="img-fluid" />
                   </a>
                 </li>
-                <li className="list-inline-item me-3">
+                <li className="list-inline-item">
                   <a
                     title="Youtube"
                     href="https://www.youtube.com/@frantzdytradingco"
                     target="_blank"
                   >
                     <img src="../youtube.png" className="img-fluid" />
-                  </a>
-                </li>
-              </ul>
-
-              <ul className="list-inline mb-1">
-                <li className="list-inline-item">
-                  <a href="../privacy" className="text-white">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="../terms" className="text-white">
-                    Terms & Conditions
                   </a>
                 </li>
               </ul>
@@ -83,7 +70,7 @@ export default function Footer() {
                 <a href="../"> Blockstacks Technologies Limited</a>
               </p>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-3">
               <h5>QUICK LINKS</h5>
               <ul className="footer-list footer-menu mb-0">
                 <li className="list-item text-uppercase">
@@ -109,26 +96,16 @@ export default function Footer() {
               </ul>
             </div>
             <div className="col-sm-3">
-              <h5>FOR MEMBERS</h5>
+              <h5>OTHERS</h5>
               <ul className="footer-list footer-menu">
                 <li className="list-item text-uppercase">
-                  <a className="text-white" href="../panel/cotpercentchange">
-                    Cot % Change
+                  <a className="text-white" href="./privacy">
+                    Privacy Policy
                   </a>
                 </li>
                 <li className="list-item text-uppercase">
-                  <a className="text-white" href="../panel/sentimentdata">
-                    Sentiment Data
-                  </a>
-                </li>
-                <li className="list-item text-uppercase">
-                  <a className="text-white" href="../panel/cotscanner">
-                    Cot Scanner
-                  </a>
-                </li>
-                <li className="list-item text-uppercase">
-                  <a className="text-white" href="../panel/videospdf">
-                    Video's & PDF
+                  <a className="text-white" href="./terms">
+                    Terms &amp; Conditions
                   </a>
                 </li>
               </ul>

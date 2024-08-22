@@ -1,6 +1,9 @@
 import Head from "next/head";
-import Navbar from "./components/frontend/navbar";
-import Footer from "./components/frontend/footer";
+import HeadLink from "../components/panel/headlink";
+import Sidebar from "../components/panel/sidebar";
+import Menu from "../components/panel/menu";
+import ScriptLink from "../components/panel/scriptlink";
+import Footer from "../components/panel/footer";
 import React, { Component, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { isLogged, postReq, req } from "@/helpers";
@@ -18,7 +21,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Downloader from "react-csv-downloader";
-import Checker from "./components/Checker";
+import Checker from "../components/Checker";
 import { UserContext } from "@/contexts/UserContextData";
 
 const Sentimentdata = () => {
@@ -30,7 +33,7 @@ const Sentimentdata = () => {
 
   const initDataTable = () => {
     const script = document.createElement("script");
-    script.src = "/dist/js/datatable.js";
+    script.src = "../panel/js/datatable.js";
     script.async = true;
     document.body.appendChild(script);
 
@@ -97,6 +100,8 @@ const Sentimentdata = () => {
   return (
     <>
       <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Sentiment Data</title>
         <meta
           name="description"
@@ -104,45 +109,54 @@ const Sentimentdata = () => {
         />
       </Head>
       <Checker tier={2}>
-        <Navbar user={user} />
+        <HeadLink />
+        <Menu user={user} />
+        <Sidebar />
 
         <div className="content-wrapper">
-          {/* {loading && (
+          <section className="content-header">
+            <div className="container-fluid">
+              <div className="row mb-2">
+                <div className="col-sm-6 m-auto">
+                  <h1>SENTIMENT DATA</h1>
+                </div>
+                <div className="col-sm-6 m-auto">
+                  <div className="float-right">
+                    {exportableData.length > 0 && (
+                      <>
+                        <Downloader
+                          filename="my_data.csv"
+                          elementType="button"
+                          disabled={false} // Set to true to disable download
+                          datas={exportableData}
+                        >
+                          <a className="btn btn-sm btn-export box-shadow">
+                            Export Data
+                          </a>
+                        </Downloader>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          {loading && (
             <h4 className="text-white text-center pt-5 blink">
               PLEASE WAIT SENTIMENT DATA ARE DOWNLOADING...
             </h4>
-          )} */}
+          )}
 
           {!loading && data && data.length > 0 && (
             <>
               <div className="content">
                 <div className="container-fluid">
-                  <div className="row pt-4">
+                  <div className="row">
                     <div className="col-lg-12">
-                      <div className="card card-primary card-outline">
-                        <div className="card-header">
-                          <h5 className="card-title mb-0">SENTIMENT</h5>
-                          <div className="card-tools">
-                            {exportableData.length > 0 && (
-                              <>
-                                <Downloader
-                                  filename="my_data.csv"
-                                  elementType="button"
-                                  disabled={false} // Set to true to disable download
-                                  datas={exportableData}
-                                >
-                                  <a className="btn btn-sm btn-primary">
-                                    Export Data
-                                  </a>
-                                </Downloader>
-                              </>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="card-body">
+                      <div className="card">
+                        <div className="card-body p-0">
                           <div className="table-responsive p-0">
-                            <table className="table table-bordered table-sm">
+                            <table className="table table-bordered table-sm m-0">
                               <thead>
                                 <tr>
                                   <th>Symbol</th>
@@ -233,6 +247,7 @@ const Sentimentdata = () => {
       </Checker>
 
       <Footer />
+      <ScriptLink />
     </>
   );
 };

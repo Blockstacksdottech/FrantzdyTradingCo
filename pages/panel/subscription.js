@@ -1,14 +1,17 @@
 import Head from "next/head";
-import Navbar from "./components/frontend/navbar";
-import Footer from "./components/frontend/footer";
 import React, { Component, useContext, useEffect, useState } from "react";
-import Checker from "./components/Checker";
+import Checker from "../components/Checker";
 import { postReq, req, reqNoAuth, formatDateLocal, logout } from "@/helpers";
 import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "react-toastify";
 import { public_stripe_key } from "@/helpers/constants";
 import { UserContext } from "@/contexts/UserContextData";
 import { useRouter } from "next/router";
+import ScriptLink from "../components/panel/scriptlink";
+import Menu from "../components/panel/menu";
+import HeadLink from "../components/panel/headlink";
+import Sidebar from "../components/panel/sidebar";
+import Footer from "../components/panel/footer";
 
 export default function Subscription(props) {
   const [payments, setPayments] = useState([]);
@@ -142,18 +145,18 @@ export default function Subscription(props) {
             Frantzdy Trading CO - Trading become easier when you trade with us
           </title>
         </Head>
-        <Navbar />
+        <HeadLink />
+        <Menu />
+        <Sidebar />
         {subscription && user.valid && (
           <>
             {" "}
             <div className="content-wrapper">
               <section class="content-header">
                 <div class="container-fluid">
-                  <div class="row my-4">
-                    <div class="col-sm-12 text-center">
-                      <h1 className="head-text-big text-white">
-                        Your Subscription
-                      </h1>
+                  <div class="row mb-2">
+                    <div class="col-sm-12">
+                      <h1>Your Subscription</h1>
                     </div>
                   </div>
                 </div>
@@ -163,8 +166,8 @@ export default function Subscription(props) {
                   <div className="container">
                     <div className="row">
                       <div className="col-lg-3">
-                        <div className="h-100 card card-default">
-                          <div className="card-header border-0 text-center">
+                        <div className="card h-100 border-0 rounded pricing-table table-1">
+                          <div className="card-header pt-4 pb-1 bg-transparent text-center">
                             BASIC
                             <h2 className="mb-0">
                               $
@@ -176,20 +179,20 @@ export default function Subscription(props) {
                             {/* <p>7-days free trial</p> */}
                           </div>
                           <div className="card-body p-0">
-                            <ul className="products-list product-list-in-card text-center">
-                              <li className="item">
+                            <ul className="list-group list-group-flush">
+                              <li className="list-group-item">
                                 Weekly COT report signal summaries
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Basic educational content on how to interpret
                                 COT reports
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Access to a community forum
                               </li>
                             </ul>
                           </div>
-                          <div className="card-footer">
+                          <div className="card-footer py-3 bg-transparent">
                             <div className="text-center">
                               {user.tier === 1 && (
                                 <a
@@ -224,8 +227,8 @@ export default function Subscription(props) {
                         </div>
                       </div>
                       <div className="col-lg-3">
-                        <div className="h-100 card card-secondary">
-                          <div className="card-header border-0 text-center">
+                        <div className="card h-100 border-0 rounded pricing-table table-1">
+                          <div className="card-header pt-4 pb-1 bg-transparent text-center">
                             STANDARD
                             <h2 className="mb-0">
                               $
@@ -236,19 +239,23 @@ export default function Subscription(props) {
                             </h2>
                           </div>
                           <div className="card-body p-0">
-                            <ul className="products-list product-list-in-card text-center">
-                              <li className="item">All Basic Plan features</li>
-                              <li className="item">
+                            <ul className="list-group list-group-flush">
+                              <li className="list-group-item">
+                                All Basic Plan features
+                              </li>
+                              <li className="list-group-item">
                                 Bi-weekly COT report signal analysis
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Detailed breakdowns of major market positions
                                 (e.g., futures, options)
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Monthly webinars with market experts
                               </li>
-                              <li className="item">Priority email support</li>
+                              <li className="list-group-item">
+                                Priority email support
+                              </li>
                             </ul>
                           </div>
                           <div className="card-footer">
@@ -286,8 +293,8 @@ export default function Subscription(props) {
                         </div>
                       </div>
                       <div className="col-lg-3">
-                        <div className="h-100 card card-default">
-                          <div className="card-header border-0 text-center">
+                        <div className="card h-100 border-0 rounded pricing-table table-1">
+                          <div className="card-header pt-4 pb-1 bg-transparent text-center">
                             PREMIUM
                             <h2 className="mb-0">
                               $
@@ -298,24 +305,24 @@ export default function Subscription(props) {
                             </h2>
                           </div>
                           <div className="card-body p-0">
-                            <ul className="products-list product-list-in-card text-center">
-                              <li className="item">
+                            <ul className="list-group list-group-flush">
+                              <li className="list-group-item">
                                 All Standard Plan features
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Weekly in-depth COT report signal analysis
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Real-time alerts on significant COT report
                                 changes
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Access to exclusive market trend reports
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 One-on-one consultation sessions (1 per month)
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Dedicated account manager
                               </li>
                             </ul>
@@ -355,8 +362,8 @@ export default function Subscription(props) {
                         </div>
                       </div>
                       <div className="col-lg-3">
-                        <div className="h-100 card card-secondary">
-                          <div className="card-header border-0 text-center">
+                        <div className="card h-100 border-0 rounded pricing-table table-1">
+                          <div className="card-header pt-4 pb-1 bg-transparent text-center">
                             ENTERPRISE
                             <h3 className="mb-0">
                               $
@@ -367,24 +374,24 @@ export default function Subscription(props) {
                             </h3>
                           </div>
                           <div className="card-body p-0">
-                            <ul className="products-list product-list-in-card text-center">
-                              <li className="item">
+                            <ul className="list-group list-group-flush">
+                              <li className="list-group-item">
                                 All Premium Plan features
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Tailored COT report signal analysis based on
                                 specific market interests
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Regular strategy sessions with top analysts
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 On-demand market research reports
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Full access to historical COT data archives
                               </li>
-                              <li className="item">
+                              <li className="list-group-item">
                                 Priority support with a dedicated team
                               </li>
                             </ul>
@@ -432,6 +439,7 @@ export default function Subscription(props) {
         )}
 
         <Footer />
+        <ScriptLink />
       </>
     </Checker>
   );

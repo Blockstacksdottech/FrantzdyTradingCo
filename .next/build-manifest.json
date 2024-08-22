@@ -32,10 +32,45 @@
       "static/chunks/main.js",
       "static/chunks/pages/blog.js"
     ],
+    "/contact": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/contact.js"
+    ],
     "/faq": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/faq.js"
+    ],
+    "/joinus": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/joinus.js"
+    ],
+    "/panel/cotscanner": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/panel/cotscanner.js"
+    ],
+    "/panel/sentimentdata": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/panel/sentimentdata.js"
+    ],
+    "/panel/videospdf": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/panel/videospdf.js"
+    ],
+    "/privacy": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/privacy.js"
+    ],
+    "/terms": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/terms.js"
     ]
   },
   "ampFirstPages": []

@@ -1,8 +1,11 @@
 import Head from "next/head";
-import Navbar from "./components/frontend/navbar";
-import Footer from "./components/frontend/footer";
+import HeadLink from "../components/panel/headlink";
+import Sidebar from "../components/panel/sidebar";
+import Menu from "../components/panel/menu";
+import ScriptLink from "../components/panel/scriptlink";
+import Footer from "../components/panel/footer";
 import React, { Component, useEffect, useState } from "react";
-import Checker from "./components/Checker";
+import Checker from "../components/Checker";
 import { req, postReq, formatDateLocal } from "@/helpers";
 
 export default function Announcement() {
@@ -22,19 +25,32 @@ export default function Announcement() {
   return (
     <>
       <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
           Frantzdy Trading CO - Trading become easier when you trade with us
         </title>
+        <meta name="description" content="Frantzdy Trading Co - Announcement" />
       </Head>
       <Checker tier={1}>
-        <Navbar />
+        <HeadLink />
+        <Menu />
+        <Sidebar />
 
         <div className="content-wrapper">
-          <section class="content-header">
-            <div class="container-fluid">
-              <div class="row my-3">
-                <div class="col-lg-12 text-center">
-                  <h1 className="head-text-big text-white">Announcement</h1>
+          <section className="content-header">
+            <div className="container-fluid">
+              <div className="row mb-2">
+                <div className="col-sm-6">
+                  <h1>ANNOUNCEMENT</h1>
+                </div>
+                <div className="col-sm-6">
+                  <a
+                    class="btn btn-export box-shadow float-right"
+                    href="../panel/createannouncement"
+                  >
+                    Create Announcement
+                  </a>
                 </div>
               </div>
             </div>
@@ -47,20 +63,16 @@ export default function Announcement() {
                     {announcements &&
                       announcements.map((e, i) => {
                         return (
-                          <div className="card card-default">
+                          <div className="card mb-3">
                             <div className="card-header">
-                              <div className="clearfix">
-                                <div className="float-left">
-                                  <p className="mb-0">
-                                    {formatDateLocal(e.date)}
-                                  </p>
-                                </div>
-                              </div>
-                              <h4 className="card-title mt-2">{e.topic}</h4>
+                              <h4 className="card-title">
+                                <p className="small text-primary">
+                                  {formatDateLocal(e.date)}
+                                </p>
+                                {e.topic}
+                              </h4>
                             </div>
-                            <div className="card-body">
-                              <p className="mb-0 p-tag-big">{e.description}</p>
-                            </div>
+                            <div className="card-body">{e.description}</div>
                           </div>
                         );
                       })}
@@ -73,6 +85,7 @@ export default function Announcement() {
       </Checker>
 
       <Footer />
+      <ScriptLink />
     </>
   );
 }

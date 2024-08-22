@@ -39,11 +39,11 @@ export default function Login() {
     test().then((obj) => {
       if (obj.logged) {
         if (obj.isAdmin) {
-          nav.push("/cot-data");
+          nav.push("/panel/cotreports");
         } else if (obj.valid) {
-          nav.push("/cotscanner");
+          nav.push("/panel/cotscanner");
         } else {
-          nav.push("/joinus");
+          nav.push("/panel/joinus");
         }
       } else {
         nav.push("/login");
@@ -55,7 +55,7 @@ export default function Login() {
     const res = await get_token(email, password);
     if (res) {
       toast.success("logged in");
-      nav.push("/cotscanner");
+      nav.push("/panel/cotscanner");
     } else {
       toast.error("Failed");
     }

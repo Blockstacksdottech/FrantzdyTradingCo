@@ -1,9 +1,15 @@
 {
+  "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/_app": "pages/_app.js",
+  "/joinus": "pages/joinus.js",
+  "/": "pages/index.js",
+  "/privacy": "pages/privacy.js",
+  "/panel/videospdf": "pages/panel/videospdf.js",
   "/blog": "pages/blog.js",
+  "/panel/cotscanner": "pages/panel/cotscanner.js",
+  "/terms": "pages/terms.js",
   "/contact": "pages/contact.js",
-  "/faq": "pages/faq.js",
-  "/": "pages/index.js"
+  "/panel/sentimentdata": "pages/panel/sentimentdata.js",
+  "/faq": "pages/faq.js"
 }

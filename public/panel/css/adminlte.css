@@ -2146,7 +2146,7 @@ pre code {
   color: #b6ccf5;
   background-color: transparent;
   background-clip: padding-box;
-  border: 1px solid #083058;
+  border: 1px solid #80bdff;
   border-radius: 0.25rem;
   box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2219,7 +2219,7 @@ select:-webkit-autofill:focus {
 
 .form-control:disabled,
 .form-control[readonly] {
-  background-color: #e9ecef;
+  background-color: transparent;
   opacity: 1;
 }
 
@@ -5539,16 +5539,16 @@ option {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #b6ccf5;
-  background-color: transparent;
+  color: #051427;
+  background-color: #05ffff;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .page-link:hover {
   z-index: 2;
-  color: #b6ccf5;
+  color: #051427;
   text-decoration: none;
-  background-color: transparent;
+  background-color: #05ffff;
   border-color: rgba(0, 0, 0, 0.125);
 }
 
@@ -10708,12 +10708,12 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #007bff !important;
+  color: #d504c5 !important;
 }
 
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #0056b3 !important;
+  color: #d504c5 !important;
 }
 
 .text-secondary {
@@ -12717,16 +12717,16 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   background: -moz-linear-gradient(
     90deg,
     #051427 0%,
-    #083d71 43%,
-    #051427 100%
+    #031a2e 43%,
+    #041b33 100%
   );
   background: -webkit-linear-gradient(
     90deg,
     #051427 0%,
-    #083d71 43%,
-    #051427 100%
+    #031a2e 43%,
+    #041b33 100%
   );
-  background: linear-gradient(90deg, #051427 0%, #083d71 43%, #051427 100%);
+  background: linear-gradient(90deg, #051427 0%, #031a2e 43%, #041b33 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#051427",endColorstr="#051427",GradientType=1);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
