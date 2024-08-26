@@ -4,7 +4,7 @@ import { isLogged, logout } from "@/helpers";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
-function Checker({ children, tier, no_check, only_admin, no_login }) {
+function Checker({ children, tier, no_check, only_admin, no_login,strict_admin }) {
   const { user, setUser } = useContext(UserContext);
   const nav = useRouter();
   useEffect(() => {
@@ -20,6 +20,8 @@ function Checker({ children, tier, no_check, only_admin, no_login }) {
         obj.tier = resp.tier;
         obj.isAdmin = resp.is_superuser;
         obj.isActive = resp.is_active;
+        obj.isMember = resp.is_member;
+        obj.id = resp.id
         setUser(obj);
         return obj;
       } else {
@@ -38,7 +40,7 @@ function Checker({ children, tier, no_check, only_admin, no_login }) {
           nav.push("/login");
         }
         if (only_admin) {
-          if (obj.isAdmin) {
+          if (obj.isAdmin || (obj.isMember && !strict_admin)) {
             return;
           } else {
             nav.push("/panel/cotscanner");
@@ -47,7 +49,7 @@ function Checker({ children, tier, no_check, only_admin, no_login }) {
         if (no_check) {
           return;
         }
-        if (obj.isAdmin) {
+        if (obj.isAdmin || (obj.isMember && !strict_admin)) {
           return;
         }
         if (obj.valid) {

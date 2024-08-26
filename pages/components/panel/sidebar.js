@@ -71,7 +71,7 @@ export default function Sidebar({}) {
                 data-accordion="false"
               >
                 <li className="nav-header">DATA</li>
-                {user && user.isAdmin && (
+                {user && (user.isAdmin || user.isMember) && (
                   <li className="nav-item">
                     <a
                       href="../panel/cotreports"
@@ -141,6 +141,19 @@ export default function Sidebar({}) {
                 </li> */}
                 <li className="nav-header">OTHERS</li>
                 <li className="nav-item">
+                    <a
+                      href="/blog"
+                      className={
+                        isActive("../panel/blog")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                    >
+                      <i className="nav-icon fas fa-blog" />
+                      <p>Blog</p>
+                    </a>
+                  </li>
+                <li className="nav-item">
                   <a
                     href="../panel/videospdf"
                     className={
@@ -169,22 +182,25 @@ export default function Sidebar({}) {
                     </p>
                   </a>
                 </li>
-                {user && user.isAdmin && (
-                  <>
+                
                     <li className="nav-header">LIST</li>
-                    <li className="nav-item">
-                      <a
-                        href="../panel/users"
-                        className={
-                          isActive("../panel/users")
-                            ? "nav-link active"
-                            : "nav-link"
-                        }
-                      >
-                        <i className="nav-icon fas fa-users" />
-                        <p>Users</p>
-                      </a>
-                    </li>
+                    {user && (user.isAdmin || user.isMember) && (
+                  <><li className="nav-item">
+                  <a
+                    href="../panel/users"
+                    className={
+                      isActive("../panel/users")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    <i className="nav-icon fas fa-users" />
+                    <p>Users</p>
+                  </a>
+                </li></>)}
+                    
+                    {user && user.isAdmin && (
+                  <>
                     <li className="nav-item">
                       <a
                         href="../panel/teams"
@@ -214,7 +230,8 @@ export default function Sidebar({}) {
                     <p>Profile</p>
                   </a>
                 </li>
-                {user && user.isAdmin && (
+                {user && (user.isAdmin || user.isMember)  && (
+                  <>
                   <li className="nav-item">
                     <a
                       href="../panel/blog"
@@ -225,11 +242,26 @@ export default function Sidebar({}) {
                       }
                     >
                       <i className="nav-icon fas fa-blog" />
-                      <p>Blog</p>
+                      <p>Articles</p>
                     </a>
                   </li>
+                  <li className="nav-item">
+                  <a
+                    href="../panel/settings"
+                    className={
+                      isActive("../panel/settings")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    <i className="nav-icon fas fa-users" />
+                    <p>Settings</p>
+                  </a>
+                </li>
+                </>
                 )}
-                {user && !user.isAdmin && (
+                {user && !(user.isAdmin || user.isMember) && (
+                  <>
                   <li className="nav-item">
                     <a
                       href="../panel/subscription"
@@ -243,7 +275,11 @@ export default function Sidebar({}) {
                       <p>Subscription</p>
                     </a>
                   </li>
+                  
+                  </>
+                  
                 )}
+                
               </ul>
             </nav>
           </div>

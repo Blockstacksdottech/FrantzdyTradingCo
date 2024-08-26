@@ -1,6 +1,9 @@
 import Head from "next/head";
-import Navbar from "./components/frontend/navbar";
-import Footer from "./components/frontend/footer";
+import HeadLink from "../components/panel/headlink";
+import Sidebar from "../components/panel/sidebar";
+import Menu from "../components/panel/menu";
+import ScriptLink from "../components/panel/scriptlink";
+import Footer from "../components/panel/footer";
 import React, { Component, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -12,7 +15,7 @@ import {
   uploadFiles,
 } from "@/helpers";
 import { useRouter } from "next/router";
-import Checker from "./components/Checker";
+import Checker from "../components/Checker";
 import { UserContext } from "@/contexts/UserContextData";
 import { toast } from "react-toastify";
 
@@ -113,11 +116,14 @@ const Settings = () => {
         <title>Settings</title>
         <meta name="description" content="Settings" />
       </Head>
+      <HeadLink />
+      <Menu user={user} />
+      <Sidebar />
 
       <Checker only_admin={true}>
         {!loading && (
           <>
-            <Navbar user={user} />
+            
 
             <div className="content-wrapper">
               <div className="content-header">
@@ -266,6 +272,7 @@ const Settings = () => {
         )}
 
         <Footer />
+        <ScriptLink />
       </Checker>
     </>
   );

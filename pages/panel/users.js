@@ -7,6 +7,7 @@ import Footer from "../components/panel/footer";
 import React, { Component, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {
+  formatDateLocal,
   formatImage,
   getSubName,
   isLogged,
@@ -50,6 +51,19 @@ const Users = () => {
       toast.error("Failed");
     }
   };
+
+  const addToMember = async (id,isMember) => {
+    const resp = await postReq("userpromote", {
+      userid: id,
+      action : isMember ? "demote" : "promote" 
+    });
+    if (resp) {
+      toast.success("User Updated");
+      fetchUsers();
+    } else {
+      toast.error("Failed");
+    }
+  }
 
   const deleteUser = async (id) => {
     const resp = await postReq("userdelete", {
@@ -96,6 +110,7 @@ const Users = () => {
                 </div>
               </section>
 
+
               <section className="content">
                 <div className="container-fluid">
                   <div className="row">
@@ -112,7 +127,9 @@ const Users = () => {
                                   <th>Subscription</th>
                                   <th>Date of Joining</th>
                                   <th>Status</th>
+                                  <th>Team Member</th>
                                   <th>Details</th>
+                                  <th>Promote</th>
                                   <th>Ban</th>
                                   <th>Delete</th>
                                 </tr>
@@ -143,7 +160,7 @@ const Users = () => {
                                           ? getSubName(e.sub.tier)
                                           : "Not Subscribed"}
                                       </td>
-                                      <td>07 Aug 2024</td>
+                                      <td>{formatDateLocal(e.date_joined)}</td>
                                       <td>
                                         {e.is_active && (
                                           <a className="badge bg-success">
@@ -157,8 +174,25 @@ const Users = () => {
                                         )}
                                       </td>
                                       <td>
+                                        {e.is_member && (
+                                          <a className="badge bg-success">
+                                            Active
+                                          </a>
+                                        )}
+                                        {!e.is_member && (
+                                          <a className="badge bg-danger">
+                                            Not Active
+                                          </a>
+                                        )}
+                                      </td>
+                                      <td>
                                         <a className="btn btn-sm btn-table-dark">
                                           <i className="far fa-eye"></i>
+                                        </a>
+                                      </td>
+                                      <td onClick={() => addToMember(e.id,e.is_member)}>
+                                        <a className="btn btn-sm btn-table-dark">
+                                          <p className="font-weight-bold m-0">{e.is_member ? "-" : "+"}</p>
                                         </a>
                                       </td>
                                       <td onClick={() => switchStatus(e.id)}>

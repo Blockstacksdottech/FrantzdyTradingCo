@@ -4,10 +4,25 @@ import Footer from "./components/frontend/footer";
 import HeadLink from "./components/frontend/headlink";
 import ScriptLink from "./components/frontend/scriptlink";
 import React, { useEffect, useState } from "react";
-import { formatImage, req } from "@/helpers";
+import { formatDateLocal, formatImage, req } from "@/helpers";
 import Checker from "./components/Checker";
 
 export default function Blog() {
+  const [articles,setArticles] = useState([])
+
+  const fetchBlogs = async () => {
+    const resp = await req("blog")
+    if (resp){
+      setArticles(resp)
+    }
+  }
+
+  
+
+  useEffect(() => {
+    fetchBlogs()
+  },[])
+
   return (
     <>
       <Head>
@@ -31,72 +46,33 @@ export default function Blog() {
         <section className="py-5 testimonials bg-tertiary">
           <div className="container">
             <div className="row justify-content-center">
-              <div className="col-sm-4 mb-4">
-                <a href="./blogdetails">
-                  <div className="card rounded bg-testimonial h-100">
-                    <img
-                      src="./frontend/images/blog/post-1.jpg"
-                      className="card-img-top"
-                      alt="card"
-                    />
-                    <div className="card-body">
-                      <h6 className="mb-0">
-                        Sustaining During The Covid-19 Pandemic – A Guide For
-                        Businesses
-                      </h6>
+              {
+                articles.map((e,i) => {
+                  return <div className="col-sm-4 mb-4">
+                  <a href={`/blogdetails?id=${e.id}`}>
+                    <div className="card rounded bg-testimonial h-100">
+                      <img
+                        src={formatImage(e.image)}
+                        className="card-img-top"
+                        alt="card"
+                      />
+                      <div className="card-body">
+                        <h6 className="mb-0">
+                          {e.title}
+                        </h6>
+                      </div>
+                      <div className="card-footer text-center">
+                        <span className="mb-0 text-dark">
+                          {e.user.username} - {formatDateLocal(e.date)}
+                        </span>
+                      </div>
                     </div>
-                    <div className="card-footer text-center">
-                      <span className="mb-0 text-dark">
-                        Author Name - January 12, 2021
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-sm-4 mb-4">
-                <a href="./blogdetails">
-                  <div className="card rounded bg-testimonial h-100">
-                    <img
-                      src="./frontend/images/blog/post-2.jpg"
-                      className="card-img-top"
-                      alt="card"
-                    />
-                    <div className="card-body">
-                      <h6 className="mb-0">
-                        Neque porro quisquam est qui dolorem ipsum quia dolor
-                        sit
-                      </h6>
-                    </div>
-                    <div className="card-footer text-center">
-                      <span className="mb-0 text-dark">
-                        Author Name - January 12, 2021
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-sm-4 mb-4">
-                <a href="./blogdetails">
-                  <div className="card rounded bg-testimonial h-100">
-                    <img
-                      src="./frontend/images/blog/post-3.jpg"
-                      className="card-img-top"
-                      alt="card"
-                    />
-                    <div className="card-body">
-                      <h6 className="mb-0">
-                        Neque porro quisquam est qui dolorem ipsum quia dolor
-                        sit
-                      </h6>
-                    </div>
-                    <div className="card-footer text-center">
-                      <span className="mb-0 text-dark">
-                        Author Name - January 12, 2021
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </div>
+                  </a>
+                </div>
+                })
+              }
+              
+             
             </div>
           </div>
           <div className="has-shapes">

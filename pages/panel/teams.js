@@ -14,6 +14,7 @@ import {
   postReq,
   req,
   uploadFiles,
+  formatDateLocal,
 } from "@/helpers";
 import { useRouter } from "next/router";
 import Checker from "../components/Checker";
@@ -29,6 +30,59 @@ const Teams = () => {
   }, []);
   const [loading, setLoading] = useState(true);
   const { user, setUser } = useContext(UserContext);
+
+  const [users, setUsers] = useState([]);
+
+  const fetchUsers = async () => {
+    const resp = await req("userpromote");
+    if (resp) {
+      setUsers(resp);
+    }
+    setLoading(false);
+  };
+
+  const switchStatus = async (id) => {
+    const resp = await postReq("userlist", {
+      userid: id,
+    });
+    if (resp) {
+      toast.success("User Banned");
+      fetchUsers();
+    } else {
+      toast.error("Failed");
+    }
+  };
+
+  const addToMember = async (id,isMember) => {
+    const resp = await postReq("userpromote", {
+      userid: id,
+      action : isMember ? "demote" : "promote" 
+    });
+    if (resp) {
+      toast.success("User Updated");
+      fetchUsers();
+    } else {
+      toast.error("Failed");
+    }
+  }
+
+  const deleteUser = async (id) => {
+    const resp = await postReq("userdelete", {
+      userid: id,
+    });
+    if (resp) {
+      toast.success("User Deleted");
+      fetchUsers();
+    } else {
+      toast.error("Failed");
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+
   return (
     <>
       <Head>
@@ -42,8 +96,8 @@ const Teams = () => {
       <Sidebar />
 
       <Checker only_admin={true}>
-        {/* {!loading && (
-          <> */}
+        {!loading && (
+          <>
         <div className="content-wrapper">
           <section className="content-header">
             <div className="container-fluid">
@@ -75,52 +129,85 @@ const Teams = () => {
                               <th></th>
                               <th>Name</th>
                               <th>Email</th>
-                              <th>Designation</th>
                               <th>Date of Joining</th>
-                              <th>Last Login</th>
+                              <th>Status</th>
+                              <th>Team Member</th>
                               <th>Details</th>
-                              <th>Edit</th>
+                              <th>Promote</th>
                               <th>Ban</th>
                               <th>Delete</th>
                             </tr>
                           </thead>
                           <tbody className="text-center">
-                            <tr>
-                              <td>
-                                <img
-                                  alt="Avatar"
-                                  className="table-avatar"
-                                  src="../favicon.ico"
-                                />
-                              </td>
-                              <td className="text-capitalize">Krishna</td>
-                              <td>krishnadipak1@gmail.com</td>
-                              <td className="text-capitalize">
-                                Data & Quantitative Analyst
-                              </td>
-                              <td>07 Aug 2024 | 10:57 PM</td>
-                              <td>07 Aug 2024 | 10:58 PM</td>
-                              <td>
-                                <a className="btn btn-sm btn-table-dark">
-                                  <i className="far fa-eye"></i>
-                                </a>
-                              </td>
-                              <td>
-                                <a className="btn btn-sm btn-table-dark">
-                                  <i className="fa fa-user-edit"></i>
-                                </a>
-                              </td>
-                              <td>
-                                <a className="btn btn-sm btn-danger">
-                                  <i className="fa fa-ban"></i>
-                                </a>
-                              </td>
-                              <td>
-                                <a className="btn btn-sm btn-danger">
-                                  <i className="fa fa-trash-alt"></i>
-                                </a>
-                              </td>
-                            </tr>
+                          {users.map((e, i) => {
+                                  return (
+                                    <tr>
+                                      <td>
+                                        <img
+                                          alt="Avatar"
+                                          className="table-avatar"
+                                          src={
+                                            e.image
+                                              ? formatImage(
+                                                  e.image.profile_picture
+                                                )
+                                              : "../frontend/images/team/team-1.png"
+                                          }
+                                        />
+                                      </td>
+                                      <td className="text-capitalize">
+                                        {e.username}
+                                      </td>
+                                      <td>{e.email}</td>
+                                      
+                                      <td>{formatDateLocal(e.date_joined)}</td>
+                                      <td>
+                                        {e.is_active && (
+                                          <a className="badge bg-success">
+                                            Active
+                                          </a>
+                                        )}
+                                        {!e.is_active && (
+                                          <a className="badge bg-danger">
+                                            Banned
+                                          </a>
+                                        )}
+                                      </td>
+                                      <td>
+                                        {e.is_member && (
+                                          <a className="badge bg-success">
+                                            Active
+                                          </a>
+                                        )}
+                                        {!e.is_member && (
+                                          <a className="badge bg-danger">
+                                            Not Active
+                                          </a>
+                                        )}
+                                      </td>
+                                      <td>
+                                        <a className="btn btn-sm btn-table-dark">
+                                          <i className="far fa-eye"></i>
+                                        </a>
+                                      </td>
+                                      <td onClick={() => addToMember(e.id,e.is_member)}>
+                                        <a className="btn btn-sm btn-table-dark">
+                                          <p className="font-weight-bold m-0">{e.is_member ? "-" : "+"}</p>
+                                        </a>
+                                      </td>
+                                      <td onClick={() => switchStatus(e.id)}>
+                                        <a className="btn btn-sm btn-danger">
+                                          <i className="fa fa-ban"></i>
+                                        </a>
+                                      </td>
+                                      <td onClick={() => deleteUser(e.id)}>
+                                        <a className="btn btn-sm btn-danger">
+                                          <i className="fa fa-trash-alt"></i>
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
                           </tbody>
                         </table>
                       </div>
@@ -131,8 +218,8 @@ const Teams = () => {
             </div>
           </section>
         </div>
-        {/* </>
-        )} */}
+        </>
+        )}
         <Footer />
         <ScriptLink />
       </Checker>

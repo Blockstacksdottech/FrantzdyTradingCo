@@ -4,10 +4,22 @@ import Footer from "./components/frontend/footer";
 import HeadLink from "./components/frontend/headlink";
 import ScriptLink from "./components/frontend/scriptlink";
 import React, { useEffect, useState } from "react";
-import { formatImage, req } from "@/helpers";
+import { formatDateLocal, formatImage, req } from "@/helpers";
 import Checker from "./components/Checker";
 
 function Index() {
+  const [articles,setArticles] = useState([])
+
+  const fetchBlogs = async () => {
+    const resp = await req("blog?limit=4")
+    if (resp){
+      setArticles(resp)
+    }
+  }
+
+  useEffect(() => {
+    fetchBlogs()
+  },[])
   return (
     <>
       <Head>
@@ -1077,94 +1089,30 @@ function Index() {
                   <h1>The Latest News & Updates</h1>
                 </div>
               </div>
-              <div className="col-sm-3 mb-4">
-                <a href="./blogdetails">
-                  <div className="card rounded bg-testimonial h-100">
+              {
+                      articles.map((e,i) => {
+                        return  <div className="col-sm-3 mb-4"><a href={`/blogdetails?id=${e.id}`}>
+                       <div className="card rounded bg-testimonial h-100">
                     <img
-                      src="./frontend/images/blog/post-1.jpg"
+                      src={formatImage(e.image)}
                       className="card-img-top"
                       alt="card"
                     />
                     <div className="card-body">
                       <h6 className="mb-0">
-                        Sustaining During The Covid-19 Pandemic – A Guide For
-                        Businesses
+                        {e.title}
                       </h6>
                     </div>
                     <div className="card-footer text-center">
                       <span className="mb-0 text-dark">
-                        Author Name - January 12, 2021
+                        {e.user.username} - {formatDateLocal(e.date)}
                       </span>
                     </div>
                   </div>
-                </a>
-              </div>
-              <div className="col-sm-3 mb-4">
-                <a href="./blogdetails">
-                  <div className="card rounded bg-testimonial h-100">
-                    <img
-                      src="./frontend/images/blog/post-2.jpg"
-                      className="card-img-top"
-                      alt="card"
-                    />
-                    <div className="card-body">
-                      <h6 className="mb-0">
-                        Neque porro quisquam est qui dolorem ipsum quia dolor
-                        sit
-                      </h6>
-                    </div>
-                    <div className="card-footer text-center">
-                      <span className="mb-0 text-dark">
-                        Author Name - January 12, 2021
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-sm-3 mb-4">
-                <a href="./blogdetails">
-                  <div className="card rounded bg-testimonial h-100">
-                    <img
-                      src="./frontend/images/blog/post-3.jpg"
-                      className="card-img-top"
-                      alt="card"
-                    />
-                    <div className="card-body">
-                      <h6 className="mb-0">
-                        Neque porro quisquam est qui dolorem ipsum quia dolor
-                        sit
-                      </h6>
-                    </div>
-                    <div className="card-footer text-center">
-                      <span className="mb-0 text-dark">
-                        Author Name - January 12, 2021
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div className="col-sm-3 mb-4">
-                <a href="./blogdetails">
-                  <div className="card rounded bg-testimonial h-100">
-                    <img
-                      src="./frontend/images/blog/post-4.jpg"
-                      className="card-img-top"
-                      alt="card"
-                    />
-                    <div className="card-body">
-                      <h6 className="mb-0">
-                        Neque porro quisquam est qui dolorem ipsum quia dolor
-                        sit
-                      </h6>
-                    </div>
-                    <div className="card-footer text-center">
-                      <span className="mb-0 text-dark">
-                        Author Name - January 12, 2021
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </div>
+                      </a></div>
+                      })
+                    }
+              
 
               <div className="col-sm-12 text-center">
                 <a href="./blog" className="btn btn-primary ml-lg-3 box-shadow">

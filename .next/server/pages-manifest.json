@@ -1,10 +1,1 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/panel/createblog": "pages/panel/createblog.js",
-  "/panel/announcement": "pages/panel/announcement.js",
-  "/panel/createannouncement": "pages/panel/createannouncement.js",
-  "/login": "pages/login.js",
-  "/": "pages/index.js"
-}
+{"/_error":"pages/_error.js","/_app":"pages/_app.js","/blog":"pages/blog.html","/blogdetails":"pages/blogdetails.html","/_document":"pages/_document.js","/components/frontend/footer":"pages/components/frontend/footer.html","/components/frontend/headlink":"pages/components/frontend/headlink.html","/components/frontend/menu":"pages/components/frontend/menu.html","/components/frontend/scriptlink":"pages/components/frontend/scriptlink.html","/components/Checker":"pages/components/Checker.html","/components/panel/sidebar":"pages/components/panel/sidebar.html","/components/panel/footer":"pages/components/panel/footer.html","/components/panel/headlink":"pages/components/panel/headlink.html","/components/panel/scriptlink":"pages/components/panel/scriptlink.html","/components/panel/menu":"pages/components/panel/menu.html","/":"pages/index.html","/contact":"pages/contact.html","/faq":"pages/faq.html","/panel/blog":"pages/panel/blog.html","/forgot-password":"pages/forgot-password.html","/joinus":"pages/joinus.html","/login":"pages/login.html","/panel/cotreports":"pages/panel/cotreports.html","/panel/cotscanner":"pages/panel/cotscanner.html","/panel/createblog":"pages/panel/createblog.html","/panel/addmember":"pages/panel/addmember.html","/panel/editblog":"pages/panel/editblog.html","/panel/profile":"pages/panel/profile.html","/panel/announcement":"pages/panel/announcement.html","/panel/cotpercentchange":"pages/panel/cotpercentchange.html","/panel/createannouncement":"pages/panel/createannouncement.html","/panel/sentimentdata":"pages/panel/sentimentdata.html","/panel/subscription":"pages/panel/subscription.html","/panel/videospdf":"pages/panel/videospdf.html","/panel/teams":"pages/panel/teams.html","/panel/users":"pages/panel/users.html","/privacy":"pages/privacy.html","/register":"pages/register.html","/reset-password":"pages/reset-password.html","/panel/settings":"pages/panel/settings.html","/terms":"pages/terms.html","/404":"pages/404.html"}

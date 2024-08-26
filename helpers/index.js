@@ -307,6 +307,57 @@ export const uploadFiles = async (files, body, key, endpoint) => {
   }
 };
 
+export const uploadPatchFiles = async (files, body, key, endpoint) => {
+  let form_data = new FormData();
+  let access = sessionStorage.getItem("accessToken");
+  //access =  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4OTc3OTkwLCJqdGkiOiIyY2EyY2NjMjFmMjQ0YjQyYTc3MjgzYjAzZGM2MTdhMSIsInVzZXJfaWQiOjJ9.uGyjMDKwWTMowoBgxNLiDbfijFcwutbKBkLNrXlvnTA"
+  let headers = set_header(access, true);
+  headers["Content-Type"] = "multipart/form-data";
+  console.log(files);
+  console.log(files.length);
+  for (let i = 0; i < files.length; i++) {
+    console.log("adding");
+    form_data.append(key, files[i], files[i].name);
+  }
+
+  /* form_data.append('front',files.front,files.front.name);
+    form_data.append('back',files.back,files.back.name);
+    form_data.append('selfie',files.selfie,files.selfie.name); */
+
+  for (let key of Object.keys(body)) {
+    form_data.append(key, body[key]);
+  }
+  console.log(form_data);
+  let url = api + endpoint;
+  try {
+    let resp = await axios.patch(url, form_data, {
+      headers,
+    });
+    console.log(resp.status);
+
+    if (resp.status == 201 || resp.status === 200) {
+      return true;
+    } else {
+      console.log("other errors");
+      return false;
+    }
+  } catch (error) {
+    let resp = error.response;
+    console.log(resp);
+    if (resp.status == 401) {
+      let dec = await refreshToken();
+      if (dec) {
+        return uploadPatchFiles(files, body, key, endpoint);
+      } else {
+        return false;
+      }
+    } else {
+      console.log("other errors");
+      return false;
+    }
+  }
+};
+
 export async function get_token(username = null, password = null) {
   let body = {
     email: username,
@@ -644,7 +695,7 @@ export function getThresholdSignal(interest) {
 }
 
 export function formatImage(path) {
-  return base + path;
+  return base + path.replace("http:/127.0.0.1:8000","").replace(base,"");
 }
 
 export function calculateNet(entry) {

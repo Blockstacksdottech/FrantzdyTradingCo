@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/router";
-import { formatImage, logout, req } from "@/helpers";
+import { formatDateLocal, formatImage, logout, req } from "@/helpers";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/contexts/UserContextData";
 
@@ -8,6 +8,7 @@ export default function Menu({}) {
   const nav = useRouter();
   const { user, setUser } = useContext(UserContext);
   const [image, setImage] = useState(null);
+  const [latestDate,setLatestDate] = useState(null)
   const fetchUserImage = async () => {
     const resp = await req("user-image");
     if (resp) {
@@ -18,9 +19,21 @@ export default function Menu({}) {
     }
   };
 
+  const fetchLatestDate = async () => {
+    const resp = await req("latestdate")
+    if (resp){
+      setLatestDate(resp.date)
+    }else{
+      setLatestDate(null)
+    }
+  }
+
+
+
   useEffect(() => {
     if (user.logged) {
       fetchUserImage();
+      fetchLatestDate();
     }
   }, [user]);
 
@@ -38,11 +51,14 @@ export default function Menu({}) {
               <i className="fas fa-bars" />
             </a>
           </li>
-          <li className="nav-item text-center">
+          {
+            latestDate && <li className="nav-item text-center">
             <a href="#" className="nav-link text-center">
-              Data Last updated on Tuesday, 23 July, 2024
+              Data Last updated on {formatDateLocal(latestDate)}
             </a>
           </li>
+          }
+          
         </ul>
 
         <ul className="navbar-nav ml-auto">

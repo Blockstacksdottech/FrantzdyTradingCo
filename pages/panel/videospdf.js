@@ -66,10 +66,12 @@ export default function VideosPdf() {
                 {user && user.isAdmin && (
                   <div className="col-sm-6">
                     <div className="float-right">
-                      <input
-                        type="file"
-                        className="btn btn-sm btn-export box-shadow font-08"
-                      />
+                    <a
+                  className="btn btn-export box-shadow float-right"
+                  href="../panel/settings"
+                >
+                  Add Video
+                </a>
                     </div>
                   </div>
                 )}
@@ -115,10 +117,12 @@ export default function VideosPdf() {
                 {user && user.isAdmin && (
                   <div className="col-sm-6">
                     <div className="float-right">
-                      <input
-                        type="file"
-                        className="btn btn-sm btn-export box-shadow font-08"
-                      />
+                    <a
+                  className="btn btn-export box-shadow float-right"
+                  href="../panel/settings"
+                >
+                  Add PDF
+                </a>
                     </div>
                   </div>
                 )}

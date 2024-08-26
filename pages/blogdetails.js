@@ -4,10 +4,42 @@ import Footer from "./components/frontend/footer";
 import HeadLink from "./components/frontend/headlink";
 import ScriptLink from "./components/frontend/scriptlink";
 import React, { useEffect, useState } from "react";
-import { formatImage, req } from "@/helpers";
+import { formatDateLocal, formatImage, req } from "@/helpers";
 import Checker from "./components/Checker";
+import { useSearchParams } from "next/navigation";
 
 export default function BlogDetails() {
+  const [loading,setLoading] = useState(true)
+  const [article,setArticle] = useState({})
+  const [content,setContent] = useState("")
+  const [articles,setArticles] = useState([])
+
+  const fetchBlogs = async () => {
+    const resp = await req("blog?limit=5")
+    if (resp){
+      setArticles(resp)
+    }
+  }
+
+  const params = useSearchParams()
+  const id = params.get("id")
+
+  useEffect(() => {
+    if (id){
+      fetchArticle(id)
+      fetchBlogs()
+    }
+  },[id])
+
+  const fetchArticle = async (id) => {
+    const resp = await req(`blog/${id}/`)
+    if (resp){
+      setArticle(resp)
+      setLoading(false)
+    }
+  }
+
+
   return (
     <>
       <Head>
@@ -19,10 +51,13 @@ export default function BlogDetails() {
         <HeadLink />
         <Menu />
 
-        <section
+        
+        {
+          !loading &&<>
+          <section
           className="page-header bg-tertiary"
           style={{
-            backgroundImage: "url(" + "./frontend/images/blog/post-1.jpg" + ")",
+            backgroundImage: "url(" + formatImage(article.image) + ")",
           }}
         >
           <div className="container">
@@ -30,71 +65,20 @@ export default function BlogDetails() {
               <div className="col-9 mx-auto text-center">
                 <div className="bd-banner">
                   <h2 className="text-capitalize">
-                    Sustaining During The Covid-19 Pandemic – A Guide For
-                    Businesses
+                    {article.title}
                   </h2>
-                  <p className="mb-0">Author Name - January 12, 2021</p>
+                  <p className="mb-0">{article.user.username} - {formatDateLocal(article.date)}</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
         <section className="py-5 testimonials bg-tertiary">
           <div className="container">
             <div className="row mb-5">
-              <div className="col-sm-8">
-                <p>
-                  For businesses across the globe, the last twelve months have
-                  been nothing short of a nightmare – one which still isn’t
-                  showing much signs of ending. Many startups and mid-level
-                  companies have been forced to shut up shop altogether, while
-                  nearly 72% businesses have reported significant reductions in
-                  their cash flows. The manufacturing industry has been the
-                  worst hit, while software and tech companies are facing huge
-                  problems too. In what follows, we will highlight a few
-                  strategies to deal with the COVID-19 challenge, till
-                  everything turns normal again:
-                </p>
-
-                <h2>Have empathy</h2>
-                <p>
-                  If you – the owner of an organisation – is struggling in the
-                  face of the pandemic, think about the position of your
-                  customers, who are probably under even greater stress. Talk
-                  with your clients, try to understand how they are planning to
-                  cope with the crisis, and, if required, deliver certain basic
-                  services at discounted rates (or free). Do not sever ties with
-                  anyone just because he/she fails to meet a couple of payment
-                  deadlines. Once the virus threat is neutralised and things are
-                  back to normal, people will remember your good gesture – and
-                  your business reputation will go up.
-                </p>
-
-                <h2>Use a contingency fund</h2>
-                <p>
-                  Think about it – what’s causing the biggest problem for
-                  businesses in these trying times? That’s right, the paucity of
-                  cash. To tackle this, set up an emergency/contingency fund –
-                  one that would be enough to tide over the next 3-4 quarters.
-                  If you do not have such a fund already, set it up as soon as
-                  possible. Use the money from that fund prudently – to maintain
-                  your resources (instead of, say, starting a new ambitious
-                  project). Your business should never run out of a ‘sufficient’
-                  cash availability.
-                </p>
-
-                <h2>Be transparent and communicate with everyone</h2>
-                <p>
-                  You are worried about sustainability of your company. Your
-                  employees are worried about their job security. Potential
-                  clients are worried about exorbitant expenses. As an
-                  entrepreneur, the onus is on you to communicate regularly with
-                  everyone – and let them know what the situation is, and what
-                  direction your company is heading to. Everyone has been
-                  emotionally impacted by the Covid crisis, everyone is anxious
-                  – and good, honest communication is the only thing that can
-                  tackle such unnecessary anxiety.
-                </p>
+              <div className="col-sm-8" dangerouslySetInnerHTML={{__html: article.content}}>
+                
               </div>
               <div className="col-sm-4">
                 <div className="card shadow rounded bg-hometab-content">
@@ -102,50 +86,22 @@ export default function BlogDetails() {
                     <h4 className="card-title mb-0">Other Blogs</h4>
                   </div>
                   <div className="card-body">
-                    <a href="./blogdetails">
-                      <div className="row gx-2 mb-2">
-                        <div className="col-sm-3 my-auto">
-                          <img src="./frontend/images/blog/post-2.jpg" />
+                    {
+                      articles.map((e,i) => {
+                        return <a href={`/blogdetails?id=${e.id}`}>
+                        <div className="row gx-2 mb-2">
+                          <div className="col-sm-3 my-auto">
+                            <img src={formatImage(e.image)} />
+                          </div>
+                          <div className="col-sm-9 my-auto text-dark">
+                            {e.title}
+                          </div>
                         </div>
-                        <div className="col-sm-9 my-auto text-dark">
-                          Neque porro quisquam est qui dolorem ipsum quia dolor
-                          sit
-                        </div>
-                      </div>
-                    </a>
-                    <a href="./blogdetails">
-                      <div className="row gx-2 mb-2">
-                        <div className="col-sm-3 my-auto">
-                          <img src="./frontend/images/blog/post-3.jpg" />
-                        </div>
-                        <div className="col-sm-9 my-auto text-dark">
-                          Neque porro quisquam est qui dolorem ipsum quia dolor
-                          sit
-                        </div>
-                      </div>
-                    </a>
-                    <a href="./blogdetails">
-                      <div className="row gx-2 mb-2">
-                        <div className="col-sm-3 my-auto">
-                          <img src="./frontend/images/blog/post-4.jpg" />
-                        </div>
-                        <div className="col-sm-9 my-auto text-dark">
-                          Neque porro quisquam est qui dolorem ipsum quia dolor
-                          sit
-                        </div>
-                      </div>
-                    </a>
-                    <a href="./blogdetails">
-                      <div className="row gx-2 mb-2">
-                        <div className="col-sm-3 my-auto">
-                          <img src="./frontend/images/blog/post-5.jpg" />
-                        </div>
-                        <div className="col-sm-9 my-auto text-dark">
-                          Neque porro quisquam est qui dolorem ipsum quia dolor
-                          sit
-                        </div>
-                      </div>
-                    </a>
+                      </a>
+                      })
+                    }
+                    
+                    
                   </div>
                 </div>
               </div>
@@ -217,6 +173,9 @@ export default function BlogDetails() {
             </svg>
           </div>
         </section>
+          </> 
+        }
+        
       </Checker>
       <Footer />
       <ScriptLink />
