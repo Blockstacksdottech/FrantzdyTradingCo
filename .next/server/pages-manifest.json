@@ -2,14 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/joinus": "pages/joinus.js",
-  "/": "pages/index.js",
-  "/privacy": "pages/privacy.js",
-  "/panel/videospdf": "pages/panel/videospdf.js",
-  "/blog": "pages/blog.js",
-  "/panel/cotscanner": "pages/panel/cotscanner.js",
-  "/terms": "pages/terms.js",
-  "/contact": "pages/contact.js",
-  "/panel/sentimentdata": "pages/panel/sentimentdata.js",
-  "/faq": "pages/faq.js"
+  "/panel/createblog": "pages/panel/createblog.js",
+  "/panel/announcement": "pages/panel/announcement.js",
+  "/panel/createannouncement": "pages/panel/createannouncement.js",
+  "/login": "pages/login.js",
+  "/": "pages/index.js"
 }
