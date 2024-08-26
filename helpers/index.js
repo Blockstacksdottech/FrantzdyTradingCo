@@ -695,7 +695,7 @@ export function getThresholdSignal(interest) {
 }
 
 export function formatImage(path) {
-  return base + path.replace("http:/127.0.0.1:8000","").replace(base,"");
+  return base + ("/media"+path.split("media")[1]);
 }
 
 export function calculateNet(entry) {
