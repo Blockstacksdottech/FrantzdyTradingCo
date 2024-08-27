@@ -119,18 +119,25 @@ const CreateBlog = () => {
                         </div>
                         <div className="form-group">
                           <label>Thumbnail</label>
-                          <input
-                            className="form-control form-control-lg"
-                            type="file"
-                            onChange={(e) => setImage(e.target.files[0])}
-                          />
+                          <div className="row">
+                            <div className="col-sm-4 m-auto">
+                              {article.image && (
+                                <img
+                                  src={formatImage(article.image)}
+                                  style={{ width: 400, height: 200 }}
+                                />
+                              )}
+                            </div>
+                            <div className="col-sm-8 m-auto">
+                              <input
+                                className="form-control form-control-lg"
+                                type="file"
+                                onChange={(e) => setImage(e.target.files[0])}
+                              />
+                            </div>
+                          </div>
                         </div>
-                        {article.image && (
-                          <img
-                            src={formatImage(article.image)}
-                            style={{ width: 200, height: 200 }}
-                          />
-                        )}
+
                         <div className="form-group">
                           <label>Description</label>
                           {/* <textarea id="summernote"></textarea> */}
