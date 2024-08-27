@@ -164,7 +164,6 @@ const CreateBlog = () => {
                               ],
                               ["fontsize", ["fontsize"]],
                               ["fontname", ["fontname"]],
-                              ["color", ["color"]],
                               ["para", ["ul", "ol", "paragraph"]],
                               ["table", ["table"]],
                               ["insert", ["link", "picture", "video", "hr"]],
