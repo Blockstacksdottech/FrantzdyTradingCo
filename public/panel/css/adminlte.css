@@ -2219,7 +2219,7 @@ select:-webkit-autofill:focus {
 
 .form-control:disabled,
 .form-control[readonly] {
-  background-color: transparent;
+  background-color: #073059 !important;
   opacity: 1;
 }
 
@@ -10709,6 +10709,28 @@ button.bg-dark:focus {
 
 .text-primary {
   color: #d504c5 !important;
+}
+
+.note-toolbar {
+  background: transparent !important;
+  border: 1px solid #8ed2ef !important;
+}
+
+.note-frame {
+  color: #8ed2ef !important;
+  font-family: inherit !important;
+}
+
+.note-btn {
+  background-color: transparent !important;
+  border: 1px solid #8ed2ef !important;
+  border-radius: 0px !important;
+  color: #8ed2ef !important;
+}
+
+.note-editor.note-airframe,
+.note-editor.note-frame {
+  border: 1px solid #80bdff !important;
 }
 
 a.text-primary:hover,

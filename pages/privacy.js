@@ -24,6 +24,7 @@ export default function Privacy() {
             <div className="row">
               <div className="col-6 mx-auto text-center">
                 <h2 className="mb-3 text-capitalize">Privacy Policy</h2>
+                <p className="text-primary">Effective Date: 08/01/2024</p>
               </div>
             </div>
           </div>
@@ -33,79 +34,118 @@ export default function Privacy() {
             <div className="row">
               <div className="col-lg-10 mx-auto">
                 <div class="content">
-                  <h3 id="application-processing">Application Processing</h3>
                   <p>
-                    You are most welcome to share our themes with your
-                    clients/friends, but please share our license with them so
-                    that they can be aware of our copyrights.
+                    Welcome to Frantzdy Trading Co! Your privacy is important to
+                    us. This Privacy Policy outlines how we collect, use,
+                    disclose, and protect your information when you use our
+                    services.
                   </p>
-                  <h3 id="intellectual-property-rights">
-                    Intellectual Property Rights
-                  </h3>
+                  <h3>Information We Collect</h3>
+                  <p>We may collect the following types of information:</p>
                   <ul>
                     <li>
-                      You cannot remove the copyright link to Gethugothemes
-                      without buying the license.
-                    </li>
-                    <li>
-                      You have the right to use the themes for personal and
-                      commercial project(s).
-                    </li>
-                    <li>
-                      You cannot resell, redistribute, or sub-license any of
-                      Gethugothemes’s themes.
-                    </li>
-                    <li>
-                      You can host Gethugothemes’s template to your website with
-                      full author credit
-                    </li>
-                    <li>
-                      You are most welcome to share our themes with your
-                      clients/friends, but please share our license with them so
-                      that they can be aware of our copyrights.
+                      Personal Information: This includes information such as
+                      your name, email address, phone number, and payment
+                      information that you provide when you register for our
+                      services or communicate with us.
                     </li>
                   </ul>
-                  <h3 id="the-use-of-the-information">
-                    The Use of the Information
-                  </h3>
-                  <ul>
-                    <li>
-                      You cannot remove the copyright link to Gethugothemes
-                      without buying the license.
-                    </li>
-                    <li>
-                      Themefisher is not responsible for you not receiving your
-                      Theme/Template if you to provide a order to understand
-                      valid email or for technical issues outside our control.
-                    </li>
-                  </ul>
-                  <h3 id="what-services-we-render">What Services We Render</h3>
+                  <h3>How We Use Your Information</h3>
                   <p>
-                    We collect certain identifying personal data when you sign
-                    up to our Service such as your , email address, PayPal
-                    address (if different from email address), and telephone
-                    number. The personal data we collect you is disclosed only
-                    in accordance with our Terms of Service and/or this Privacy
-                    Policy.Conclude collects Slack account and access
-                    information from Users for the purposes of connecting to and
-                    the Slack API and to authenticate to information on
+                    Frantzdy Trading Co may use your information for the
+                    following purposes:
                   </p>
                   <ul>
+                    <li>To provide and maintain our services.</li>
                     <li>
-                      You cannot remove the copyright link to Gethugothemes
-                      without buying the license.
+                      To process transactions and send you related information.
                     </li>
                     <li>
-                      Themefisher is not responsible for you not receiving your
-                      Theme/Template if you fail to provide a valid email or for
-                      technical issues outside our control.
+                      To communicate with you about updates, promotions, and
+                      other news about our services.
                     </li>
+                    <li>To analyze and improve our website and services.</li>
                     <li>
-                      You are most welcome to share our themes with your
-                      clients/friends, but please share our license with them so
-                      that they can be aware of our copyrights.
+                      To detect, prevent, and address technical issues and
+                      fraud.
                     </li>
                   </ul>
+                  <h3>Information Sharing and Disclosure</h3>
+                  <p>We may share your information with:</p>
+                  <ul>
+                    <li>
+                      Service Providers: Third-party vendors who assist us in
+                      providing our services, such as payment processors and
+                      analytics providers. These third parties are obligated to
+                      maintain the confidentiality of your information.
+                    </li>
+                    <li>
+                      Legal Requirements: We may disclose your information if
+                      required to do so by law or in response to valid requests
+                      by public authorities (e.g., a court or government
+                      agency).
+                    </li>
+                    <li>
+                      Business Transfers: In the event of a merger, acquisition,
+                      or asset sale, your information may be transferred as part
+                      of that transaction.
+                    </li>
+                  </ul>
+                  <h3>Data Security</h3>
+                  <p>
+                    We take reasonable measures to protect your information from
+                    unauthorized access, use, or disclosure. However, no
+                    internet transmission or electronic storage method is 100%
+                    secure. We cannot guarantee absolute security.
+                  </p>
+                  <h3>Your Rights</h3>
+                  <p>
+                    Depending on your location and applicable law, you may have
+                    the following rights:
+                  </p>
+                  <ul>
+                    <li>
+                      To access, update, or delete your personal information.
+                    </li>
+                    <li>
+                      To object to or restrict the processing of your personal
+                      information.
+                    </li>
+                    <li>
+                      To withdraw consent if processing is based on consent.
+                    </li>
+                  </ul>
+                  <p>
+                    To exercise these rights, please contact us at{" "}
+                    <a href="mailto:frantzdytradingco@gmail.com">
+                      frantzdytradingco@gmail.com
+                    </a>
+                  </p>
+                  <h3>Third-Party Websites</h3>
+                  <p>
+                    Our website may contain links to third-party websites. We
+                    are not responsible for the privacy practices or content of
+                    those websites. We encourage you to review their privacy
+                    policies.
+                  </p>
+                  <h3>Changes to This Privacy Policy</h3>
+                  <p>
+                    We may update this Privacy Policy from time to time. We will
+                    notify you of any changes by posting the new Privacy Policy
+                    on our website. Please review this Privacy Policy
+                    periodically for any changes.
+                  </p>
+                  <h3>Contact Us</h3>
+                  <p>
+                    If you have any questions about this Privacy Policy, please
+                    contact us at{" "}
+                    <a href="mailto:frantzdytradingco@gmail.com">
+                      frantzdytradingco@gmail.com
+                    </a>
+                    .<br /> This privacy policy provides a general framework and
+                    may need to be customized based on your specific business
+                    practices and legal requirements.
+                  </p>
                 </div>
               </div>
             </div>

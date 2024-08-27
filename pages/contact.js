@@ -119,7 +119,16 @@ export default function ContactUs() {
                               <a href="tel:+14079698519">+1 (407) 969-8519</a>
                             </p>
                             <p>
+                              Monday - Friday
+                              <br />
+                              9AM TO 8PM Eastern Time
+                            </p>
+                            <p>
                               Email us at <br />
+                              <a href="mailto:contact@frantzdytradingco.com">
+                                contact@frantzdytradingco.com
+                              </a>
+                              <br />
                               <a href="mailto:frantzdytradingco@gmail.com">
                                 frantzdytradingco@gmail.com
                               </a>

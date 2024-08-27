@@ -3,23 +3,54 @@ import Menu from "./components/frontend/menu";
 import Footer from "./components/frontend/footer";
 import HeadLink from "./components/frontend/headlink";
 import ScriptLink from "./components/frontend/scriptlink";
-import React, { useEffect, useState } from "react";
-import { formatDateLocal, formatImage, req } from "@/helpers";
+import React, { useContext, useEffect, useState } from "react";
+import { formatDateLocal, formatImage, req, reqNoAuth } from "@/helpers";
 import Checker from "./components/Checker";
+import { loadStripe } from "@stripe/stripe-js";
+import { public_stripe_key } from "@/helpers/constants";
+import { UserContext } from "@/contexts/UserContextData";
 
 function Index() {
-  const [articles,setArticles] = useState([])
-
-  const fetchBlogs = async () => {
-    const resp = await req("blog?limit=4")
-    if (resp){
-      setArticles(resp)
+  const [payments, setPayments] = useState([]);
+  const fetchPayments = async () => {
+    const resp = await reqNoAuth("/payment/subscribable-product", true);
+    if (resp) {
+      console.log(resp);
+      setPayments(resp);
     }
+  };
+  useEffect(() => {
+    fetchPayments();
+  }, []);
+
+  const [articles, setArticles] = useState([]);
+  const fetchBlogs = async () => {
+    const resp = await req("blog?limit=4");
+    if (resp) {
+      setArticles(resp);
+    }
+  };
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  function filterByNameKeyword(array, keyword) {
+    return array.filter((obj) =>
+      obj.name.toLowerCase().includes(keyword.toLowerCase())
+    );
   }
 
-  useEffect(() => {
-    fetchBlogs()
-  },[])
+  const getPrice = (keyword) => {
+    const objects = filterByNameKeyword(payments, keyword);
+    if (objects.length > 0) {
+      console.log(objects[0]);
+      const price = objects[0].price / 100;
+      return price;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <>
       <Head>
@@ -698,7 +729,10 @@ function Index() {
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>BASIC</h3>
                     <h1 className="mb-0">
-                      <span>$</span>29.00
+                      <span>$</span>
+                      {getPrice("basic")
+                        ? getPrice("basic").toFixed(2)
+                        : "Undefined"}
                     </h1>
                     <span className="text-primary">Monthly</span>
                   </div>
@@ -735,7 +769,10 @@ function Index() {
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>STANDARD</h3>
                     <h1 className="mb-0">
-                      <span>$</span>49.00
+                      <span>$</span>
+                      {getPrice("standard")
+                        ? getPrice("standard").toFixed(2)
+                        : "Undefined"}
                     </h1>
                     <span className="text-primary">Monthly</span>
                   </div>
@@ -778,7 +815,10 @@ function Index() {
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>PREMIUM</h3>
                     <h1 className="mb-0">
-                      <span>$</span>79.00
+                      <span>$</span>
+                      {getPrice("premium")
+                        ? getPrice("premium").toFixed(2)
+                        : "Undefined"}
                     </h1>
                     <span className="text-primary">Monthly</span>
                   </div>
@@ -820,7 +860,10 @@ function Index() {
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>ENTERPRISE</h3>
                     <h1 className="mb-0">
-                      <span>$</span>1500.00
+                      <span>$</span>
+                      {getPrice("custom")
+                        ? getPrice("custom").toFixed(2)
+                        : "Undefined"}
                     </h1>
                     <span className="text-primary">for 2 Years</span>
                   </div>
@@ -1089,30 +1132,31 @@ function Index() {
                   <h1>The Latest News & Updates</h1>
                 </div>
               </div>
-              {
-                      articles.map((e,i) => {
-                        return  <div className="col-sm-3 mb-4"><a href={`/blogdetails?id=${e.id}`}>
-                       <div className="card rounded bg-testimonial h-100">
-                    <img
-                      src={formatImage(e.image)}
-                      className="card-img-top"
-                      alt="card"
-                    />
-                    <div className="card-body">
-                      <h6 className="mb-0">
-                        {e.title}
-                      </h6>
-                    </div>
-                    <div className="card-footer text-center">
-                      <span className="mb-0 text-dark">
-                        {e.user.username} - {formatDateLocal(e.date)}
-                      </span>
-                    </div>
+              {articles.map((e, i) => {
+                return (
+                  <div className="col-sm-3 mb-4">
+                    <a href={`/blogdetails?id=${e.id}`}>
+                      <div className="card rounded bg-testimonial h-100">
+                        <img
+                          src={formatImage(e.image)}
+                          className="card-img-top"
+                          alt="card"
+                        />
+                        <div className="card-body">
+                          <h6 className="mb-0 text-center text-capitalize">
+                            {e.title}
+                          </h6>
+                        </div>
+                        <div className="card-footer text-center">
+                          <span className="mb-0 text-primary text-uppercase">
+                            {e.user.username} - {formatDateLocal(e.date)}
+                          </span>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                      </a></div>
-                      })
-                    }
-              
+                );
+              })}
 
               <div className="col-sm-12 text-center">
                 <a href="./blog" className="btn btn-primary ml-lg-3 box-shadow">

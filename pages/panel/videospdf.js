@@ -66,12 +66,12 @@ export default function VideosPdf() {
                 {user && user.isAdmin && (
                   <div className="col-sm-6">
                     <div className="float-right">
-                    <a
-                  className="btn btn-export box-shadow float-right"
-                  href="../panel/settings"
-                >
-                  Add Video
-                </a>
+                      <a
+                        className="btn btn-export box-shadow float-right"
+                        href="../panel/settings"
+                      >
+                        Add Video
+                      </a>
                     </div>
                   </div>
                 )}
@@ -86,7 +86,7 @@ export default function VideosPdf() {
                     links.map((e, i) => {
                       return (
                         <div className="col-lg-4 mb-3">
-                          <div className="card h-100">
+                          <div className="card">
                             <div className="card-body p-0">
                               <div className="video">
                                 <div className="embed-responsive embed-responsive-16by9">
@@ -96,7 +96,7 @@ export default function VideosPdf() {
                                     allowFullScreen
                                   ></iframe>
                                 </div>
-                                <h5 className="my-4 text-center">{e.topic}</h5>
+                                <p className="my-2 text-center">{e.topic}</p>
                               </div>
                             </div>
                           </div>
@@ -117,12 +117,12 @@ export default function VideosPdf() {
                 {user && user.isAdmin && (
                   <div className="col-sm-6">
                     <div className="float-right">
-                    <a
-                  className="btn btn-export box-shadow float-right"
-                  href="../panel/settings"
-                >
-                  Add PDF
-                </a>
+                      <a
+                        className="btn btn-export box-shadow float-right"
+                        href="../panel/settings"
+                      >
+                        Add PDF
+                      </a>
                     </div>
                   </div>
                 )}

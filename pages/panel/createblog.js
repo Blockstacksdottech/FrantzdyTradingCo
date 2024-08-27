@@ -4,56 +4,49 @@ import Sidebar from "../components/panel/sidebar";
 import Menu from "../components/panel/menu";
 import ScriptLink from "../components/panel/scriptlink";
 import Footer from "../components/panel/footer";
-import React, { useEffect,useState,useRef,useContext } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import Checker from "../components/Checker";
 import SummernoteLite from "react-summernote-lite";
 
-import 'react-summernote-lite/dist/esm/dist/summernote-lite.min.css';
+import "react-summernote-lite/dist/esm/dist/summernote-lite.min.css";
 import { toast } from "react-toastify";
 import { uploadFiles } from "@/helpers";
 import { UserContext } from "@/contexts/UserContextData";
 import { useRouter } from "next/router";
 
-
 const CreateBlog = () => {
-
   const [imageFiles, setImageFiles] = useState([]);
-  const [image,setImage] = useState(null);
-  const [title,setTitle] = useState("");
+  const [image, setImage] = useState(null);
+  const [title, setTitle] = useState("");
   const { user, setUser } = useContext(UserContext);
-  const router = useRouter()
+  const router = useRouter();
   const noteRef = useRef();
 
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "../panel/js/datatable.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
-
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.src = "../panel/js/datatable.js";
+  //   script.async = true;
+  //   document.body.appendChild(script);
+  // }, []);
 
   const save = async () => {
-    if (!image){
-      toast.error("Please select an image")
-    }else{
+    if (!image) {
+      toast.error("Please select an image");
+    } else {
       const code = noteRef.current.summernote("code");
       const body = {
         title,
-        content : code
-      }
+        content: code,
+      };
       const res = await uploadFiles([image], body, "image", "blog/");
       if (res) {
         toast.success("created");
-        router.push("/panel/blog")
+        router.push("/panel/blog");
       } else {
         toast.error("failed upload");
       }
     }
-    
-    
-  }
-
+  };
 
   return (
     <>
@@ -113,43 +106,55 @@ const CreateBlog = () => {
                         <label>Description</label>
                         {/* <textarea id="summernote"></textarea> */}
                         <SummernoteLite
-      ref={noteRef}
-      defaultCodeValue={''}
-      placeholder={"Write something here..."}
-      tabsize={2}
-      lang="zh-CN" // only if you want to change the default language
-      dialogsInBody={true}
-      blockquoteBreakingLevel={0}
-      toolbar={[
-        ['style', ['style']],
-        ['font', ['bold', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
-        ['fontsize', ['fontsize']],
-        ['fontname', ['fontname']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['table', ['table']],
-        ['insert', ['link', 'picture', 'video', 'hr']],
-        ['view', ['fullscreen', 'codeview', 'help']]
-      ]}
-      fontNames={[
-        "Arial",
-        "Georgia",
-        "Verdana",
-        "e.t.c..."
-      ]}
-      callbacks={{
-        onImageUpload: function (files){
-            setImageFiles(files);
-        },
-        onKeyup: function (e){},
-        onKeyDown: function (e){},
-        onPaste: function (e){}
-      }}
-    />
+                          ref={noteRef}
+                          defaultCodeValue={""}
+                          placeholder={"Write something here..."}
+                          tabsize={2}
+                          lang="zh-CN" // only if you want to change the default language
+                          dialogsInBody={true}
+                          blockquoteBreakingLevel={0}
+                          toolbar={[
+                            ["style", ["style"]],
+                            [
+                              "font",
+                              [
+                                "bold",
+                                "underline",
+                                "clear",
+                                "strikethrough",
+                                "superscript",
+                                "subscript",
+                              ],
+                            ],
+                            ["fontsize", ["fontsize"]],
+                            ["fontname", ["fontname"]],
+                            ["para", ["ul", "ol", "paragraph"]],
+                            ["table", ["table"]],
+                            ["insert", ["link", "picture", "video", "hr"]],
+                            ["view", ["fullscreen", "codeview", "help"]],
+                          ]}
+                          fontNames={[
+                            "Arial",
+                            "Georgia",
+                            "Verdana",
+                            "e.t.c...",
+                          ]}
+                          callbacks={{
+                            onImageUpload: function (files) {
+                              setImageFiles(files);
+                            },
+                            onKeyup: function (e) {},
+                            onKeyDown: function (e) {},
+                            onPaste: function (e) {},
+                          }}
+                        />
                       </div>
                       <div className="form-group">
                         <div className="float-right">
-                          <a className="btn btn-table-dark box-shadow-2" onClick={save}>
+                          <a
+                            className="btn btn-table-dark box-shadow-2"
+                            onClick={save}
+                          >
                             Save
                           </a>
                         </div>

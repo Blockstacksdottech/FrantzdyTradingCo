@@ -24,6 +24,7 @@ export default function Terms() {
             <div className="row">
               <div className="col-6 mx-auto text-center">
                 <h2 className="mb-3 text-capitalize">Terms &amp; Conditions</h2>
+                <p className="text-primary">Effective Date: 08/01/2024</p>
               </div>
             </div>
           </div>
@@ -33,81 +34,137 @@ export default function Terms() {
             <div className="row">
               <div className="col-lg-10 mx-auto">
                 <div className="content">
-                  <h3 id="the-use-of-the-information">
-                    The Use of the Information
-                  </h3>
-                  <ul>
-                    <li>
-                      You cannot remove the copyright link to Gethugothemes
-                      without buying the license.
-                    </li>
-                    <li>
-                      Themefisher is not responsible for you not receiving your
-                      Theme/Template if you to provide a order to understand
-                      valid email or for technical issues outside our control.
-                    </li>
-                  </ul>
-                  <h3 id="application-processing">Application Processing</h3>
-                  <ul>
-                    <li>
-                      You are most welcome to share our themes with your
-                      clients/friends, but please share our license with them so
-                      that they can be aware of our copyrights.
-                    </li>
-                  </ul>
-                  <h3 id="what-services-we-render">What Services We Render</h3>
+                  <h3>Introduction</h3>
                   <p>
-                    We collect certain identifying personal data when you sign
-                    up to our Service such as your , email address, PayPal
-                    address (if different from email address), and telephone
-                    number. The personal data we collect you is disclosed only
-                    in accordance with our Terms of Service and/or this Privacy
-                    Policy.Conclude collects Slack account and access
-                    information from Users for the purposes of connecting to and
-                    the Slack API and to authenticate to information on
+                    Welcome to Frantzdy Trading Co. LLC. These Terms and
+                    Conditions (“Terms”, “Terms and Conditions”) govern your use
+                    of our website located at frantzdytradingco.com (together or
+                    individually “Service”) operated by Frantzdy Trading co. LLC
                   </p>
-                  <ul>
-                    <li>
-                      You cannot remove the copyright link to Gethugothemes
-                      without buying the license.
-                    </li>
-                    <li>
-                      Themefisher is not responsible for you not receiving your
-                      Theme/Template if you fail to provide a valid email or for
-                      technical issues outside our control.
-                    </li>
-                    <li>
-                      You are most welcome to share our themes with your
-                      clients/friends, but please share our license with them so
-                      that they can be aware of our copyrights.
-                    </li>
-                  </ul>
-                  <h3 id="intellectual-property-rights">
-                    Intellectual Property Rights
-                  </h3>
-                  <ul>
-                    <li>
-                      You cannot remove the copyright link to Gethugothemes
-                      without buying the license.
-                    </li>
-                    <li>
-                      You have the right to use the themes for personal and
-                      commercial project(s).
-                    </li>
-                    <li>
-                      You cannot resell, redistribute, or sub-license any of
-                      Gethugothemes’s themes.
-                    </li>
-                    <li>
-                      You can host Gethugothemes’s template to your website with
-                      full author credit
-                    </li>
-                    <li>
-                      You are most welcome to share our themes with your
-                      clients/friends, but please share our license with them so
-                      that they can be aware of our copyrights.
-                    </li>
-                  </ul>
+                  <p>
+                    Our Privacy Policy also governs your use of our Service and
+                    explains how we collect, safeguard, and disclose information
+                    that results from your use of our web pages.
+                  </p>
+                  <p>
+                    Your agreement with us includes these Terms and our Privacy
+                    Policy (“Agreements”). You acknowledge that you have read
+                    and understood Agreements and agree to be bound by them.
+                  </p>
+                  <p>
+                    If you do not agree with (or cannot comply with) Agreements,
+                    then you may not use the Service, but please let us know by
+                    emailing at{" "}
+                    <a href="mailto:contact@frantzdytradingco.com">
+                      contact@frantzdytradingco.com
+                    </a>{" "}
+                    so we can try to find a solution. These Terms apply to all
+                    visitors, users, and others who wish to access or use
+                    Service.
+                  </p>
+                  <h3>Communications</h3>
+                  <p>
+                    By using our Service, you agree to subscribe to newsletters,
+                    marketing or promotional materials, and other information we
+                    may send. However, you may opt out of receiving any, or all,
+                    of these communications from us by following the unsubscribe
+                    link or by emailing at{" "}
+                    <a href="mailto:frantzdytradingco@gmail.com">
+                      frantzdytradingco@gmail.com
+                    </a>
+                  </p>
+                  <h3>Purchases</h3>
+                  <p>
+                    If you wish to purchase any product or service made
+                    available through Service (“Purchase”), you may be asked to
+                    supply certain information relevant to your Purchase
+                    including, without limitation, your credit card number, the
+                    expiration date of your credit card, your billing address,
+                    and your shipping information.
+                  </p>
+                  <p>
+                    You represent and warrant that: (i) you have the legal right
+                    to use any credit card(s) or other payment method(s) in
+                    connection with any Purchase; and that (ii) the information
+                    you supply to us is true, correct, and complete.
+                  </p>
+                  <p>
+                    We may employ the use of third-party services for the
+                    purpose of facilitating payment and the completion of
+                    Purchases. By submitting your information, you grant us the
+                    right to provide the information to these third parties
+                    subject to our Privacy Policy.
+                  </p>
+                  <p>
+                    We reserve the right to refuse or cancel your order at any
+                    time for reasons including but not limited to: product or
+                    service availability, errors in the description or price of
+                    the product or service, error in your order, or other
+                    reasons.
+                  </p>
+                  <p>
+                    We reserve the right to refuse or cancel your order if fraud
+                    or an unauthorized or illegal transaction is suspected.
+                  </p>
+                  <h3>Subscriptions</h3>
+                  <p>
+                    Some parts of the Service are billed on a subscription basis
+                    (“Subscription(s)”). You will be billed in advance on a
+                    recurring and periodic basis (“Billing Cycle”). Billing
+                    cycles are set either on a monthly or annual basis,
+                    depending on the type of subscription plan you select when
+                    purchasing a Subscription.
+                  </p>
+                  <p>
+                    At the end of each Billing Cycle, your Subscription will
+                    automatically renew under the exact same conditions unless
+                    you cancel it or Frantzdy Trading Co. LLC cancels it. You
+                    may cancel your Subscription renewal either through your
+                    online account management page or by contacting Frantzdy
+                    Trading Co. LLC’s customer support team.
+                  </p>
+                  <p>
+                    A valid payment method is required to process the payment
+                    for your subscription. You shall provide Frantzdy Trading
+                    Co. LLC with accurate and complete billing information
+                    including full name, address, state, zip code, telephone
+                    number, and a valid payment method information. By
+                    submitting such payment information, you automatically
+                    authorize Frantzdy Trading Co. LLC to charge all
+                    Subscription fees incurred through your account to any such
+                    payment instruments.
+                  </p>
+                  <p>
+                    Should automatic billing fail to occur for any reason,
+                    Frantzdy Trading Co. LLC will issue an electronic invoice
+                    indicating that you must proceed manually, within a certain
+                    deadline date, with the full payment corresponding to the
+                    billing period as indicated on the invoice.
+                  </p>
+                  <h3>Fee Changes</h3>
+                  <p>
+                    Frantzdy Trading Co. LLC, in its sole discretion and at any
+                    time, may modify Subscription fees for the Subscriptions.
+                    Any Subscription fee change will become effective at the end
+                    of the then-current Billing Cycle.
+                  </p>
+                  <p>
+                    Frantzdy Trading Co. LLC will provide you with a reasonable
+                    prior notice of any change in Subscription fees to give you
+                    an opportunity to terminate your Subscription before such
+                    change becomes effective.
+                  </p>
+                  <p>
+                    Your continued use of the Service after the Subscription fee
+                    change comes into effect constitutes your agreement to pay
+                    the modified Subscription fee amount.
+                  </p>
+                  <h3>Refunds</h3>
+                  <p>
+                    Certain refund requests for Subscriptions may be considered
+                    by Frantzdy Trading Co. LLC on a case-by-case basis and
+                    granted at the sole discretion of Frantzdy Trading Co. LLC.
+                  </p>
                 </div>
               </div>
             </div>

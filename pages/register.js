@@ -138,7 +138,7 @@ export default function Register() {
                     <div className="row">
                       <div className="col-lg-6">
                         <div className="form-group mb-4 pb-2">
-                          <label className="form-label">Nick Name</label>
+                          <label className="form-label">Username</label>
                           <input
                             type="text"
                             className="form-control shadow-none"
@@ -209,7 +209,7 @@ export default function Register() {
                           onClick={handleRegister}
                           className="btn btn-primary box-shadow w-100"
                         >
-                          Join Us
+                          Register
                         </button>
                       </div>
                     </div>

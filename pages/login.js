@@ -43,7 +43,7 @@ export default function Login() {
         } else if (obj.valid) {
           nav.push("/panel/cotscanner");
         } else {
-          nav.push("/panel/joinus");
+          nav.push("/joinus");
         }
       } else {
         nav.push("/login");

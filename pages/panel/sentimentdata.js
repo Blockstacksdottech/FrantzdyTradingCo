@@ -7,19 +7,6 @@ import Footer from "../components/panel/footer";
 import React, { Component, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { isLogged, postReq, req } from "@/helpers";
-import { useRouter } from "next/router";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  BarChart,
-  Legend,
-  Bar,
-  ResponsiveContainer,
-} from "recharts";
 import Downloader from "react-csv-downloader";
 import Checker from "../components/Checker";
 import { UserContext } from "@/contexts/UserContextData";
@@ -117,26 +104,8 @@ const Sentimentdata = () => {
           <section className="content-header">
             <div className="container-fluid">
               <div className="row mb-2">
-                <div className="col-sm-6 m-auto">
+                <div className="col-sm-6">
                   <h1>SENTIMENT DATA</h1>
-                </div>
-                <div className="col-sm-6 m-auto">
-                  <div className="float-right">
-                    {exportableData.length > 0 && (
-                      <>
-                        <Downloader
-                          filename="my_data.csv"
-                          elementType="button"
-                          disabled={false} // Set to true to disable download
-                          datas={exportableData}
-                        >
-                          <a className="btn btn-sm btn-export box-shadow">
-                            Export Data
-                          </a>
-                        </Downloader>
-                      </>
-                    )}
-                  </div>
                 </div>
               </div>
             </div>
@@ -154,9 +123,38 @@ const Sentimentdata = () => {
                   <div className="row">
                     <div className="col-lg-12">
                       <div className="card">
+                        <div className="card-header border-0">
+                          <div className="row">
+                            <div className="col-sm-3">
+                              <input
+                                type="search"
+                                class="form-control form-control-sm"
+                                placeholder="Search"
+                              />
+                            </div>
+                            <div className="col-sm-9">
+                              <div className="float-right">
+                                {exportableData.length > 0 && (
+                                  <>
+                                    <Downloader
+                                      filename="my_data.csv"
+                                      elementType="button"
+                                      disabled={false} // Set to true to disable download
+                                      datas={exportableData}
+                                    >
+                                      <a className="btn btn-sm btn-export box-shadow">
+                                        Export Data
+                                      </a>
+                                    </Downloader>
+                                  </>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div className="card-body p-0">
-                          <div className="table-responsive p-0">
-                            <table className="table table-bordered table-sm m-0">
+                          <div className="table-responsive">
+                            <table className="table table-bordered table-sm">
                               <thead>
                                 <tr>
                                   <th>Symbol</th>
@@ -175,17 +173,17 @@ const Sentimentdata = () => {
                                     return (
                                       <>
                                         <tr>
-                                          <td rowspan="3">{sym}</td>
+                                          <td rowSpan="3">{sym}</td>
                                         </tr>
                                         <tr>
                                           <td>Short</td>
                                           <td>
                                             <div
-                                              class="progress progress-sm"
+                                              className="progress progress-sm"
                                               style={{ height: "15px" }}
                                             >
                                               <div
-                                                class="progress-bar progress-bar-striped progress-bar-animated"
+                                                className="progress-bar progress-bar-striped progress-bar-animated"
                                                 aria-valuenow={e[sym][
                                                   "Short"
                                                 ].percentage.replace("%", "")}
@@ -206,11 +204,11 @@ const Sentimentdata = () => {
                                           <td>Long</td>
                                           <td>
                                             <div
-                                              class="progress progress-sm"
+                                              className="progress progress-sm"
                                               style={{ height: "15px" }}
                                             >
                                               <div
-                                                class="progress-bar progress-bar-striped progress-bar-animated"
+                                                className="progress-bar progress-bar-striped progress-bar-animated"
                                                 aria-valuenow={e[sym][
                                                   "Long"
                                                 ].percentage.replace("%", "")}

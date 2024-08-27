@@ -71,7 +71,7 @@ export default function Footer() {
                       Frantzdy Trading Co
                     </a>{" "}
                     |{" "}
-                    <a href="#" className="ms-2 text-dark">
+                    <a href="./sitemap.xml" className="ms-2 text-dark">
                       Sitemap
                     </a>
                   </p>

@@ -8,18 +8,6 @@ import React, { Component, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { isLogged, postReq, req } from "@/helpers";
 import { useRouter } from "next/router";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  BarChart,
-  Legend,
-  Bar,
-  ResponsiveContainer,
-} from "recharts";
 import Downloader from "react-csv-downloader";
 import Checker from "../components/Checker";
 import { UserContext } from "@/contexts/UserContextData";
@@ -162,7 +150,7 @@ const CotpercentChange = () => {
           </section>
           {loading && (
             <h4 className="text-white text-center pt-5 blink">
-              PLEASE WAIT COT REPORTS ARE DOWNLOADING...
+              PLEASE WAIT COT % CHANGE ARE DOWNLOADING...
             </h4>
           )}
 

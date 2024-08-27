@@ -53,10 +53,10 @@ const Teams = () => {
     }
   };
 
-  const addToMember = async (id,isMember) => {
+  const addToMember = async (id, isMember) => {
     const resp = await postReq("userpromote", {
       userid: id,
-      action : isMember ? "demote" : "promote" 
+      action: isMember ? "demote" : "promote",
     });
     if (resp) {
       toast.success("User Updated");
@@ -64,7 +64,7 @@ const Teams = () => {
     } else {
       toast.error("Failed");
     }
-  }
+  };
 
   const deleteUser = async (id) => {
     const resp = await postReq("userdelete", {
@@ -82,7 +82,6 @@ const Teams = () => {
     fetchUsers();
   }, []);
 
-
   return (
     <>
       <Head>
@@ -98,48 +97,48 @@ const Teams = () => {
       <Checker only_admin={true}>
         {!loading && (
           <>
-        <div className="content-wrapper">
-          <section className="content-header">
-            <div className="container-fluid">
-              <div className="row mb-2">
-                <div className="col-sm-6">
-                  <h1>TEAM MEMBERS</h1>
-                </div>
-                <div className="col-sm-6">
+            <div className="content-wrapper">
+              <section className="content-header">
+                <div className="container-fluid">
+                  <div className="row mb-2">
+                    <div className="col-sm-6">
+                      <h1>TEAM MEMBERS</h1>
+                    </div>
+                    {/* <div className="col-sm-6">
                   <div className="float-right">
                     <a className="btn btn-export box-shadow" href="./addmember">
                       Add Member
                     </a>
                   </div>
+                </div> */}
+                  </div>
                 </div>
-              </div>
-            </div>
-          </section>
+              </section>
 
-          <section className="content">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-12">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="table-responsive">
-                        <table className="table table-borderless projects datatable">
-                          <thead>
-                            <tr className="text-center">
-                              <th></th>
-                              <th>Name</th>
-                              <th>Email</th>
-                              <th>Date of Joining</th>
-                              <th>Status</th>
-                              <th>Team Member</th>
-                              <th>Details</th>
-                              <th>Promote</th>
-                              <th>Ban</th>
-                              <th>Delete</th>
-                            </tr>
-                          </thead>
-                          <tbody className="text-center">
-                          {users.map((e, i) => {
+              <section className="content">
+                <div className="container-fluid">
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card">
+                        <div className="card-body">
+                          <div className="table-responsive">
+                            <table className="table table-borderless projects datatable">
+                              <thead>
+                                <tr className="text-center">
+                                  <th></th>
+                                  <th>Name</th>
+                                  <th>Email</th>
+                                  <th>Date of Joining</th>
+                                  <th>Status</th>
+                                  <th>Team Member</th>
+                                  <th>Details</th>
+                                  <th>Demote</th>
+                                  <th>Ban</th>
+                                  <th>Delete</th>
+                                </tr>
+                              </thead>
+                              <tbody className="text-center">
+                                {users.map((e, i) => {
                                   return (
                                     <tr>
                                       <td>
@@ -159,7 +158,7 @@ const Teams = () => {
                                         {e.username}
                                       </td>
                                       <td>{e.email}</td>
-                                      
+
                                       <td>{formatDateLocal(e.date_joined)}</td>
                                       <td>
                                         {e.is_active && (
@@ -190,9 +189,19 @@ const Teams = () => {
                                           <i className="far fa-eye"></i>
                                         </a>
                                       </td>
-                                      <td onClick={() => addToMember(e.id,e.is_member)}>
+                                      <td
+                                        onClick={() =>
+                                          addToMember(e.id, e.is_member)
+                                        }
+                                      >
                                         <a className="btn btn-sm btn-table-dark">
-                                          <p className="font-weight-bold m-0">{e.is_member ? "-" : "+"}</p>
+                                          <p className="font-weight-bold m-0">
+                                            {e.is_member ? (
+                                              <i className="fas fa-user-minus" />
+                                            ) : (
+                                              <i className="fas fa-user-plus" />
+                                            )}
+                                          </p>
                                         </a>
                                       </td>
                                       <td onClick={() => switchStatus(e.id)}>
@@ -208,17 +217,17 @@ const Teams = () => {
                                     </tr>
                                   );
                                 })}
-                          </tbody>
-                        </table>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
-          </section>
-        </div>
-        </>
+          </>
         )}
         <Footer />
         <ScriptLink />

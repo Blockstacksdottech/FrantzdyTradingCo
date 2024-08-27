@@ -10,10 +10,7 @@ import { deleteReq, formatDateLocal, formatImage, req } from "@/helpers";
 import { toast } from "react-toastify";
 
 const Blog = () => {
-  const [articles,setArticles] = useState([])
-
-
-
+  const [articles, setArticles] = useState([]);
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "../panel/js/datatable.js";
@@ -22,27 +19,25 @@ const Blog = () => {
   }, []);
 
   const fetchBlogs = async () => {
-    const resp = await req("blog")
-    if (resp){
-      setArticles(resp)
+    const resp = await req("blog");
+    if (resp) {
+      setArticles(resp);
     }
-  }
+  };
 
   const delPost = async (id) => {
-    const resp = await deleteReq(`blog/${id}`)
+    const resp = await deleteReq(`blog/${id}`);
     if (resp) {
-      toast.success("deleted")
-      fetchBlogs()
-    }else{
-      toast.error("Failed")
+      toast.success("deleted");
+      fetchBlogs();
+    } else {
+      toast.error("Failed");
     }
-  }
+  };
 
   useEffect(() => {
-    fetchBlogs()
-  },[])
-
-
+    fetchBlogs();
+  }, []);
 
   return (
     <>
@@ -76,70 +71,70 @@ const Blog = () => {
         </section>
 
         <Checker only_admin={true}>
-          {
-            articles.length > 0  &&<section className="content">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-12">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="table-responsive">
-                        <table className="table table-borderless projects datatable">
-                          <thead>
-                            <tr className="text-center">
-                              <th></th>
-                              <th>Topic</th>
-                              <th>Author</th>
-                              <th>Published On</th>
-                              <th>Edit</th>
-                              <th>Delete</th>
-                            </tr>
-                          </thead>
-                          <tbody className="text-center">
-                            {
-                              articles.length > 0 && articles.map((e,i ) => {
-return <tr>
-                              <td>
-                                <img
-                                  alt="Avatar"
-                                  className="table-avatar"
-                                  src={
-                                    e.image
-                                      ? formatImage(e.image)
-                                      : "../frontend/images/team/team-1.png"
-                                  }
-                                />
-                              </td>
-                              <td>
-                                {e.title}
-                              </td>
-                              <td>{e.user.username}</td>
-                              <td>{formatDateLocal(e.date)}</td>
-                              <td>
-                                <a href={"/panel/editblog?id="+e.id} className="btn btn-sm btn-table-dark">
-                                  <i className="fa fa-edit"></i>
-                                </a>
-                              </td>
-                              <td onClick={() => delPost(e.id)}>
-                                <a className="btn btn-sm btn-danger">
-                                  <i className="fa fa-trash-alt"></i>
-                                </a>
-                              </td>
-                            </tr>
-                              })
-                            }
-                            
-                          </tbody>
-                        </table>
+          {articles.length > 0 && (
+            <section className="content">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="card">
+                      <div className="card-body">
+                        <div className="table-responsive">
+                          <table className="table table-borderless projects datatable">
+                            <thead>
+                              <tr className="text-center">
+                                <th></th>
+                                <th>Topic</th>
+                                <th>Author</th>
+                                <th>Published On</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                              </tr>
+                            </thead>
+                            <tbody className="text-center">
+                              {articles.length > 0 &&
+                                articles.map((e, i) => {
+                                  return (
+                                    <tr>
+                                      <td>
+                                        <img
+                                          alt="Avatar"
+                                          className="table-avatar"
+                                          src={
+                                            e.image
+                                              ? formatImage(e.image)
+                                              : "../frontend/images/team/team-1.png"
+                                          }
+                                        />
+                                      </td>
+                                      <td>{e.title}</td>
+                                      <td>{e.user.username}</td>
+                                      <td>{formatDateLocal(e.date)}</td>
+                                      <td>
+                                        <a
+                                          href={"/panel/editblog?id=" + e.id}
+                                          className="btn btn-sm btn-table-dark"
+                                        >
+                                          <i className="fa fa-edit"></i>
+                                        </a>
+                                      </td>
+                                      <td onClick={() => delPost(e.id)}>
+                                        <a className="btn btn-sm btn-danger">
+                                          <i className="fa fa-trash-alt"></i>
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-          }
-          
+            </section>
+          )}
         </Checker>
       </div>
       <Footer />

@@ -8,20 +8,18 @@ import { formatDateLocal, formatImage, req } from "@/helpers";
 import Checker from "./components/Checker";
 
 export default function Blog() {
-  const [articles,setArticles] = useState([])
+  const [articles, setArticles] = useState([]);
 
   const fetchBlogs = async () => {
-    const resp = await req("blog")
-    if (resp){
-      setArticles(resp)
+    const resp = await req("blog");
+    if (resp) {
+      setArticles(resp);
     }
-  }
-
-  
+  };
 
   useEffect(() => {
-    fetchBlogs()
-  },[])
+    fetchBlogs();
+  }, []);
 
   return (
     <>
@@ -46,33 +44,31 @@ export default function Blog() {
         <section className="py-5 testimonials bg-tertiary">
           <div className="container">
             <div className="row justify-content-center">
-              {
-                articles.map((e,i) => {
-                  return <div className="col-sm-4 mb-4">
-                  <a href={`/blogdetails?id=${e.id}`}>
-                    <div className="card rounded bg-testimonial h-100">
-                      <img
-                        src={formatImage(e.image)}
-                        className="card-img-top"
-                        alt="card"
-                      />
-                      <div className="card-body">
-                        <h6 className="mb-0">
-                          {e.title}
-                        </h6>
+              {articles.map((e, i) => {
+                return (
+                  <div className="col-sm-4 mb-4">
+                    <a href={`/blogdetails?id=${e.id}`}>
+                      <div className="card rounded bg-testimonial h-100">
+                        <img
+                          src={formatImage(e.image)}
+                          className="card-img-top"
+                          alt="card"
+                        />
+                        <div className="card-body">
+                          <h6 className="mb-0 text-center text-capitalize">
+                            {e.title}
+                          </h6>
+                        </div>
+                        <div className="card-footer text-center">
+                          <span className="mb-0 text-primary text-uppercase">
+                            {e.user.username} - {formatDateLocal(e.date)}
+                          </span>
+                        </div>
                       </div>
-                      <div className="card-footer text-center">
-                        <span className="mb-0 text-dark">
-                          {e.user.username} - {formatDateLocal(e.date)}
-                        </span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                })
-              }
-              
-             
+                    </a>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="has-shapes">

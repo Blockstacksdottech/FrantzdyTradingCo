@@ -121,26 +121,23 @@ const Settings = () => {
       <Sidebar />
 
       <Checker only_admin={true}>
-        {!loading && (
-          <>
-            
-
-            <div className="content-wrapper">
-              <div className="content-header">
-                <div className="container-fluid">
-                  <div className="row mt-2">
-                    <div className="col-sm-12">
-                      <h1 className="m-0 text-white">Videos & PDF</h1>
-                    </div>
-                  </div>
+        <div className="content-wrapper">
+          <div className="content-header">
+            <div className="container-fluid">
+              <div className="row mt-2">
+                <div className="col-sm-12">
+                  <h1 className="m-0 text-white">Videos & PDF</h1>
                 </div>
               </div>
-
+            </div>
+          </div>
+          {!loading && (
+            <>
               <div className="content">
                 <div className="container-fluid">
                   <div className="row">
                     <div className="col-lg-6">
-                      <div className="card card-primary card-outline">
+                      <div className="card">
                         <div className="card-header">
                           <h5 className="card-title">Videos</h5>
                         </div>
@@ -167,7 +164,7 @@ const Settings = () => {
                             </div>
                             <div className="form-group float-right">
                               <a
-                                className="btn btn-primary"
+                                className="btn btn-table-dark box-shadow-2"
                                 onClick={updateLink}
                               >
                                 Save
@@ -200,7 +197,7 @@ const Settings = () => {
                       </div>
                     </div>
                     <div className="col-lg-6">
-                      <div className="card card-primary card-outline">
+                      <div className="card">
                         <div className="card-header">
                           <h5 className="card-title">PDF</h5>
                         </div>
@@ -220,11 +217,12 @@ const Settings = () => {
                                 type="file"
                                 className="form-control"
                                 placeholder="PDF"
+                                style={{ height: "55px" }}
                               />
                             </div>
                             <div className="form-group float-right">
                               <a
-                                className="btn btn-primary"
+                                className="btn btn-table-dark box-shadow-2"
                                 onClick={updateFile}
                               >
                                 Save
@@ -267,9 +265,9 @@ const Settings = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
+        </div>
 
         <Footer />
         <ScriptLink />

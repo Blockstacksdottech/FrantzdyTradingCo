@@ -547,7 +547,7 @@ export default function Faq() {
                       <p>
                         Call Us We Will Be Happy To Help
                         <br />
-                        <a href="tel:+1234567890">+1234567890</a>
+                        <a href="tel:+14079698519">+1 (407) 969-8519</a>
                       </p>
                       <p>
                         Monday - Friday
@@ -556,7 +556,13 @@ export default function Faq() {
                       </p>
                       <p>
                         Email us at <br />
-                        <a href="mailto:email@email.com">email@email.com</a>
+                        <a href="mailto:contact@frantzdytradingco.com">
+                          contact@frantzdytradingco.com
+                        </a>
+                        <br />
+                        <a href="mailto:frantzdytradingco@gmail.com">
+                          frantzdytradingco@gmail.com
+                        </a>
                       </p>
                     </div>
                   </div>

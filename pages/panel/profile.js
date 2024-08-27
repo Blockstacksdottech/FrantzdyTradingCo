@@ -181,24 +181,22 @@ const Profile = () => {
                         <h3 className="profile-username text-center text-uppercase">
                           {data && data.full_name}
                         </h3>
-                        <p className="text-center">
-                          Data & Quantitative Analyst
-                        </p>
+                        <p className="text-center">Founder & CEO</p>
                       </div>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
                         <label>Upload Picture</label>
-                        <div class="input-group mb-3">
+                        <div className="input-group mb-3">
                           <input
                             type="file"
-                            class="form-control"
+                            className="form-control"
                             id="profilePicture"
                             style={{ height: "55px" }}
                           />
-                          <div class="input-group-append">
+                          <div className="input-group-append">
                             <button
-                              class="btn btn-table-dark box-shadow-2"
+                              className="btn btn-table-dark box-shadow-2"
                               type="button"
                               onClick={uploadPicture}
                             >

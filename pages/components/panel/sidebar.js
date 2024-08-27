@@ -57,7 +57,10 @@ export default function Sidebar({}) {
                 {user && user.isAdmin && (
                   <span className="badge badge-primary">ADMIN</span>
                 )}
-                {user && !user.isAdmin && (
+                {user && (!user.isAdmin || user.isMember) && (
+                  <span className="badge badge-primary">TEAM</span>
+                )}
+                {user && !user.isAdmin && !user.isMember && (
                   <span className="badge badge-primary">USER</span>
                 )}
                 <span className="text-online blink ml-2">Online</span>
@@ -141,18 +144,16 @@ export default function Sidebar({}) {
                 </li> */}
                 <li className="nav-header">OTHERS</li>
                 <li className="nav-item">
-                    <a
-                      href="/blog"
-                      className={
-                        isActive("../panel/blog")
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                    >
-                      <i className="nav-icon fas fa-blog" />
-                      <p>Blog</p>
-                    </a>
-                  </li>
+                  <a
+                    href="../panel/blog"
+                    className={
+                      isActive("../panel/blog") ? "nav-link active" : "nav-link"
+                    }
+                  >
+                    <i className="nav-icon fas fa-blog" />
+                    <p>Blog</p>
+                  </a>
+                </li>
                 <li className="nav-item">
                   <a
                     href="../panel/videospdf"
@@ -176,30 +177,30 @@ export default function Sidebar({}) {
                     }
                   >
                     <i className="nav-icon fas fa-bullhorn" />
-                    <p>
-                      Announcement
-                      <span className="badge badge-primary right">2</span>
-                    </p>
+                    <p>Announcement</p>
                   </a>
                 </li>
-                
-                    <li className="nav-header">LIST</li>
-                    {user && (user.isAdmin || user.isMember) && (
-                  <><li className="nav-item">
-                  <a
-                    href="../panel/users"
-                    className={
-                      isActive("../panel/users")
-                        ? "nav-link active"
-                        : "nav-link"
-                    }
-                  >
-                    <i className="nav-icon fas fa-users" />
-                    <p>Users</p>
-                  </a>
-                </li></>)}
-                    
-                    {user && user.isAdmin && (
+
+                <li className="nav-header">LIST</li>
+                {user && (user.isAdmin || user.isMember) && (
+                  <>
+                    <li className="nav-item">
+                      <a
+                        href="../panel/users"
+                        className={
+                          isActive("../panel/users")
+                            ? "nav-link active"
+                            : "nav-link"
+                        }
+                      >
+                        <i className="nav-icon fas fa-users" />
+                        <p>Users</p>
+                      </a>
+                    </li>
+                  </>
+                )}
+
+                {user && user.isAdmin && (
                   <>
                     <li className="nav-item">
                       <a
@@ -230,56 +231,23 @@ export default function Sidebar({}) {
                     <p>Profile</p>
                   </a>
                 </li>
-                {user && (user.isAdmin || user.isMember)  && (
-                  <>
-                  <li className="nav-item">
-                    <a
-                      href="../panel/blog"
-                      className={
-                        isActive("../panel/blog")
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                    >
-                      <i className="nav-icon fas fa-blog" />
-                      <p>Articles</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                  <a
-                    href="../panel/settings"
-                    className={
-                      isActive("../panel/settings")
-                        ? "nav-link active"
-                        : "nav-link"
-                    }
-                  >
-                    <i className="nav-icon fas fa-users" />
-                    <p>Settings</p>
-                  </a>
-                </li>
-                </>
-                )}
                 {user && !(user.isAdmin || user.isMember) && (
                   <>
-                  <li className="nav-item">
-                    <a
-                      href="../panel/subscription"
-                      className={
-                        isActive("../panel/subscription")
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                    >
-                      <i className="nav-icon fab fa-stripe-s" />
-                      <p>Subscription</p>
-                    </a>
-                  </li>
-                  
+                    <li className="nav-item">
+                      <a
+                        href="../panel/subscription"
+                        className={
+                          isActive("../panel/subscription")
+                            ? "nav-link active"
+                            : "nav-link"
+                        }
+                      >
+                        <i className="nav-icon fab fa-stripe-s" />
+                        <p>Subscription</p>
+                      </a>
+                    </li>
                   </>
-                  
                 )}
-                
               </ul>
             </nav>
           </div>

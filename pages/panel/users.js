@@ -52,10 +52,10 @@ const Users = () => {
     }
   };
 
-  const addToMember = async (id,isMember) => {
+  const addToMember = async (id, isMember) => {
     const resp = await postReq("userpromote", {
       userid: id,
-      action : isMember ? "demote" : "promote" 
+      action: isMember ? "demote" : "promote",
     });
     if (resp) {
       toast.success("User Updated");
@@ -63,7 +63,7 @@ const Users = () => {
     } else {
       toast.error("Failed");
     }
-  }
+  };
 
   const deleteUser = async (id) => {
     const resp = await postReq("userdelete", {
@@ -109,7 +109,6 @@ const Users = () => {
                   </div>
                 </div>
               </section>
-
 
               <section className="content">
                 <div className="container-fluid">
@@ -190,9 +189,19 @@ const Users = () => {
                                           <i className="far fa-eye"></i>
                                         </a>
                                       </td>
-                                      <td onClick={() => addToMember(e.id,e.is_member)}>
+                                      <td
+                                        onClick={() =>
+                                          addToMember(e.id, e.is_member)
+                                        }
+                                      >
                                         <a className="btn btn-sm btn-table-dark">
-                                          <p className="font-weight-bold m-0">{e.is_member ? "-" : "+"}</p>
+                                          <p className="font-weight-bold m-0">
+                                            {e.is_member ? (
+                                              <i className="fas fa-user-minus" />
+                                            ) : (
+                                              <i className="fas fa-user-plus" />
+                                            )}
+                                          </p>
                                         </a>
                                       </td>
                                       <td onClick={() => switchStatus(e.id)}>
