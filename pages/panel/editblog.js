@@ -52,22 +52,20 @@ const CreateBlog = () => {
   };
 
   const save = async () => {
-    if (!image) {
-      toast.error("Please select an image");
-    } else {
       const code = noteRef.current.summernote("code");
       const body = {
         title,
         content: code,
       };
-      const res = await uploadPatchFiles([image], body, "image", `blog/${id}/`);
+      const imgArr = image ? [image] : []
+      const res = await uploadPatchFiles(imgArr, body, "image", `blog/${id}/`);
       if (res) {
         toast.success("updated");
-        fetchArticle();
+        fetchArticle(id);
       } else {
         toast.error("failed upload");
       }
-    }
+    
   };
 
   return (

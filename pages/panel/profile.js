@@ -27,6 +27,7 @@ const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [refresh,setRefresh] = useState(false);
 
   const fetchUserDetails = async () => {
     const resp = await req("user-details");
@@ -76,11 +77,26 @@ const Profile = () => {
     const fullName = document.getElementById("fullName").value;
     const mobile = document.getElementById("mobile").value;
     const address = document.getElementById("address").value;
+    const position = document.getElementById("position").value;
     const city = document.getElementById("city").value;
     const state = document.getElementById("state").value;
     const country = document.getElementById("country").value;
     const zipCode = document.getElementById("zipCode").value;
 
+    const username = document.getElementById("username").value;
+
+    setLoading(true);
+    if (username !== user.username){
+      const bd = {
+        newusername : username
+      }
+      const res = await postReq("change-username",bd)
+      if (res){
+        toast.success("Username updated")
+      }else{
+        toast.error("Failed")
+      }
+    }
     // Append form data
     const body = {
       full_name: fullName,
@@ -90,8 +106,9 @@ const Profile = () => {
       state: state,
       country: country,
       zip_code: zipCode,
+      position
     };
-    setLoading(true);
+    
     const resp = await postReq("user-details", body);
     if (resp) {
       toast.success("Updated");
@@ -143,7 +160,7 @@ const Profile = () => {
         <meta name="description" content="Account Management" />
       </Head>
 
-      <Checker no_check={true}>
+      <Checker no_check={true} refresh={refresh}>
         {/* {!loading && (
           <> */}
         <HeadLink />
@@ -211,11 +228,11 @@ const Profile = () => {
                             <div className="form-group">
                               <label>Username</label>
                               <input
-                                id="userName"
+                                id="username"
                                 type="text"
                                 className="form-control"
                                 placeholder="Enter Username"
-                                defaultValue={data && data.username}
+                                defaultValue={user && user.username}
                               />
                             </div>
                           </div>
@@ -244,6 +261,7 @@ const Profile = () => {
                               className="form-control"
                               placeholder="Enter position"
                               defaultValue={data && data.position}
+                              disabled={!user.isMember}
                             />
                           </div>
                         </div>

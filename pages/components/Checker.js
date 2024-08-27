@@ -4,7 +4,7 @@ import { isLogged, logout } from "@/helpers";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
-function Checker({ children, tier, no_check, only_admin, no_login,strict_admin }) {
+function Checker({ children, tier, no_check, only_admin, no_login,strict_admin,refresh }) {
   const { user, setUser } = useContext(UserContext);
   const nav = useRouter();
   useEffect(() => {
@@ -65,7 +65,7 @@ function Checker({ children, tier, no_check, only_admin, no_login,strict_admin }
         nav.push("/login");
       }
     });
-  }, []);
+  }, [refresh]);
   return <>{children}</>;
 }
 

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Menu from "./components/frontend/menu";
 import Footer from "./components/frontend/footer";
-import HeadLink from "./components/frontend/headlink";
+import HeadLink from "./components/frontend/headlink"; 
 import ScriptLink from "./components/frontend/scriptlink";
 import React, { useContext, useEffect, useState } from "react";
 import { formatDateLocal, formatImage, req, reqNoAuth } from "@/helpers";
@@ -12,26 +12,39 @@ import { UserContext } from "@/contexts/UserContextData";
 
 function Index() {
   const [payments, setPayments] = useState([]);
-  const fetchPayments = async () => {
-    const resp = await reqNoAuth("/payment/subscribable-product", true);
-    if (resp) {
-      console.log(resp);
-      setPayments(resp);
-    }
-  };
-  useEffect(() => {
-    fetchPayments();
-  }, []);
-
+  const [members,setMembers] = useState([])
   const [articles, setArticles] = useState([]);
+
+
+
+
+
   const fetchBlogs = async () => {
     const resp = await req("blog?limit=4");
     if (resp) {
       setArticles(resp);
     }
   };
+
+
+  const fetchPayments = async () => {
+    const resp = await reqNoAuth("/payment/subscribable-product", true);
+    if (resp) {
+      setPayments(resp);
+    }
+  };
+
+  const fetchTeamMembers = async () => {
+    const resp = await req("team-members")
+    if (resp){
+      setMembers(resp)
+    }
+  }
+
   useEffect(() => {
     fetchBlogs();
+    fetchPayments();
+    fetchTeamMembers();
   }, []);
 
   function filterByNameKeyword(array, keyword) {
@@ -1041,26 +1054,31 @@ function Index() {
               </div>
             </div>
             <div className="row justify-content-center">
-              <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
-                <div className="card bg-transparent border-0 text-center">
-                  <div className="card-img">
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src="./frontend/images/team/ceo.jpg"
-                      alt="Frantzdy Pierre"
-                      className="rounded"
-                      width={300}
-                      height={332}
-                    />
-                  </div>
-                  <div className="card-body">
-                    <h3>Frantzdy Pierre</h3>
-                    <p>Founder & CEO</p>
+              {
+                members.map((e,i) => {
+                  return <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
+                  <div className="card bg-transparent border-0 text-center">
+                    <div className="card-img">
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src={e.image ? formatImage(e.image.profile_picture) : "./frontend/images/team/ceo.jpg"}
+                        alt={e.details.full_name}
+                        className="rounded"
+                        width={300}
+                        height={332}
+                      />
+                    </div>
+                    <div className="card-body">
+                      <h3>{e.details.full_name}</h3>
+                      <p>{e.details.position}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
+                })
+              }
+              
+              {/* <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
                 <div className="card bg-transparent border-0 text-center">
                   <div className="card-img">
                     <img
@@ -1116,7 +1134,7 @@ function Index() {
                     <p>Technology Lead & Architect</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>

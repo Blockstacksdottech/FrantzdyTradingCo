@@ -94,7 +94,7 @@ const Teams = () => {
       <Menu user={user} />
       <Sidebar />
 
-      <Checker only_admin={true}>
+      <Checker only_admin={true} strict_admin={true}>
         {!loading && (
           <>
             <div className="content-wrapper">

@@ -274,16 +274,16 @@ const Cotscanner = () => {
                                         </td>
                                         <td>
                                           {getThresholdSignal(
-                                            e.pair_comm_5_week_change
-                                          )}
-                                        </td>
-                                        <td>{e.pair_comm_5_week_change}</td>
-                                        <td>
-                                          {getThresholdSignal(
                                             e.pair_comm_3_week_change
                                           )}
                                         </td>
                                         <td>{e.pair_comm_3_week_change}</td>
+                                        <td>
+                                          {getThresholdSignal(
+                                            e.pair_comm_5_week_change
+                                          )}
+                                        </td>
+                                        <td>{e.pair_comm_5_week_change}</td>
                                         <td>60</td>
                                         <td>
                                           {get_diff_signal(
