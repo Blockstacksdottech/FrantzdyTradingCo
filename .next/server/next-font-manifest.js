@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{"/panel/createblog":[],"/panel/editblog":[]},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';
