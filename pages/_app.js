@@ -1,6 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import { UserProvider } from "@/contexts/UserContextData";
 
+
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App({ Component, pageProps }) {
