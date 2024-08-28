@@ -14,12 +14,15 @@ import "datatables.net-responsive-dt";
 
 const Blog = () => {
   DataTable.use(DT);
+  const [loading,setLoading] = useState(true)
   const [articles, setArticles] = useState([]);
   const fetchBlogs = async () => {
+    setLoading(true);
     const resp = await req("blog");
     if (resp) {
       setArticles(resp);
     }
+    setLoading(false)
   };
 
   const delPost = async (id) => {
@@ -74,7 +77,8 @@ const Blog = () => {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-body">
-                      <DataTable
+                      {
+                        !loading && <DataTable
                         className="table projects"
                         options={{
                           responsive: true,
@@ -148,6 +152,8 @@ const Blog = () => {
                             })}
                         </tbody>
                       </DataTable>
+                      }
+                      
                     </div>
                   </div>
                 </div>

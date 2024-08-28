@@ -14,15 +14,18 @@ import "datatables.net-responsive-dt";
 
 export default function CreateAnnouncement() {
   DataTable.use(DT);
+  const [loading,setLoading] = useState(true);
   const [announcements, setAnnouncements] = useState([]);
   const [topic, setTopic] = useState("");
   const [description, setDescription] = useState("");
 
   const fetchAnnouncements = async () => {
+    setLoading(true)
     const resp = await req("adm-announcement");
     if (resp) {
       setAnnouncements(resp);
     }
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -137,7 +140,8 @@ export default function CreateAnnouncement() {
                         <h5 className="card-title">ANNOUNCEMENTS</h5>
                       </div>
                       <div className="card-body">
-                        <DataTable
+                        {
+                          !loading && <DataTable
                           className="table projects"
                           options={{
                             responsive: true,
@@ -184,6 +188,7 @@ export default function CreateAnnouncement() {
                               })}
                           </tbody>
                         </DataTable>
+                        }
                       </div>
                     </div>
                   </div>

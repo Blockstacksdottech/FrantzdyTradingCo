@@ -374,7 +374,7 @@ const CotReport = () => {
         <title>COT Report Exclusive for Admin</title>
         <meta name="description" content="Frantzdy Trading Co - COT Report" />
       </Head>
-      <Checker only_admin={true}>
+      <Checker only_admin={true} strict_admin={true}>
         <HeadLink />
         <Menu user={user} />
         <Sidebar />
