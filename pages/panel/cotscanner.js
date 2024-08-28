@@ -17,6 +17,8 @@ import { useRouter } from "next/router";
 import Downloader from "react-csv-downloader";
 import Checker from "../components/Checker";
 import { UserContext } from "@/contexts/UserContextData";
+import DataTable from 'datatables.net-react';
+import DT from 'datatables.net-bs5';
 
 const Cotscanner = () => {
   const [data, setData] = useState(null);
@@ -26,10 +28,12 @@ const Cotscanner = () => {
   const [exportableData, setExportableData] = useState([]);
   const [date, setDate] = useState(null);
 
+  DataTable.use(DT);
+
   const initDataTable = () => {
     const script = document.createElement("script");
     script.src = "../panel/js/datatable.js";
-    script.async = true;
+    script.async = false;
     document.body.appendChild(script);
 
     return () => {
@@ -38,9 +42,9 @@ const Cotscanner = () => {
     };
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     return initDataTable();
-  }, [loading]);
+  }, [loading]); */
 
   const toPercentage = (num) => {
     // Check if the input is a valid number
@@ -243,7 +247,8 @@ const Cotscanner = () => {
 
                         <div className="card-body">
                           <div className="table-responsive">
-                            <table className="table table-borderless table-sm datatable text-center">
+                            <DataTable className="table table-borderless table-sm datatable text-center">
+                            {/* <table className="table table-borderless table-sm datatable text-center"> */}
                               <thead>
                                 <tr>
                                   <th>Pair</th>
@@ -404,7 +409,8 @@ const Cotscanner = () => {
                                     );
                                   })}
                               </tbody>
-                            </table>
+                            {/* </table> */}
+                            </DataTable>
                           </div>
                         </div>
                       </div>
@@ -435,7 +441,8 @@ const Cotscanner = () => {
 
                         <div className="card-body">
                           <div className="table-responsive">
-                            <table className="table table-borderless table-sm datatable text-center">
+                            <DataTable>
+                            {/* <table className="table table-borderless table-sm datatable text-center"> */}
                               <thead>
                                 <tr>
                                   <th>Pair</th>
@@ -466,17 +473,17 @@ const Cotscanner = () => {
                                         </td>
                                         <td>
                                           {getThresholdSignal(
-                                            e.pair_5_week_change
-                                          )}
-                                        </td>
-                                        <td>{e.pair_5_week_change}</td>
-                                        <td>
-                                          {getThresholdSignal(
                                             e.pair_3_week_change
                                           )}
                                         </td>
-
                                         <td>{e.pair_3_week_change}</td>
+                                        <td>
+                                          {getThresholdSignal(
+                                            e.pair_5_week_change
+                                          )}
+                                        </td>
+
+                                        <td>{e.pair_5_week_change}</td>
                                         {/* <td>60</td> */}
                                         <td>
                                           {get_diff_signal(
@@ -592,7 +599,8 @@ const Cotscanner = () => {
                                     );
                                   })}
                               </tbody>
-                            </table>
+                            {/* </table> */}
+                            </DataTable>
                           </div>
                         </div>
                       </div>
