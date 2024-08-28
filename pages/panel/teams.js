@@ -20,14 +20,12 @@ import { useRouter } from "next/router";
 import Checker from "../components/Checker";
 import { UserContext } from "@/contexts/UserContextData";
 import { toast } from "react-toastify";
+import DataTable from "datatables.net-react";
+import DT from "datatables.net-bs4";
+import "datatables.net-responsive-dt";
 
 const Teams = () => {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "../panel/js/datatable.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
+  DataTable.use(DT);
   const [loading, setLoading] = useState(true);
   const { user, setUser } = useContext(UserContext);
 
@@ -104,13 +102,16 @@ const Teams = () => {
                     <div className="col-sm-6">
                       <h1>TEAM MEMBERS</h1>
                     </div>
-                    {/* <div className="col-sm-6">
-                  <div className="float-right">
-                    <a className="btn btn-export box-shadow" href="./addmember">
-                      Add Member
-                    </a>
-                  </div>
-                </div> */}
+                    <div className="col-sm-6">
+                      <div className="float-right">
+                        <a
+                          className="btn btn-export box-shadow"
+                          href="./addmember"
+                        >
+                          Add Member
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
@@ -121,105 +122,106 @@ const Teams = () => {
                     <div className="col-12">
                       <div className="card">
                         <div className="card-body">
-                          <div className="table-responsive">
-                            <table className="table table-borderless projects datatable">
-                              <thead>
-                                <tr className="text-center">
-                                  <th></th>
-                                  <th>Name</th>
-                                  <th>Email</th>
-                                  <th>Date of Joining</th>
-                                  <th>Status</th>
-                                  <th>Team Member</th>
-                                  <th>Details</th>
-                                  <th>Demote</th>
-                                  <th>Ban</th>
-                                  <th>Delete</th>
-                                </tr>
-                              </thead>
-                              <tbody className="text-center">
-                                {users.map((e, i) => {
-                                  return (
-                                    <tr>
-                                      <td>
-                                        <img
-                                          alt="Avatar"
-                                          className="table-avatar"
-                                          src={
-                                            e.image
-                                              ? formatImage(
-                                                  e.image.profile_picture
-                                                )
-                                              : "../frontend/images/team/team-1.png"
-                                          }
-                                        />
-                                      </td>
-                                      <td className="text-capitalize">
-                                        {e.username}
-                                      </td>
-                                      <td>{e.email}</td>
-
-                                      <td>{formatDateLocal(e.date_joined)}</td>
-                                      <td>
-                                        {e.is_active && (
-                                          <a className="badge bg-success">
-                                            Active
-                                          </a>
-                                        )}
-                                        {!e.is_active && (
-                                          <a className="badge bg-danger">
-                                            Banned
-                                          </a>
-                                        )}
-                                      </td>
-                                      <td>
-                                        {e.is_member && (
-                                          <a className="badge bg-success">
-                                            Active
-                                          </a>
-                                        )}
-                                        {!e.is_member && (
-                                          <a className="badge bg-danger">
-                                            Not Active
-                                          </a>
-                                        )}
-                                      </td>
-                                      <td>
-                                        <a className="btn btn-sm btn-table-dark">
-                                          <i className="far fa-eye"></i>
-                                        </a>
-                                      </td>
-                                      <td
-                                        onClick={() =>
-                                          addToMember(e.id, e.is_member)
+                          <DataTable
+                            className="table table-sm projects"
+                            options={{
+                              responsive: true,
+                              sorting: true,
+                              pageLength: 5,
+                              lengthMenu: [
+                                [5, 10, 20, -1],
+                                [5, 10, 20, "All"],
+                              ],
+                              language: {
+                                search: "",
+                                searchPlaceholder: "Search",
+                                sLengthMenu: "_MENU_",
+                              },
+                            }}
+                          >
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Date of Joining</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                                <th>Demote</th>
+                                <th>Ban</th>
+                                <th>Delete</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {users.map((e, i) => {
+                                return (
+                                  <tr>
+                                    <td>
+                                      <img
+                                        alt="Avatar"
+                                        className="table-avatar"
+                                        src={
+                                          e.image
+                                            ? formatImage(
+                                                e.image.profile_picture
+                                              )
+                                            : "../frontend/images/team/team-1.png"
                                         }
-                                      >
-                                        {e.is_member ? (
-                                          <a className="btn btn-sm btn-danger">
-                                            <i className="fas fa-user-minus" />
-                                          </a>
-                                        ) : (
-                                          <a className="btn btn-sm btn-table-dark">
-                                            <i className="fas fa-user-plus" />
-                                          </a>
-                                        )}
-                                      </td>
-                                      <td onClick={() => switchStatus(e.id)}>
-                                        <a className="btn btn-sm btn-danger">
-                                          <i className="fa fa-ban"></i>
+                                      />
+                                    </td>
+                                    <td className="text-capitalize">
+                                      {e.username}
+                                    </td>
+                                    <td>{e.email}</td>
+
+                                    <td>{formatDateLocal(e.date_joined)}</td>
+                                    <td>
+                                      {e.is_active && (
+                                        <a className="badge bg-success">
+                                          Active
                                         </a>
-                                      </td>
-                                      <td onClick={() => deleteUser(e.id)}>
-                                        <a className="btn btn-sm btn-danger">
-                                          <i className="fa fa-trash-alt"></i>
+                                      )}
+                                      {!e.is_active && (
+                                        <a className="badge bg-danger">
+                                          Banned
                                         </a>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                          </div>
+                                      )}
+                                    </td>
+                                    <td>
+                                      <a className="btn btn-sm btn-table-dark">
+                                        <i className="far fa-eye"></i>
+                                      </a>
+                                    </td>
+                                    <td
+                                      onClick={() =>
+                                        addToMember(e.id, e.is_member)
+                                      }
+                                    >
+                                      {e.is_member ? (
+                                        <a className="btn btn-sm btn-danger">
+                                          <i className="fas fa-user-minus" />
+                                        </a>
+                                      ) : (
+                                        <a className="btn btn-sm btn-table-dark">
+                                          <i className="fas fa-user-plus" />
+                                        </a>
+                                      )}
+                                    </td>
+                                    <td onClick={() => switchStatus(e.id)}>
+                                      <a className="btn btn-sm btn-danger">
+                                        <i className="fa fa-ban"></i>
+                                      </a>
+                                    </td>
+                                    <td onClick={() => deleteUser(e.id)}>
+                                      <a className="btn btn-sm btn-danger">
+                                        <i className="fa fa-trash-alt"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                            </tbody>
+                          </DataTable>
                         </div>
                       </div>
                     </div>

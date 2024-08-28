@@ -8,14 +8,12 @@ import React, { useEffect, useState } from "react";
 import Checker from "../components/Checker";
 import { req, postReq, deleteReq, formatDate } from "@/helpers";
 import { toast } from "react-toastify";
+import DataTable from "datatables.net-react";
+import DT from "datatables.net-bs4";
+import "datatables.net-responsive-dt";
 
 export default function CreateAnnouncement() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "../panel/js/datatable.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
+  DataTable.use(DT);
   const [announcements, setAnnouncements] = useState([]);
   const [topic, setTopic] = useState("");
   const [description, setDescription] = useState("");
@@ -65,11 +63,11 @@ export default function CreateAnnouncement() {
           content="Frantzdy Trading Co - Create Announcement"
         />
       </Head>
-      <Checker only_admin={true}>
-        <HeadLink />
-        <Menu />
-        <Sidebar />
 
+      <HeadLink />
+      <Menu />
+      <Sidebar />
+      <Checker only_admin={true}>
         <div className="content-wrapper">
           <section className="content-header">
             <div className="container-fluid">
@@ -139,39 +137,53 @@ export default function CreateAnnouncement() {
                         <h5 className="card-title">ANNOUNCEMENTS</h5>
                       </div>
                       <div className="card-body">
-                        <div className="table-responsive">
-                          <table className="table table-borderless datatable">
-                            <thead>
-                              <tr>
-                                <th>Date</th>
-                                <th>Announcements</th>
-                                <th></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {announcements &&
-                                announcements.map((e, i) => {
-                                  return (
-                                    <tr>
-                                      <td>{formatDate(new Date(e.date))}</td>
-                                      <td>
-                                        <h5>{e.topic}</h5>
-                                        {e.description}
-                                      </td>
-                                      <td>
-                                        <a
-                                          className="btn btn-sm btn-danger"
-                                          onClick={() => deleteAnnounc(e.id)}
-                                        >
-                                          <i className="fa fa-trash"></i>
-                                        </a>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                            </tbody>
-                          </table>
-                        </div>
+                        <DataTable
+                          className="table projects"
+                          options={{
+                            responsive: true,
+                            sorting: true,
+                            pageLength: 5,
+                            lengthMenu: [
+                              [5, 10, 20, -1],
+                              [5, 10, 20, "All"],
+                            ],
+                            language: {
+                              search: "",
+                              searchPlaceholder: "Search",
+                              sLengthMenu: "_MENU_",
+                            },
+                          }}
+                        >
+                          <thead>
+                            <tr>
+                              <th>Date</th>
+                              <th>Announcements</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {announcements &&
+                              announcements.map((e, i) => {
+                                return (
+                                  <tr key={i}>
+                                    <td>{formatDate(new Date(e.date))}</td>
+                                    <td>
+                                      <h5>{e.topic}</h5>
+                                      {e.description}
+                                    </td>
+                                    <td>
+                                      <a
+                                        className="btn btn-sm btn-danger"
+                                        onClick={() => deleteAnnounc(e.id)}
+                                      >
+                                        <i className="fa fa-trash"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                          </tbody>
+                        </DataTable>
                       </div>
                     </div>
                   </div>

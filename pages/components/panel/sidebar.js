@@ -74,7 +74,7 @@ export default function Sidebar({}) {
                 data-accordion="false"
               >
                 <li className="nav-header">DATA</li>
-                {user && (user.isAdmin || user.isMember) && (
+                {user && user.isAdmin && (
                   <li className="nav-item">
                     <a
                       href="../panel/cotreports"

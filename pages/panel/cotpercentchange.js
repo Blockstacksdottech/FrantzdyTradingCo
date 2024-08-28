@@ -11,8 +11,12 @@ import { useRouter } from "next/router";
 import Downloader from "react-csv-downloader";
 import Checker from "../components/Checker";
 import { UserContext } from "@/contexts/UserContextData";
+import DataTable from "datatables.net-react";
+import DT from "datatables.net-bs4";
+import "datatables.net-responsive-dt";
 
 const CotpercentChange = () => {
+  DataTable.use(DT);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user, setUser } = useContext(UserContext);
@@ -20,22 +24,6 @@ const CotpercentChange = () => {
   const nav = useRouter();
   const [exportableData, setExportableData] = useState([]);
   const [date, setDate] = useState(null);
-
-  const initDataTable = () => {
-    const script = document.createElement("script");
-    script.src = "../panel/js/datatable.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup function to remove the script on component unmount
-      document.body.removeChild(script);
-    };
-  };
-
-  useEffect(() => {
-    return initDataTable();
-  }, [loading]);
 
   const toPercentage = (num) => {
     // Check if the input is a valid number
@@ -182,278 +170,292 @@ const CotpercentChange = () => {
                         </div>
 
                         <div className="card-body">
-                          <div className="table-responsive">
-                            <table className="table table-borderless table-sm datatable">
-                              <thead>
-                                <tr>
-                                  <th>Pair</th>
-                                  <th>1 Week Change</th>
-                                  <th>2 Week Change</th>
-                                  <th>3 Week Change</th>
-                                  <th>4 Week Change</th>
-                                  <th>5 Week Change</th>
-                                  <th>6 Week Change</th>
-                                  <th>7 Week Change</th>
-                                  <th>8 Week Change</th>
-                                  <th>9 Week Change</th>
-                                  <th>10 Week Change</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {data && data.length > 0 && (
-                                  <>
-                                    {data.map((entry, index) => {
-                                      return (
-                                        <tr key={index}>
-                                          <td>{entry.pair}</td>
-                                          <td>
+                          <DataTable
+                            className="table"
+                            options={{
+                              responsive: true,
+                              sorting: true,
+                              pageLength: 5,
+                              lengthMenu: [
+                                [5, 10, 20, -1],
+                                [5, 10, 20, "All"],
+                              ],
+                              language: {
+                                search: "",
+                                searchPlaceholder: "Search",
+                                sLengthMenu: "_MENU_",
+                              },
+                            }}
+                          >
+                            <thead>
+                              <tr>
+                                <th>Pair</th>
+                                <th>1 Week Change</th>
+                                <th>2 Week Change</th>
+                                <th>3 Week Change</th>
+                                <th>4 Week Change</th>
+                                <th>5 Week Change</th>
+                                <th>6 Week Change</th>
+                                <th>7 Week Change</th>
+                                <th>8 Week Change</th>
+                                <th>9 Week Change</th>
+                                <th>10 Week Change</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {data && data.length > 0 && (
+                                <>
+                                  {data.map((entry, index) => {
+                                    return (
+                                      <tr key={index}>
+                                        <td>{entry.pair}</td>
+                                        <td>
+                                          <div
+                                            class="progress progress-sm"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              class="progress progress-sm"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                class="progress-bar progress-bar-striped progress-bar-animated"
-                                                aria-valuenow={entry.pair_comm_pct_change.toFixed(
+                                              class="progress-bar progress-bar-striped progress-bar-animated"
+                                              aria-valuenow={entry.pair_comm_pct_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                              style={{
+                                                width: `${entry.pair_comm_pct_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                                style={{
-                                                  width: `${entry.pair_comm_pct_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_pct_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_pct_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_comm_2_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_comm_2_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_comm_2_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_2_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_comm_2_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_2_week_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_comm_3_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_comm_3_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_comm_3_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_3_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_comm_3_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_3_week_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_comm_4_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_comm_4_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_comm_4_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_4_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_comm_4_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_4_week_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_comm_5_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_comm_5_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_comm_5_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_5_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_comm_5_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_5_week_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_comm_6_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_comm_6_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_comm_6_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_6_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_comm_6_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_6_week_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_comm_7_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_comm_7_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_comm_7_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_7_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_comm_7_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_7_week_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_comm_8_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_comm_8_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_comm_8_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_8_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_comm_8_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_8_week_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_comm_9_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_comm_9_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_comm_9_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_9_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_comm_9_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_9_week_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_comm_10_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_comm_10_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_comm_10_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_comm_10_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                        </tr>
-                                      );
-                                    })}
-                                  </>
-                                )}
-                              </tbody>
-                            </table>
-                          </div>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_comm_10_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_comm_10_week_change.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                      </tr>
+                                    );
+                                  })}
+                                </>
+                              )}
+                            </tbody>
+                          </DataTable>
                         </div>
                       </div>
                     </div>
@@ -485,275 +487,263 @@ const CotpercentChange = () => {
                         </div>
 
                         <div className="card-body">
-                          <div className="table-responsive">
-                            <table className="table table-borderless table-sm datatable">
-                              <thead>
-                                <tr>
-                                  <th>Pair</th>
-                                  <th>1 Week Change</th>
-                                  <th>2 Week Change</th>
-                                  <th>3 Week Change</th>
-                                  <th>4 Week Change</th>
-                                  <th>5 Week Change</th>
-                                  <th>6 Week Change</th>
-                                  <th>7 Week Change</th>
-                                  <th>8 Week Change</th>
-                                  <th>9 Week Change</th>
-                                  <th>10 Week Change</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {data && data.length > 0 && (
-                                  <>
-                                    {data.map((entry, index) => {
-                                      return (
-                                        <tr key={index}>
-                                          <td>{entry.pair}</td>
-                                          <td>
+                          <DataTable
+                            className="table"
+                            options={{
+                              responsive: true,
+                              sorting: true,
+                              pageLength: 5,
+                              lengthMenu: [
+                                [5, 10, 20, -1],
+                                [5, 10, 20, "All"],
+                              ],
+                              language: {
+                                search: "",
+                                searchPlaceholder: "Search",
+                                sLengthMenu: "_MENU_",
+                              },
+                            }}
+                          >
+                            <thead>
+                              <tr>
+                                <th>Pair</th>
+                                <th>1 Week Change</th>
+                                <th>2 Week Change</th>
+                                <th>3 Week Change</th>
+                                <th>4 Week Change</th>
+                                <th>5 Week Change</th>
+                                <th>6 Week Change</th>
+                                <th>7 Week Change</th>
+                                <th>8 Week Change</th>
+                                <th>9 Week Change</th>
+                                <th>10 Week Change</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {data && data.length > 0 && (
+                                <>
+                                  {data.map((entry, index) => {
+                                    return (
+                                      <tr key={index}>
+                                        <td>{entry.pair}</td>
+                                        <td>
+                                          <div
+                                            class="progress progress-sm"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              class="progress progress-sm"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                class="progress-bar progress-bar-striped progress-bar-animated"
-                                                aria-valuenow={entry.pair_pct_change.toFixed(
+                                              class="progress-bar progress-bar-striped progress-bar-animated"
+                                              aria-valuenow={entry.pair_pct_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                              style={{
+                                                width: `${entry.pair_pct_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                                style={{
-                                                  width: `${entry.pair_pct_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                              ></div>
-                                            </div>
-                                            {entry.pair_pct_change.toFixed(2)}%
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                            ></div>
+                                          </div>
+                                          {entry.pair_pct_change.toFixed(2)}%
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_2_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_2_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_2_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_2_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_2_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_2_week_change.toFixed(2)}%
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_3_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_3_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_3_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_3_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_3_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_3_week_change.toFixed(2)}%
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_4_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_4_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_4_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_4_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_4_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_4_week_change.toFixed(2)}%
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_5_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_5_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_5_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_5_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_5_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_5_week_change.toFixed(2)}%
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_6_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_6_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_6_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_6_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_6_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_6_week_change.toFixed(2)}%
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_7_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_7_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_7_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_7_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_7_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_7_week_change.toFixed(2)}%
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_8_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_8_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_8_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_8_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_8_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_8_week_change.toFixed(2)}%
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_9_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_9_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_9_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_9_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_9_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_9_week_change.toFixed(2)}%
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_10_week_change.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_10_week_change.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_10_week_change.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_10_week_change.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                        </tr>
-                                      );
-                                    })}
-                                  </>
-                                )}
-                              </tbody>
-                            </table>
-                          </div>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_10_week_change.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_10_week_change.toFixed(2)}
+                                          %
+                                        </td>
+                                      </tr>
+                                    );
+                                  })}
+                                </>
+                              )}
+                            </tbody>
+                          </DataTable>
                         </div>
                       </div>
                     </div>
@@ -783,278 +773,292 @@ const CotpercentChange = () => {
                         </div>
 
                         <div className="card-body">
-                          <div className="table-responsive">
-                            <table className="table table-borderless table-sm datatable">
-                              <thead>
-                                <tr>
-                                  <th>Pair</th>
-                                  <th>1 Week Change</th>
-                                  <th>2 Week Change</th>
-                                  <th>3 Week Change</th>
-                                  <th>4 Week Change</th>
-                                  <th>5 Week Change</th>
-                                  <th>6 Week Change</th>
-                                  <th>7 Week Change</th>
-                                  <th>8 Week Change</th>
-                                  <th>9 Week Change</th>
-                                  <th>10 Week Change</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {data && data.length > 0 && (
-                                  <>
-                                    {data.map((entry, index) => {
-                                      return (
-                                        <tr key={index}>
-                                          <td>{entry.pair}</td>
-                                          <td>
+                          <DataTable
+                            className="table"
+                            options={{
+                              responsive: true,
+                              sorting: true,
+                              pageLength: 5,
+                              lengthMenu: [
+                                [5, 10, 20, -1],
+                                [5, 10, 20, "All"],
+                              ],
+                              language: {
+                                search: "",
+                                searchPlaceholder: "Search",
+                                sLengthMenu: "_MENU_",
+                              },
+                            }}
+                          >
+                            <thead>
+                              <tr>
+                                <th>Pair</th>
+                                <th>1 Week Change</th>
+                                <th>2 Week Change</th>
+                                <th>3 Week Change</th>
+                                <th>4 Week Change</th>
+                                <th>5 Week Change</th>
+                                <th>6 Week Change</th>
+                                <th>7 Week Change</th>
+                                <th>8 Week Change</th>
+                                <th>9 Week Change</th>
+                                <th>10 Week Change</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {data && data.length > 0 && (
+                                <>
+                                  {data.map((entry, index) => {
+                                    return (
+                                      <tr key={index}>
+                                        <td>{entry.pair}</td>
+                                        <td>
+                                          <div
+                                            class="progress progress-sm"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              class="progress progress-sm"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                class="progress-bar progress-bar-striped progress-bar-animated"
-                                                aria-valuenow={entry.pair_pct_change_open_interest.toFixed(
+                                              class="progress-bar progress-bar-striped progress-bar-animated"
+                                              aria-valuenow={entry.pair_pct_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                              style={{
+                                                width: `${entry.pair_pct_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                                style={{
-                                                  width: `${entry.pair_pct_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                              ></div>
-                                            </div>
-                                            {entry.pair_pct_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                            ></div>
+                                          </div>
+                                          {entry.pair_pct_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_2_week_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_2_week_change_open_interest.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_2_week_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_2_week_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_2_week_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_2_week_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_3_week_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_3_week_change_open_interest.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_3_week_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_3_week_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_3_week_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_3_week_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_4_week_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_4_week_change_open_interest.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_4_week_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_4_week_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_4_week_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_4_week_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_5_week_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_5_week_change_open_interest.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_5_week_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_5_week_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_5_week_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_5_week_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_6_week_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_6_week_change_open_interest.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_6_week_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_6_week_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_6_week_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_6_week_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_7_week_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_7_week_change_open_interest.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_7_week_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_7_week_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_7_week_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_7_week_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_8_week_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_8_week_change_open_interest.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_8_week_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_8_week_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_8_week_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_8_week_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_9_week_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_9_week_change_open_interest.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_9_week_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_9_week_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                          <td>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_9_week_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_9_week_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                        <td>
+                                          <div
+                                            className="progress"
+                                            style={{ height: "20px" }}
+                                          >
                                             <div
-                                              className="progress"
-                                              style={{ height: "20px" }}
-                                            >
-                                              <div
-                                                className="progress-bar progress-bar-striped progress-bar-animated"
-                                                style={{
-                                                  width: `${entry.pair_10_week_change_open_interest.toFixed(
-                                                    2
-                                                  )}%`,
-                                                }}
-                                                aria-valuenow={entry.pair_10_week_change_open_interest.toFixed(
+                                              className="progress-bar progress-bar-striped progress-bar-animated"
+                                              style={{
+                                                width: `${entry.pair_10_week_change_open_interest.toFixed(
                                                   2
-                                                )}
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"
-                                              ></div>
-                                            </div>
-                                            {entry.pair_10_week_change_open_interest.toFixed(
-                                              2
-                                            )}
-                                            %
-                                          </td>
-                                        </tr>
-                                      );
-                                    })}
-                                  </>
-                                )}
-                              </tbody>
-                            </table>
-                          </div>
+                                                )}%`,
+                                              }}
+                                              aria-valuenow={entry.pair_10_week_change_open_interest.toFixed(
+                                                2
+                                              )}
+                                              aria-valuemin="0"
+                                              aria-valuemax="100"
+                                            ></div>
+                                          </div>
+                                          {entry.pair_10_week_change_open_interest.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </td>
+                                      </tr>
+                                    );
+                                  })}
+                                </>
+                              )}
+                            </tbody>
+                          </DataTable>
                         </div>
                       </div>
                     </div>

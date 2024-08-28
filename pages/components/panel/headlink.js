@@ -19,26 +19,6 @@ export default function HeadLink() {
         rel="stylesheet"
         href="../panel/plugins/fontawesome-free/css/all.min.css"
       />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-        rel="stylesheet"
-      />
-      <link
-        rel="stylesheet"
-        href="../panel/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"
-      />
-      <link
-        rel="stylesheet"
-        href="../panel/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"
-      />
-      <link
-        rel="stylesheet"
-        href="../panel/plugins/datatables-buttons/css/buttons.bootstrap4.min.css"
-      />
-      <link
-        rel="stylesheet"
-        href="../panel/plugins/summernote/summernote-bs4.min.css"
-      ></link>
       <link rel="stylesheet" href="../panel/css/adminlte.css" />
     </>
   );

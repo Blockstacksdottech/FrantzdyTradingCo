@@ -17,8 +17,9 @@ import { useRouter } from "next/router";
 import Downloader from "react-csv-downloader";
 import Checker from "../components/Checker";
 import { UserContext } from "@/contexts/UserContextData";
-import DataTable from 'datatables.net-react';
-import DT from 'datatables.net-bs5';
+import DataTable from "datatables.net-react";
+import DT from "datatables.net-bs4";
+import "datatables.net-responsive-dt";
 
 const Cotscanner = () => {
   const [data, setData] = useState(null);
@@ -30,17 +31,16 @@ const Cotscanner = () => {
 
   DataTable.use(DT);
 
-  const initDataTable = () => {
-    const script = document.createElement("script");
-    script.src = "../panel/js/datatable.js";
-    script.async = false;
-    document.body.appendChild(script);
+  // const initDataTable = () => {
+  //   const script = document.createElement("script");
+  //   script.src = "../panel/js/datatable.js";
+  //   script.async = false;
+  //   document.body.appendChild(script);
 
-    return () => {
-      // Cleanup function to remove the script on component unmount
-      document.body.removeChild(script);
-    };
-  };
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // };
 
   /* useEffect(() => {
     return initDataTable();
@@ -232,7 +232,7 @@ const Cotscanner = () => {
                               <>
                                 <Downloader
                                   filename="my_data.csv"
-                                  elementType="button"
+                                  elementtype="button"
                                   disabled={false} // Set to true to disable download
                                   datas={exportableData}
                                 >
@@ -246,172 +246,184 @@ const Cotscanner = () => {
                         </div>
 
                         <div className="card-body">
-                          <div className="table-responsive">
-                            <DataTable className="table table-borderless table-sm datatable text-center">
-                            {/* <table className="table table-borderless table-sm datatable text-center"> */}
-                              <thead>
-                                <tr>
-                                  <th>Pair</th>
-                                  <th>Overall</th>
-                                  <th>3 Week</th>
-                                  <th>3 Week % Net Shift</th>
-                                  <th>5 Week</th>
-                                  <th>5 Week % Net Shift</th>
-                                  <th>ADR</th>
-                                  <th>Long Term</th>
-                                  <th>Sentiment</th>
-                                  <th>% Long</th>
-                                  <th>% Short</th>
-                                  <th>Crowded Market Alert</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {data &&
-                                  data.length > 0 &&
-                                  data.map((e, i) => {
-                                    return (
-                                      <tr>
-                                        <td>{e.pair}</td>
-                                        <td>
-                                          {getThresholdSignal(
-                                            e.pair_comm_pct_change
-                                          )}
-                                        </td>
-                                        <td>
-                                          {getThresholdSignal(
-                                            e.pair_comm_3_week_change
-                                          )}
-                                        </td>
-                                        <td>{e.pair_comm_3_week_change}</td>
-                                        <td>
-                                          {getThresholdSignal(
-                                            e.pair_comm_5_week_change
-                                          )}
-                                        </td>
-                                        <td>{e.pair_comm_5_week_change}</td>
-                                        <td>60</td>
-                                        <td>
-                                          {get_diff_signal(
-                                            e.comm_10_diff_absolute_long,
-                                            e.comm_10_diff_absolute_short
-                                          )}
-                                        </td>
-                                        <td>
-                                          {get_diff_signal(
-                                            e.comm_diff_absolute_long,
-                                            e.comm_diff_absolute_short
-                                          )}
-                                        </td>
-                                        <td>
+                          <DataTable
+                            className="table table-borderless table-sm"
+                            options={{
+                              responsive: true,
+                              sorting: true,
+                              pageLength: 5,
+                              lengthMenu: [
+                                [5, 10, 20, -1],
+                                [5, 10, 20, "All"],
+                              ],
+                              language: {
+                                search: "",
+                                searchPlaceholder: "Search",
+                                sLengthMenu: "_MENU_",
+                              },
+                            }}
+                          >
+                            <thead>
+                              <tr>
+                                <th>Pair</th>
+                                <th>Overall</th>
+                                <th>3 Week</th>
+                                <th>3 Week % Net Shift</th>
+                                <th>5 Week</th>
+                                <th>5 Week % Net Shift</th>
+                                <th>ADR</th>
+                                <th>Long Term</th>
+                                <th>Sentiment</th>
+                                <th>% Long</th>
+                                <th>% Short</th>
+                                <th>Crowded Market Alert</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {data &&
+                                data.length > 0 &&
+                                data.map((e, i) => {
+                                  return (
+                                    <tr>
+                                      <td>{e.pair}</td>
+                                      <td>
+                                        {getThresholdSignal(
+                                          e.pair_comm_pct_change
+                                        )}
+                                      </td>
+                                      <td>
+                                        {getThresholdSignal(
+                                          e.pair_comm_3_week_change
+                                        )}
+                                      </td>
+                                      <td>{e.pair_comm_3_week_change}</td>
+                                      <td>
+                                        {getThresholdSignal(
+                                          e.pair_comm_5_week_change
+                                        )}
+                                      </td>
+                                      <td>{e.pair_comm_5_week_change}</td>
+                                      <td>60</td>
+                                      <td>
+                                        {get_diff_signal(
+                                          e.comm_10_diff_absolute_long,
+                                          e.comm_10_diff_absolute_short
+                                        )}
+                                      </td>
+                                      <td>
+                                        {get_diff_signal(
+                                          e.comm_diff_absolute_long,
+                                          e.comm_diff_absolute_short
+                                        )}
+                                      </td>
+                                      <td>
+                                        <div
+                                          className="progress progress-sm"
+                                          style={{ height: "15px" }}
+                                        >
                                           <div
-                                            class="progress progress-sm"
-                                            style={{ height: "15px" }}
-                                          >
-                                            <div
-                                              class="progress-bar progress-bar-striped progress-bar-animated"
-                                              aria-valuenow={toPercentage(
+                                            className="progress-bar progress-bar-striped progress-bar-animated"
+                                            aria-valuenow={toPercentage(
+                                              (e.base_comm_long +
+                                                e.quote_comm_long) /
+                                                (e.base_comm_long +
+                                                  e.base_comm_short +
+                                                  e.quote_comm_long +
+                                                  e.quote_comm_short)
+                                            ).replace("%", "")}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style={{
+                                              width: toPercentage(
                                                 (e.base_comm_long +
                                                   e.quote_comm_long) /
                                                   (e.base_comm_long +
                                                     e.base_comm_short +
                                                     e.quote_comm_long +
                                                     e.quote_comm_short)
-                                              ).replace("%", "")}
-                                              aria-valuemin="0"
-                                              aria-valuemax="100"
-                                              style={{
-                                                width: toPercentage(
-                                                  (e.base_comm_long +
-                                                    e.quote_comm_long) /
-                                                    (e.base_comm_long +
-                                                      e.base_comm_short +
-                                                      e.quote_comm_long +
-                                                      e.quote_comm_short)
-                                                ),
-                                              }}
-                                            ></div>
-                                          </div>
-                                          {toPercentage(
+                                              ),
+                                            }}
+                                          ></div>
+                                        </div>
+                                        {toPercentage(
+                                          (e.base_comm_long +
+                                            e.quote_comm_long) /
                                             (e.base_comm_long +
-                                              e.quote_comm_long) /
-                                              (e.base_comm_long +
-                                                e.base_comm_short +
-                                                e.quote_comm_long +
-                                                e.quote_comm_short)
-                                          )}
-                                        </td>
-                                        <td>
+                                              e.base_comm_short +
+                                              e.quote_comm_long +
+                                              e.quote_comm_short)
+                                        )}
+                                      </td>
+                                      <td>
+                                        <div
+                                          className="progress progress-sm"
+                                          style={{ height: "15px" }}
+                                        >
                                           <div
-                                            class="progress progress-sm"
-                                            style={{ height: "15px" }}
-                                          >
-                                            <div
-                                              class="progress-bar progress-bar-striped progress-bar-animated"
-                                              aria-valuenow={toPercentage(
+                                            className="progress-bar progress-bar-striped progress-bar-animated"
+                                            aria-valuenow={toPercentage(
+                                              (e.base_comm_short +
+                                                e.quote_comm_short) /
+                                                (e.base_comm_long +
+                                                  e.base_comm_short +
+                                                  e.quote_comm_long +
+                                                  e.quote_comm_short)
+                                            ).replace("%", "")}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style={{
+                                              width: toPercentage(
                                                 (e.base_comm_short +
                                                   e.quote_comm_short) /
                                                   (e.base_comm_long +
                                                     e.base_comm_short +
                                                     e.quote_comm_long +
                                                     e.quote_comm_short)
-                                              ).replace("%", "")}
-                                              aria-valuemin="0"
-                                              aria-valuemax="100"
-                                              style={{
-                                                width: toPercentage(
-                                                  (e.base_comm_short +
-                                                    e.quote_comm_short) /
-                                                    (e.base_comm_long +
-                                                      e.base_comm_short +
-                                                      e.quote_comm_long +
-                                                      e.quote_comm_short)
-                                                ),
-                                              }}
-                                            ></div>
-                                          </div>
-                                          {toPercentage(
-                                            (e.base_comm_short +
-                                              e.quote_comm_short) /
-                                              (e.base_comm_long +
-                                                e.base_comm_short +
-                                                e.quote_comm_long +
-                                                e.quote_comm_short)
-                                          )}
-                                        </td>
-                                        <td>
-                                          {new Array(
+                                              ),
+                                            }}
+                                          ></div>
+                                        </div>
+                                        {toPercentage(
+                                          (e.base_comm_short +
+                                            e.quote_comm_short) /
+                                            (e.base_comm_long +
+                                              e.base_comm_short +
+                                              e.quote_comm_long +
+                                              e.quote_comm_short)
+                                        )}
+                                      </td>
+                                      <td>
+                                        {new Array(
+                                          get_stars(
+                                            e.comm_diff_absolute_long,
+                                            e.comm_diff_absolute_short
+                                          )
+                                        )
+                                          .fill(0)
+                                          .map(() => {
+                                            return (
+                                              <span className="fa fa-star checked"></span>
+                                            );
+                                          })}
+                                        {new Array(
+                                          5 -
                                             get_stars(
                                               e.comm_diff_absolute_long,
                                               e.comm_diff_absolute_short
                                             )
-                                          )
-                                            .fill(0)
-                                            .map(() => {
-                                              return (
-                                                <span class="fa fa-star checked"></span>
-                                              );
-                                            })}
-                                          {new Array(
-                                            5 -
-                                              get_stars(
-                                                e.comm_diff_absolute_long,
-                                                e.comm_diff_absolute_short
-                                              )
-                                          )
-                                            .fill(0)
-                                            .map(() => {
-                                              return (
-                                                <span class="fa fa-star"></span>
-                                              );
-                                            })}
-                                        </td>
-                                      </tr>
-                                    );
-                                  })}
-                              </tbody>
-                            {/* </table> */}
-                            </DataTable>
-                          </div>
+                                        )
+                                          .fill(0)
+                                          .map(() => {
+                                            return (
+                                              <span className="fa fa-star"></span>
+                                            );
+                                          })}
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
+                            </tbody>
+                          </DataTable>
                         </div>
                       </div>
                     </div>
@@ -426,7 +438,7 @@ const Cotscanner = () => {
                               <>
                                 <Downloader
                                   filename="my_data.csv"
-                                  elementType="button"
+                                  elementtype="button"
                                   disabled={false} // Set to true to disable download
                                   datas={exportableData}
                                 >
@@ -440,168 +452,177 @@ const Cotscanner = () => {
                         </div>
 
                         <div className="card-body">
-                          <div className="table-responsive">
-                            <DataTable>
-                            {/* <table className="table table-borderless table-sm datatable text-center"> */}
-                              <thead>
-                                <tr>
-                                  <th>Pair</th>
-                                  <th>Overall</th>
-                                  <th>3 Week</th>
-                                  <th>3 Week % Net Shift</th>
-                                  <th>5 Week</th>
-                                  <th>5 Week % Net Shift</th>
-                                  <th>Long Term</th>
-                                  <th>Sentiment</th>
-                                  <th>% Long</th>
-                                  <th>% Short</th>
-                                  <th>Crowded Market Alert</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {data &&
-                                  data.length > 0 &&
-                                  data.map((e, i) => {
-                                    return (
-                                      <tr>
-                                        <td>{e.pair}</td>
+                          <DataTable
+                            className="table table-borderless table-sm"
+                            options={{
+                              responsive: true,
+                              sorting: true,
+                              pageLength: 5,
+                              lengthMenu: [
+                                [5, 10, 20, -1],
+                                [5, 10, 20, "All"],
+                              ],
+                              language: {
+                                search: "",
+                                searchPlaceholder: "Search",
+                                sLengthMenu: "_MENU_",
+                              },
+                            }}
+                          >
+                            <thead>
+                              <tr>
+                                <th>Pair</th>
+                                <th>Overall</th>
+                                <th>3 Week</th>
+                                <th>3 Week % Net Shift</th>
+                                <th>5 Week</th>
+                                <th>5 Week % Net Shift</th>
+                                <th>Long Term</th>
+                                <th>Sentiment</th>
+                                <th>% Long</th>
+                                <th>% Short</th>
+                                <th>Crowded Market Alert</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {data &&
+                                data.length > 0 &&
+                                data.map((e, i) => {
+                                  return (
+                                    <tr>
+                                      <td>{e.pair}</td>
 
-                                        <td>
-                                          {getThresholdSignal(
-                                            e.pair_pct_change
-                                          )}
-                                        </td>
-                                        <td>
-                                          {getThresholdSignal(
-                                            e.pair_3_week_change
-                                          )}
-                                        </td>
-                                        <td>{e.pair_3_week_change}</td>
-                                        <td>
-                                          {getThresholdSignal(
-                                            e.pair_5_week_change
-                                          )}
-                                        </td>
+                                      <td>
+                                        {getThresholdSignal(e.pair_pct_change)}
+                                      </td>
+                                      <td>
+                                        {getThresholdSignal(
+                                          e.pair_3_week_change
+                                        )}
+                                      </td>
+                                      <td>{e.pair_3_week_change}</td>
+                                      <td>
+                                        {getThresholdSignal(
+                                          e.pair_5_week_change
+                                        )}
+                                      </td>
 
-                                        <td>{e.pair_5_week_change}</td>
-                                        {/* <td>60</td> */}
-                                        <td>
-                                          {get_diff_signal(
-                                            e.noncomm_10_diff_absolute_long,
-                                            e.noncomm_10_diff_absolute_short
-                                          )}
-                                        </td>
-                                        <td>
-                                          {get_diff_signal(
-                                            e.noncomm_diff_absolute_long,
-                                            e.noncomm_diff_absolute_short
-                                          )}
-                                        </td>
-                                        <td>
+                                      <td>{e.pair_5_week_change}</td>
+                                      {/* <td>60</td> */}
+                                      <td>
+                                        {get_diff_signal(
+                                          e.noncomm_10_diff_absolute_long,
+                                          e.noncomm_10_diff_absolute_short
+                                        )}
+                                      </td>
+                                      <td>
+                                        {get_diff_signal(
+                                          e.noncomm_diff_absolute_long,
+                                          e.noncomm_diff_absolute_short
+                                        )}
+                                      </td>
+                                      <td>
+                                        <div
+                                          className="progress progress-sm"
+                                          style={{ height: "15px" }}
+                                        >
                                           <div
-                                            class="progress progress-sm"
-                                            style={{ height: "15px" }}
-                                          >
-                                            <div
-                                              class="progress-bar progress-bar-striped progress-bar-animated"
-                                              aria-valuenow={toPercentage(
+                                            className="progress-bar progress-bar-striped progress-bar-animated"
+                                            aria-valuenow={toPercentage(
+                                              (e.base_long + e.quote_long) /
+                                                (e.base_long +
+                                                  e.base_short +
+                                                  e.quote_long +
+                                                  e.quote_short)
+                                            ).replace("%", "")}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style={{
+                                              width: toPercentage(
                                                 (e.base_long + e.quote_long) /
                                                   (e.base_long +
                                                     e.base_short +
                                                     e.quote_long +
                                                     e.quote_short)
-                                              ).replace("%", "")}
-                                              aria-valuemin="0"
-                                              aria-valuemax="100"
-                                              style={{
-                                                width: toPercentage(
-                                                  (e.base_long + e.quote_long) /
-                                                    (e.base_long +
-                                                      e.base_short +
-                                                      e.quote_long +
-                                                      e.quote_short)
-                                                ),
-                                              }}
-                                            ></div>
-                                          </div>
-                                          {toPercentage(
-                                            (e.base_long + e.quote_long) /
-                                              (e.base_long +
-                                                e.base_short +
-                                                e.quote_long +
-                                                e.quote_short)
-                                          )}
-                                        </td>
-                                        <td>
+                                              ),
+                                            }}
+                                          ></div>
+                                        </div>
+                                        {toPercentage(
+                                          (e.base_long + e.quote_long) /
+                                            (e.base_long +
+                                              e.base_short +
+                                              e.quote_long +
+                                              e.quote_short)
+                                        )}
+                                      </td>
+                                      <td>
+                                        <div
+                                          className="progress progress-sm"
+                                          style={{ height: "15px" }}
+                                        >
                                           <div
-                                            class="progress progress-sm"
-                                            style={{ height: "15px" }}
-                                          >
-                                            <div
-                                              class="progress-bar progress-bar-striped progress-bar-animated"
-                                              aria-valuenow={toPercentage(
+                                            className="progress-bar progress-bar-striped progress-bar-animated"
+                                            aria-valuenow={toPercentage(
+                                              (e.base_short + e.quote_short) /
+                                                (e.base_long +
+                                                  e.base_short +
+                                                  e.quote_long +
+                                                  e.quote_short)
+                                            ).replace("%", "")}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style={{
+                                              width: toPercentage(
                                                 (e.base_short + e.quote_short) /
                                                   (e.base_long +
                                                     e.base_short +
                                                     e.quote_long +
                                                     e.quote_short)
-                                              ).replace("%", "")}
-                                              aria-valuemin="0"
-                                              aria-valuemax="100"
-                                              style={{
-                                                width: toPercentage(
-                                                  (e.base_short +
-                                                    e.quote_short) /
-                                                    (e.base_long +
-                                                      e.base_short +
-                                                      e.quote_long +
-                                                      e.quote_short)
-                                                ),
-                                              }}
-                                            ></div>
-                                          </div>
-                                          {toPercentage(
-                                            (e.base_short + e.quote_short) /
-                                              (e.base_long +
-                                                e.base_short +
-                                                e.quote_long +
-                                                e.quote_short)
-                                          )}
-                                        </td>
-                                        <td>
-                                          {new Array(
+                                              ),
+                                            }}
+                                          ></div>
+                                        </div>
+                                        {toPercentage(
+                                          (e.base_short + e.quote_short) /
+                                            (e.base_long +
+                                              e.base_short +
+                                              e.quote_long +
+                                              e.quote_short)
+                                        )}
+                                      </td>
+                                      <td>
+                                        {new Array(
+                                          get_stars(
+                                            e.noncomm_diff_absolute_long,
+                                            e.noncomm_diff_absolute_short
+                                          )
+                                        )
+                                          .fill(0)
+                                          .map(() => {
+                                            return (
+                                              <span className="fa fa-star checked"></span>
+                                            );
+                                          })}
+                                        {new Array(
+                                          5 -
                                             get_stars(
                                               e.noncomm_diff_absolute_long,
                                               e.noncomm_diff_absolute_short
                                             )
-                                          )
-                                            .fill(0)
-                                            .map(() => {
-                                              return (
-                                                <span class="fa fa-star checked"></span>
-                                              );
-                                            })}
-                                          {new Array(
-                                            5 -
-                                              get_stars(
-                                                e.noncomm_diff_absolute_long,
-                                                e.noncomm_diff_absolute_short
-                                              )
-                                          )
-                                            .fill(0)
-                                            .map(() => {
-                                              return (
-                                                <span class="fa fa-star"></span>
-                                              );
-                                            })}
-                                        </td>
-                                      </tr>
-                                    );
-                                  })}
-                              </tbody>
-                            {/* </table> */}
-                            </DataTable>
-                          </div>
+                                        )
+                                          .fill(0)
+                                          .map(() => {
+                                            return (
+                                              <span className="fa fa-star"></span>
+                                            );
+                                          })}
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
+                            </tbody>
+                          </DataTable>
                         </div>
                       </div>
                     </div>
