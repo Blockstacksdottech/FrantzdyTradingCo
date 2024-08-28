@@ -91,7 +91,10 @@ export default function BlogDetails() {
                             <a href={`/blogdetails?id=${e.id}`}>
                               <div className="row gx-2 mb-2">
                                 <div className="col-sm-3 my-auto">
-                                  <img src={formatImage(e.image)} />
+                                  <img
+                                    src={formatImage(e.image)}
+                                    alt={e.title}
+                                  />
                                 </div>
                                 <div className="col-sm-9 my-auto text-dark">
                                   {e.title}

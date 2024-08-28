@@ -194,15 +194,15 @@ const Teams = () => {
                                           addToMember(e.id, e.is_member)
                                         }
                                       >
-                                        <a className="btn btn-sm btn-table-dark">
-                                          <p className="font-weight-bold m-0">
-                                            {e.is_member ? (
-                                              <i className="fas fa-user-minus" />
-                                            ) : (
-                                              <i className="fas fa-user-plus" />
-                                            )}
-                                          </p>
-                                        </a>
+                                        {e.is_member ? (
+                                          <a className="btn btn-sm btn-danger">
+                                            <i className="fas fa-user-minus" />
+                                          </a>
+                                        ) : (
+                                          <a className="btn btn-sm btn-table-dark">
+                                            <i className="fas fa-user-plus" />
+                                          </a>
+                                        )}
                                       </td>
                                       <td onClick={() => switchStatus(e.id)}>
                                         <a className="btn btn-sm btn-danger">

@@ -48,16 +48,17 @@ export default function Blog() {
                 return (
                   <div className="col-sm-4 mb-4">
                     <a href={`/blogdetails?id=${e.id}`}>
-                      <div className="card rounded bg-testimonial h-100">
+                      <div className="card rounded bg-testimonial">
                         <img
                           src={formatImage(e.image)}
                           className="card-img-top"
-                          alt="card"
+                          alt={e.title}
+                          style={{ height: "203px", width: "100%" }}
                         />
                         <div className="card-body">
-                          <h6 className="mb-0 text-center text-capitalize">
+                          <p className="mb-0 text-center text-dark text-capitalize">
                             {e.title}
-                          </h6>
+                          </p>
                         </div>
                         <div className="card-footer text-center">
                           <span className="mb-0 text-primary text-uppercase">

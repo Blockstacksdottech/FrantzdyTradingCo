@@ -71,70 +71,78 @@ const Blog = () => {
         </section>
 
         <Checker only_admin={true}>
-          {articles.length > 0 && (
-            <section className="content">
-              <div className="container-fluid">
-                <div className="row">
-                  <div className="col-12">
-                    <div className="card">
-                      <div className="card-body">
-                        <div className="table-responsive">
-                          <table className="table table-borderless projects datatable">
-                            <thead>
-                              <tr className="text-center">
-                                <th></th>
-                                <th>Topic</th>
-                                <th>Author</th>
-                                <th>Published On</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                              </tr>
-                            </thead>
-                            <tbody className="text-center">
-                              {articles.length > 0 &&
-                                articles.map((e, i) => {
-                                  return (
-                                    <tr>
-                                      <td>
-                                        <img
-                                          alt="Avatar"
-                                          className="table-avatar"
-                                          src={
-                                            e.image
-                                              ? formatImage(e.image)
-                                              : "../frontend/images/team/team-1.png"
-                                          }
-                                        />
-                                      </td>
-                                      <td>{e.title}</td>
-                                      <td>{e.user.username}</td>
-                                      <td>{formatDateLocal(e.date)}</td>
-                                      <td>
-                                        <a
-                                          href={"/panel/editblog?id=" + e.id}
-                                          className="btn btn-sm btn-table-dark"
-                                        >
-                                          <i className="fa fa-edit"></i>
-                                        </a>
-                                      </td>
-                                      <td onClick={() => delPost(e.id)}>
-                                        <a className="btn btn-sm btn-danger">
-                                          <i className="fa fa-trash-alt"></i>
-                                        </a>
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                            </tbody>
-                          </table>
-                        </div>
+          <section className="content">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-12">
+                  <div className="card">
+                    <div className="card-body">
+                      <div className="table-responsive">
+                        <table className="table projects datatable">
+                          <thead>
+                            <tr>
+                              <th className="text-center">Thumbnail</th>
+                              <th>Topic</th>
+                              <th className="text-center">Edit</th>
+                              <th className="text-center">Delete</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            {articles.length > 0 &&
+                              articles.map((e, i) => {
+                                return (
+                                  <tr>
+                                    <td className="text-center">
+                                      <img
+                                        alt={e.title}
+                                        className="table-avatar"
+                                        src={
+                                          e.image
+                                            ? formatImage(e.image)
+                                            : "../frontend/images/team/team-1.png"
+                                        }
+                                      />
+                                    </td>
+                                    <td>
+                                      <p className="mb-0 font-weight-bold">
+                                        {e.title}
+                                      </p>
+                                      <p className="mb-0">
+                                        Author: {e.user.username}
+                                      </p>
+                                      <p className="mb-0">
+                                        Published on: {formatDateLocal(e.date)}
+                                      </p>
+                                    </td>
+                                    <td className="text-center">
+                                      <a
+                                        href={"/panel/editblog?id=" + e.id}
+                                        className="btn btn-sm btn-table-dark"
+                                      >
+                                        <i className="fa fa-edit"></i>
+                                      </a>
+                                    </td>
+                                    <td
+                                      className="text-center"
+                                      onClick={() => delPost(e.id)}
+                                    >
+                                      <a className="btn btn-sm btn-danger">
+                                        <i className="fa fa-trash-alt"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </section>
-          )}
+            </div>
+          </section>
         </Checker>
       </div>
       <Footer />

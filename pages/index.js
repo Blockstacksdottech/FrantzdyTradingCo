@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Menu from "./components/frontend/menu";
 import Footer from "./components/frontend/footer";
-import HeadLink from "./components/frontend/headlink"; 
+import HeadLink from "./components/frontend/headlink";
 import ScriptLink from "./components/frontend/scriptlink";
 import React, { useContext, useEffect, useState } from "react";
 import { formatDateLocal, formatImage, req, reqNoAuth } from "@/helpers";
@@ -12,12 +12,8 @@ import { UserContext } from "@/contexts/UserContextData";
 
 function Index() {
   const [payments, setPayments] = useState([]);
-  const [members,setMembers] = useState([])
+  const [members, setMembers] = useState([]);
   const [articles, setArticles] = useState([]);
-
-
-
-
 
   const fetchBlogs = async () => {
     const resp = await req("blog?limit=4");
@@ -25,7 +21,6 @@ function Index() {
       setArticles(resp);
     }
   };
-
 
   const fetchPayments = async () => {
     const resp = await reqNoAuth("/payment/subscribable-product", true);
@@ -35,11 +30,11 @@ function Index() {
   };
 
   const fetchTeamMembers = async () => {
-    const resp = await req("team-members")
-    if (resp){
-      setMembers(resp)
+    const resp = await req("team-members");
+    if (resp) {
+      setMembers(resp);
     }
-  }
+  };
 
   useEffect(() => {
     fetchBlogs();
@@ -1054,30 +1049,33 @@ function Index() {
               </div>
             </div>
             <div className="row justify-content-center">
-              {
-                members.map((e,i) => {
-                  return <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
-                  <div className="card bg-transparent border-0 text-center">
-                    <div className="card-img">
-                      <img
-                        loading="lazy"
-                        decoding="async"
-                        src={e.image ? formatImage(e.image.profile_picture) : "./frontend/images/team/ceo.jpg"}
-                        alt={e.details.full_name}
-                        className="rounded"
-                        width={300}
-                        height={332}
-                      />
-                    </div>
-                    <div className="card-body">
-                      <h3>{e.details.full_name}</h3>
-                      <p>{e.details.position}</p>
+              {members.map((e, i) => {
+                return (
+                  <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
+                    <div className="card bg-transparent border-0 text-center">
+                      <div className="card-img">
+                        <img
+                          loading="lazy"
+                          decoding="async"
+                          src={
+                            e.image
+                              ? formatImage(e.image.profile_picture)
+                              : "./frontend/images/team/team-1.png"
+                          }
+                          alt={e.details.full_name}
+                          className="rounded"
+                          style={{ height: "332px", width: "100%" }}
+                        />
+                      </div>
+                      <div className="card-body">
+                        <h3>{e.details.full_name}</h3>
+                        <p>{e.details.position}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                })
-              }
-              
+                );
+              })}
+
               {/* <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
                 <div className="card bg-transparent border-0 text-center">
                   <div className="card-img">
@@ -1154,16 +1152,17 @@ function Index() {
                 return (
                   <div className="col-sm-3 mb-4">
                     <a href={`/blogdetails?id=${e.id}`}>
-                      <div className="card rounded bg-testimonial h-100">
+                      <div className="card rounded bg-testimonial">
                         <img
                           src={formatImage(e.image)}
                           className="card-img-top"
-                          alt="card"
+                          alt={e.title}
+                          style={{ height: "203px", width: "100%" }}
                         />
                         <div className="card-body">
-                          <h6 className="mb-0 text-center text-capitalize">
+                          <p className="mb-0 text-center text-dark text-capitalize">
                             {e.title}
-                          </h6>
+                          </p>
                         </div>
                         <div className="card-footer text-center">
                           <span className="mb-0 text-primary text-uppercase">
