@@ -141,7 +141,10 @@ const Users = () => {
                                 <th className="text-center">Status</th>
                                 {/* <th className="text-center">Team Member</th> */}
                                 <th className="text-center">Details</th>
-                                <th className="text-center">Hire</th>
+                                {
+                                  user.isAdmin && <th className="text-center">Hire</th>
+                                }
+                                
                                 <th className="text-center">Ban</th>
                                 <th className="text-center">Delete</th>
                               </tr>
@@ -206,7 +209,8 @@ const Users = () => {
                                         <i className="far fa-eye"></i>
                                       </a>
                                     </td>
-                                    <td
+                                    {
+                                      user.isAdmin && <td
                                       className="text-center"
                                       onClick={() =>
                                         addToMember(e.id, e.is_member)
@@ -222,6 +226,8 @@ const Users = () => {
                                         </a>
                                       )}
                                     </td>
+                                    }
+                                    
                                     <td
                                       className="text-center"
                                       onClick={() => switchStatus(e.id)}
