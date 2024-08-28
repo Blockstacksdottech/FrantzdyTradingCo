@@ -27,7 +27,7 @@ const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [refresh,setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   const fetchUserDetails = async () => {
     const resp = await req("user-details");
@@ -86,15 +86,15 @@ const Profile = () => {
     const username = document.getElementById("username").value;
 
     setLoading(true);
-    if (username !== user.username){
+    if (username !== user.username) {
       const bd = {
-        newusername : username
-      }
-      const res = await postReq("change-username",bd)
-      if (res){
-        toast.success("Username updated")
-      }else{
-        toast.error("Failed")
+        newusername: username,
+      };
+      const res = await postReq("change-username", bd);
+      if (res) {
+        toast.success("Username updated");
+      } else {
+        toast.error("Failed");
       }
     }
     // Append form data
@@ -106,9 +106,9 @@ const Profile = () => {
       state: state,
       country: country,
       zip_code: zipCode,
-      position
+      position,
     };
-    
+
     const resp = await postReq("user-details", body);
     if (resp) {
       toast.success("Updated");
@@ -198,7 +198,7 @@ const Profile = () => {
                         <h3 className="profile-username text-center text-uppercase">
                           {data && data.full_name}
                         </h3>
-                        <p className="text-center">Founder & CEO</p>
+                        <p className="text-center">{data && data.position}</p>
                       </div>
                     </div>
                     <div className="card-body">
@@ -261,7 +261,7 @@ const Profile = () => {
                               className="form-control"
                               placeholder="Enter position"
                               defaultValue={data && data.position}
-                              disabled={!user.isMember}
+                              // disabled={!user.isMember}
                             />
                           </div>
                         </div>
