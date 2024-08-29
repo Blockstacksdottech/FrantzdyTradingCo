@@ -143,17 +143,7 @@ export default function Sidebar({}) {
                   </a>
                 </li> */}
                 <li className="nav-header">OTHERS</li>
-                <li className="nav-item">
-                  <a
-                    href="../panel/blog"
-                    className={
-                      isActive("../panel/blog") ? "nav-link active" : "nav-link"
-                    }
-                  >
-                    <i className="nav-icon fas fa-blog" />
-                    <p>Blog</p>
-                  </a>
-                </li>
+
                 <li className="nav-item">
                   <a
                     href="../panel/videospdf"
@@ -231,6 +221,21 @@ export default function Sidebar({}) {
                     <p>Profile</p>
                   </a>
                 </li>
+                {user && (user.isAdmin || user.isMember) && (
+                  <li className="nav-item">
+                    <a
+                      href="../panel/blog"
+                      className={
+                        isActive("../panel/blog")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                    >
+                      <i className="nav-icon fas fa-blog" />
+                      <p>Blog</p>
+                    </a>
+                  </li>
+                )}
                 {user && !(user.isAdmin || user.isMember) && (
                   <>
                     <li className="nav-item">
