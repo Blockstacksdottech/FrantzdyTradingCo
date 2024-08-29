@@ -72,12 +72,7 @@ function Index() {
 
         <div className="video-background-holder">
           <div className="video-background-overlay"></div>
-          <video
-            playsinline="playsinline"
-            autoplay="autoplay"
-            muted="muted"
-            loop="loop"
-          >
+          <video playsInline autoPlay muted loop>
             <source src="./frontend/cot-video.mp4" type="video/mp4" />
           </video>
           <div className="video-background-content container w-50 h-100">
