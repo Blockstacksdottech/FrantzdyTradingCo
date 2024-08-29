@@ -33,7 +33,7 @@ export default function Faq() {
         <section className="py-5 testimonials bg-tertiary">
           <div className="container">
             <div className="row justify-content-center">
-              <div className="col-lg-7">
+              <div className="col-lg-7" data-aos="fade-right">
                 <div
                   className="accordion shadow rounded py-5 px-0 px-lg-4"
                   id="accordionFAQ"
@@ -539,7 +539,7 @@ export default function Faq() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 mt-4 mt-lg-0">
+              <div className="col-lg-4 mt-4 mt-lg-0" data-aos="fade-left">
                 <div className="shadow rounded py-5 px-4 ms-0 ms-lg-4 bg-hometab-content">
                   <div className="block mx-0 mx-lg-3 mt-0">
                     <h4 className="h5">Still Have Questions?</h4>

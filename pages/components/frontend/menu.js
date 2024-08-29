@@ -3,8 +3,13 @@ import { useRouter } from "next/router";
 import { formatImage, logout, req } from "@/helpers";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/contexts/UserContextData";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function Menu({}) {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   const nav = useRouter();
   const { user, setUser } = useContext(UserContext);
   const [image, setImage] = useState(null);
@@ -26,7 +31,7 @@ export default function Menu({}) {
 
   return (
     <>
-      <header className="fixed-top navigation bg-tertiary">
+      <header data-aos="fade-down" className="fixed-top navigation bg-tertiary">
         <nav className="navbar navbar-expand-xl navbar-light text-center">
           <div className="container">
             <a className="navbar-brand" href="./">

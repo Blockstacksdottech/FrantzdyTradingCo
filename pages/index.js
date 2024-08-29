@@ -87,6 +87,9 @@ function Index() {
                   trading decisions.
                 </p>
                 <a
+                  data-aos="fade-left"
+                  data-aos-easing="linear"
+                  data-aos-duration="1500"
                   type="button"
                   className="btn btn-primary box-shadow"
                   href="./register"
@@ -200,7 +203,13 @@ function Index() {
               <div className="col-lg-4 col-md-6 service-item">
                 <a className="text-black">
                   <div className="block">
-                    <span className="colored-box text-center h3 mb-4">01</span>
+                    <span
+                      className="colored-box text-center h3 mb-4"
+                      data-aos="fade-down"
+                      data-aos-anchor-placement="center-center"
+                    >
+                      01
+                    </span>
                     <h3 className="mb-3 service-title">Visualize COT Data</h3>
                     <p className="mb-0 service-description">
                       Explore interactive charts and graphs that clearly
@@ -214,7 +223,13 @@ function Index() {
               <div className="col-lg-4 col-md-6 service-item">
                 <a className="text-black">
                   <div className="block">
-                    <span className="colored-box text-center h3 mb-4">02</span>
+                    <span
+                      className="colored-box text-center h3 mb-4"
+                      data-aos="fade-down"
+                      data-aos-anchor-placement="center-center"
+                    >
+                      02
+                    </span>
                     <h3 className="mb-3 service-title">Identify Trends</h3>
                     <p className="mb-0 service-description">
                       Gain insights into the collective sentiment of the market
@@ -228,7 +243,13 @@ function Index() {
               <div className="col-lg-4 col-md-6 service-item">
                 <a className="text-black">
                   <div className="block">
-                    <span className="colored-box text-center h3 mb-4">03</span>
+                    <span
+                      className="colored-box text-center h3 mb-4"
+                      data-aos="fade-down"
+                      data-aos-anchor-placement="center-center"
+                    >
+                      03
+                    </span>
                     <h3 className="mb-3 service-title">Filter and Customize</h3>
                     <p className="mb-0 service-description">
                       Tailor your analysis to specific markets, timeframes, and
@@ -241,7 +262,13 @@ function Index() {
               <div className="col-lg-4 col-md-6 service-item">
                 <a className="text-black">
                   <div className="block">
-                    <span className="colored-box text-center h3 mb-4">04</span>
+                    <span
+                      className="colored-box text-center h3 mb-4"
+                      data-aos="fade-down"
+                      data-aos-anchor-placement="center-center"
+                    >
+                      04
+                    </span>
                     <h3 className="mb-3 service-title">Stay Informed</h3>
                     <p className="mb-0 service-description">
                       Access the latest COT data releases and updates, ensuring
@@ -253,7 +280,13 @@ function Index() {
               <div className="col-lg-4 col-md-6 service-item">
                 <a className="text-black">
                   <div className="block">
-                    <span className="colored-box text-center h3 mb-4">05</span>
+                    <span
+                      className="colored-box text-center h3 mb-4"
+                      data-aos="fade-down"
+                      data-aos-anchor-placement="center-center"
+                    >
+                      05
+                    </span>
                     <h3 className="mb-3 service-title">Generate Reports</h3>
                     <p className="mb-0 service-description">
                       Create customized reports and analyses based on your
@@ -377,7 +410,7 @@ function Index() {
         <section className="section">
           <div className="container">
             <div className="row align-items-center justify-content-between">
-              <div className="col-lg-5">
+              <div className="col-lg-5" data-aos="fade-right">
                 <div className="section-title">
                   <p className="text-primary text-uppercase fw-bold mb-3">
                     Secure Your Trading Future
@@ -406,7 +439,11 @@ function Index() {
                 </div>
               </div>
               <div className="col-lg-6">
-                <div className="difference-of-us-item p-3 rounded mr-0 me-lg-4">
+                <div
+                  className="difference-of-us-item p-3 rounded mr-0 me-lg-4"
+                  data-aos="fade-left"
+                  data-aos-easing="ease-in-sine"
+                >
                   <div className="d-block d-sm-flex align-items-center m-2">
                     <div className="icon me-4 mb-4 mb-sm-0">
                       <i
@@ -425,7 +462,11 @@ function Index() {
                     </div>
                   </div>
                 </div>
-                <div className="difference-of-us-item p-3 rounded mr-0 me-lg-4">
+                <div
+                  className="difference-of-us-item p-3 rounded mr-0 me-lg-4"
+                  data-aos="fade-left"
+                  data-aos-easing="ease-in-sine"
+                >
                   <div className="d-block d-sm-flex align-items-center m-2">
                     <div className="icon me-4 mb-4 mb-sm-0">
                       {" "}
@@ -445,7 +486,11 @@ function Index() {
                     </div>
                   </div>
                 </div>
-                <div className="difference-of-us-item p-3 rounded mr-0 me-lg-4">
+                <div
+                  className="difference-of-us-item p-3 rounded mr-0 me-lg-4"
+                  data-aos="fade-left"
+                  data-aos-easing="ease-in-sine"
+                >
                   <div className="d-block d-sm-flex align-items-center m-2">
                     <div className="icon me-4 mb-4 mb-sm-0">
                       {" "}
@@ -765,7 +810,11 @@ function Index() {
               <div className="col-lg-12 text-center">
                 <h1 className="section-title">Pricing</h1>
               </div>
-              <div className="col-md-6 col-lg-3 mb-5 mb-lg-0">
+              <div
+                className="col-md-6 col-lg-3 mb-5 mb-lg-0"
+                data-aos="fade-down"
+                data-aos-anchor-placement="center-bottom"
+              >
                 <div className="card h-100 border-0 rounded pricing-table table-1">
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>BASIC</h3>
@@ -805,7 +854,11 @@ function Index() {
                 </div>
               </div>
 
-              <div className="col-md-6 col-lg-3 mb-5 mb-lg-0">
+              <div
+                className="col-md-6 col-lg-3 mb-5 mb-lg-0"
+                data-aos="fade-up"
+                data-aos-anchor-placement="center-bottom"
+              >
                 <div className="card h-100 border-0 rounded pricing-table table-2">
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>STANDARD</h3>
@@ -851,7 +904,11 @@ function Index() {
                 </div>
               </div>
 
-              <div className="col-md-6 col-lg-3 mb-5 mb-lg-0">
+              <div
+                className="col-md-6 col-lg-3 mb-5 mb-lg-0"
+                data-aos="fade-down"
+                data-aos-anchor-placement="center-bottom"
+              >
                 <div className="card h-100 border-0 rounded pricing-table table-1">
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>PREMIUM</h3>
@@ -896,7 +953,11 @@ function Index() {
                 </div>
               </div>
 
-              <div className="col-md-6 col-lg-3 mb-5 mb-lg-0">
+              <div
+                className="col-md-6 col-lg-3 mb-5 mb-lg-0"
+                data-aos="fade-up"
+                data-aos-anchor-placement="center-bottom"
+              >
                 <div className="card h-100 border-0 rounded pricing-table table-1">
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>ENTERPRISE</h3>
@@ -962,7 +1023,10 @@ function Index() {
             </div>
             <div className="row">
               <div className="col-sm-6 mx-auto">
-                <div className="shadow rounded bg-hometab-content p-4 mt-4">
+                <div
+                  className="shadow rounded bg-hometab-content p-4 mt-4"
+                  data-aos="fade-down"
+                >
                   <div className="">
                     <p>Dear Reader,</p>
                     <p>
@@ -1295,7 +1359,11 @@ function Index() {
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-4 col-md-6 pt-1">
+              <div
+                className="col-lg-4 col-md-6 pt-1"
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-center"
+              >
                 <div className="shadow rounded bg-testimonial p-4 mt-4">
                   <div className="d-block d-sm-flex align-items-center mb-3">
                     <img
@@ -1321,7 +1389,11 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 pt-1">
+              <div
+                className="col-lg-4 col-md-6 pt-1"
+                data-aos="fade-down"
+                data-aos-anchor-placement="center-center"
+              >
                 <div className="shadow rounded bg-testimonial p-4 mt-4">
                   <div className="d-block d-sm-flex align-items-center mb-3">
                     <img
@@ -1347,7 +1419,11 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 pt-1">
+              <div
+                className="col-lg-4 col-md-6 pt-1"
+                data-aos="fade-left"
+                data-aos-anchor-placement="bottom-center"
+              >
                 <div className="shadow rounded bg-testimonial p-4 mt-4">
                   <div className="d-block d-sm-flex align-items-center mb-3">
                     <img
@@ -1373,7 +1449,11 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 pt-1">
+              <div
+                className="col-lg-4 col-md-6 pt-1"
+                data-aos="fade-right"
+                data-aos-anchor-placement="top-center"
+              >
                 <div className="shadow rounded bg-testimonial p-4 mt-4">
                   <div className="d-block d-sm-flex align-items-center mb-3">
                     <img
@@ -1399,7 +1479,11 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 pt-1">
+              <div
+                className="col-lg-4 col-md-6 pt-1"
+                data-aos="fade-down"
+                data-aos-anchor-placement="bottom-center"
+              >
                 <div className="shadow rounded bg-testimonial p-4 mt-4">
                   <div className="d-block d-sm-flex align-items-center mb-3">
                     <img
@@ -1426,7 +1510,11 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 pt-1">
+              <div
+                className="col-lg-4 col-md-6 pt-1"
+                data-aos="fade-up"
+                data-aos-anchor-placement="center-center"
+              >
                 <div className="shadow rounded bg-testimonial p-4 mt-4">
                   <div className="d-block d-sm-flex align-items-center mb-3">
                     <img

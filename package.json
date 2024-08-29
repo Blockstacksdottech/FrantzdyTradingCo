@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^4.1.0",
+    "aos": "^2.3.4",
     "axios": "^1.7.2",
     "datatables.net": "^2.1.4",
     "datatables.net-bs4": "^2.1.4",
@@ -30,5 +31,8 @@
     "react-ts-tradingview-widgets": "^1.2.5",
     "recharts": "^2.12.7",
     "styled-components": "^6.1.12"
+  },
+  "devDependencies": {
+    "@types/aos": "^3.0.7"
   }
 }

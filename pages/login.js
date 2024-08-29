@@ -95,7 +95,10 @@ export default function Login() {
         <div className="container">
           <div className="row justify-content-center align-items-center">
             <div className="col-lg-5">
-              <div className="shadow rounded p-5 bg-hometab-content">
+              <div
+                className="shadow rounded p-5 bg-hometab-content"
+                data-aos="fade-down"
+              >
                 <div className="contact-form">
                   <form onSubmit={handleSubmit}>
                     <div className="form-group mb-4 pb-2">

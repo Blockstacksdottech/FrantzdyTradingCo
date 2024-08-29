@@ -55,11 +55,11 @@ export default function ContactUs() {
             <div className="row justify-content-center align-items-center">
               <div className="col-lg-10">
                 <div className="shadow rounded p-5 bg-hometab-content">
-                  <div className="row">
+                  <div className="row" data-aos="fade-down">
                     <div className="col-12 mb-4">
                       <h4>Leave Us A Message</h4>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-6" data-aos="fade-right">
                       <div className="contact-form">
                         <form action="#!">
                           <div className="form-group mb-4 pb-2">
@@ -108,7 +108,10 @@ export default function ContactUs() {
                         </form>
                       </div>
                     </div>
-                    <div className="col-lg-6 mt-5 mt-lg-0 m-auto">
+                    <div
+                      className="col-lg-6 mt-5 mt-lg-0 m-auto"
+                      data-aos="fade-left"
+                    >
                       <div className="contact-info">
                         <div className="block mt-0">
                           <h4 className="h5">Still Have Questions?</h4>
