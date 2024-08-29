@@ -14,7 +14,7 @@ import "datatables.net-responsive-dt";
 
 const Blog = () => {
   DataTable.use(DT);
-  const [loading,setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState([]);
   const fetchBlogs = async () => {
     setLoading(true);
@@ -22,7 +22,7 @@ const Blog = () => {
     if (resp) {
       setArticles(resp);
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   const delPost = async (id) => {
@@ -77,83 +77,82 @@ const Blog = () => {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-body">
-                      {
-                        !loading && <DataTable
-                        className="table projects"
-                        options={{
-                          responsive: true,
-                          sorting: true,
-                          pageLength: 5,
-                          lengthMenu: [
-                            [5, 10, 20, -1],
-                            [5, 10, 20, "All"],
-                          ],
-                          language: {
-                            search: "",
-                            searchPlaceholder: "Search",
-                            sLengthMenu: "_MENU_",
-                          },
-                        }}
-                      >
-                        <thead>
-                          <tr>
-                            <th>Thumbnail</th>
-                            <th>Topic</th>
-                            <th className="text-right">Edit</th>
-                            <th className="text-right">Delete</th>
-                          </tr>
-                        </thead>
+                      {!loading && (
+                        <DataTable
+                          className="table projects"
+                          options={{
+                            responsive: true,
+                            sorting: true,
+                            pageLength: 5,
+                            lengthMenu: [
+                              [5, 10, 20, -1],
+                              [5, 10, 20, "All"],
+                            ],
+                            language: {
+                              search: "",
+                              searchPlaceholder: "Search",
+                              sLengthMenu: "_MENU_",
+                            },
+                          }}
+                        >
+                          <thead>
+                            <tr>
+                              <th>Thumbnail</th>
+                              <th>Topic</th>
+                              <th className="text-right">Edit</th>
+                              <th className="text-right">Delete</th>
+                            </tr>
+                          </thead>
 
-                        <tbody>
-                          {articles.length > 0 &&
-                            articles.map((e, i) => {
-                              return (
-                                <tr key={i}>
-                                  <td>
-                                    <img
-                                      alt={e.title}
-                                      className="table-avatar"
-                                      src={
-                                        e.image
-                                          ? formatImage(e.image)
-                                          : "../frontend/images/team/team-1.png"
-                                      }
-                                    />
-                                  </td>
-                                  <td>
-                                    <p className="mb-0 font-weight-bold">
-                                      {e.title}
-                                    </p>
-                                    <p className="mb-0">
-                                      Author: {e.user.username}
-                                    </p>
-                                    <p className="mb-0">
-                                      Published on: {formatDateLocal(e.date)}
-                                    </p>
-                                  </td>
-                                  <td className="text-right">
-                                    <a
-                                      href={"/panel/editblog?id=" + e.id}
-                                      className="btn btn-sm btn-table-dark"
+                          <tbody>
+                            {articles.length > 0 &&
+                              articles.map((e, i) => {
+                                return (
+                                  <tr key={i}>
+                                    <td>
+                                      <img
+                                        alt={e.title}
+                                        className="blog"
+                                        src={
+                                          e.image
+                                            ? formatImage(e.image)
+                                            : "../frontend/images/team/team-1.png"
+                                        }
+                                      />
+                                    </td>
+                                    <td>
+                                      <p className="mb-0 font-weight-bold">
+                                        {e.title}
+                                      </p>
+                                      <p className="mb-0">
+                                        Author: {e.user.username}
+                                      </p>
+                                      <p className="mb-0">
+                                        Published on: {formatDateLocal(e.date)}
+                                      </p>
+                                    </td>
+                                    <td className="text-right">
+                                      <a
+                                        href={"/panel/editblog?id=" + e.id}
+                                        className="btn btn-sm btn-table-dark"
+                                      >
+                                        <i className="fa fa-edit"></i>
+                                      </a>
+                                    </td>
+                                    <td
+                                      className="text-right"
+                                      onClick={() => delPost(e.id)}
                                     >
-                                      <i className="fa fa-edit"></i>
-                                    </a>
-                                  </td>
-                                  <td
-                                    className="text-right"
-                                    onClick={() => delPost(e.id)}
-                                  >
-                                    <a className="btn btn-sm btn-danger">
-                                      <i className="fa fa-trash-alt"></i>
-                                    </a>
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                        </tbody>
-                      </DataTable>
-                      }
-                      
+                                      <a className="btn btn-sm btn-danger">
+                                        <i className="fa fa-trash-alt"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                          </tbody>
+                        </DataTable>
+                      )}
                     </div>
                   </div>
                 </div>

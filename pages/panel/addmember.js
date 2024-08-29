@@ -21,12 +21,6 @@ import { UserContext } from "@/contexts/UserContextData";
 import { toast } from "react-toastify";
 
 const AddMember = () => {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "../panel/js/datatable.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
   const [loading, setLoading] = useState(true);
   const { user, setUser } = useContext(UserContext);
   return (

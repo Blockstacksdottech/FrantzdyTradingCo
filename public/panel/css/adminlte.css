@@ -43994,7 +43994,13 @@ a.disabled.mailbox-attachment-close {
 .projects img.table-avatar,
 .projects .table-avatar img {
   display: inline;
-  width: 6rem;
+  width: 4rem;
+}
+
+.projects img.blog,
+.projects .blog img {
+  display: inline;
+  width: 5rem;
 }
 
 .projects .project-state {

@@ -70,7 +70,44 @@ function Index() {
         <HeadLink />
         <Menu />
 
-        <section className="banner bg-tertiary overflow-hidden">
+        <div className="video-background-holder">
+          <div className="video-background-overlay"></div>
+          <video
+            playsinline="playsinline"
+            autoplay="autoplay"
+            muted="muted"
+            loop="loop"
+          >
+            <source src="./frontend/cot-video.mp4" type="video/mp4" />
+          </video>
+          <div className="video-background-content container w-50 h-100">
+            <div className="d-flex h-100  align-items-center">
+              <div className="text-center">
+                <h1 className="text-uppercase mb-4 text-center">
+                  Charting Tools for In-Depth Analysis of COT Reports
+                </h1>
+                <p className="mb-4 text-center lead text-secondary">
+                  Unlock the power of Commitment of Traders (COT) report
+                  analysis with our interactive charting tools for better
+                  trading decisions.
+                </p>
+                <a
+                  type="button"
+                  className="btn btn-primary box-shadow"
+                  href="./register"
+                >
+                  Register Now{" "}
+                  <span
+                    style={{ fontSize: 14 }}
+                    className="ms-2 fas fa-arrow-right"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <section className="banner bg-tertiary overflow-hidden">
           <div className="container">
             <div className="row  justify-content-center">
               <div className="col-lg-6 mb-5 mb-lg-0">
@@ -147,7 +184,7 @@ function Index() {
               alt=""
             />
           </div>
-        </section>
+        </section> */}
         <section className="section">
           <div className="container">
             <div className="row">
