@@ -13,35 +13,20 @@ import { UserContext } from "@/contexts/UserContextData";
 
 const Sentimentdata = () => {
   const [data, setData] = useState(null);
-  const [filtered,setFiltered] = useState(null);
+  const [filtered, setFiltered] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { user, setUser } = useContext(UserContext);
   const [exportableData, setExportableData] = useState([]);
-  const [searchValue ,setSearchValue] = useState("");
-
-  const initDataTable = () => {
-    const script = document.createElement("script");
-    script.src = "../panel/js/datatable.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup function to remove the script on component unmount
-      document.body.removeChild(script);
-    };
-  };
-
-  useEffect(() => {
-    return initDataTable();
-  }, [loading]);
+  const [searchValue, setSearchValue] = useState("");
 
   const handleExport = (dt) => {
     console.log(dt);
     const temp1 = [
       // Add headers for your CSV data
       ["Symbol", "Action", "Percentage", "Volume", "Positions"],
-      dt.map((e, i) => {
+      dt
+        .map((e, i) => {
           const sym = Object.keys(e)[0];
           const actions = Object.keys(e[sym]);
           let res = [];
@@ -68,7 +53,7 @@ const Sentimentdata = () => {
       const response = await postReq("sentiment-data", {});
       if (response) {
         setData(response);
-        setFiltered(response)
+        setFiltered(response);
         handleExport(response);
       }
     } catch (error) {
@@ -86,17 +71,18 @@ const Sentimentdata = () => {
 
   useEffect(() => {}, [data]);
 
-
   const filtData = (e) => {
     const val = e.target.value;
-    setSearchValue(val)
+    setSearchValue(val);
     if (val === "") {
-      setFiltered(data)
-    }else{
-      const temp = data.filter(e => Object.keys(e)[0].toLowerCase().includes(val.toLowerCase()))
-      setFiltered(temp)
+      setFiltered(data);
+    } else {
+      const temp = data.filter((e) =>
+        Object.keys(e)[0].toLowerCase().includes(val.toLowerCase())
+      );
+      setFiltered(temp);
     }
-  }
+  };
 
   return (
     <>
@@ -130,7 +116,7 @@ const Sentimentdata = () => {
             </h4>
           )}
 
-          {!loading && data  && data.length > 0 && (
+          {!loading && data && data.length > 0 && (
             <>
               <div className="content">
                 <div className="container-fluid">
@@ -182,7 +168,7 @@ const Sentimentdata = () => {
                               </thead>
                               <tbody>
                                 {/* TAble-row Start */}
-                                
+
                                 {data &&
                                   data.length > 0 &&
                                   filtered.map((e, i) => {
@@ -248,11 +234,12 @@ const Sentimentdata = () => {
 
                                 {/* TAble-row END */}
                               </tbody>
-                              
                             </table>
-                            {
-                                  filtered.length === 0 && <h6 className="text-center mb-3">No Data Found</h6>
-                                }
+                            {filtered.length === 0 && (
+                              <h6 className="text-center mb-3">
+                                No Data Found
+                              </h6>
+                            )}
                           </div>
                         </div>
                       </div>

@@ -28,27 +28,28 @@ export default function Blog() {
         <meta name="description" content="Frantzdy Trading Co" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Checker no_login={true}>
-        <HeadLink />
-        <Menu />
 
-        <section className="page-header bg-tertiary">
-          <div className="container">
-            <div className="row">
-              <div className="col-6 mx-auto text-center">
-                <h2 className="text-capitalize">Blog</h2>
-              </div>
+      <HeadLink />
+      <Menu />
+
+      <section className="page-header bg-tertiary">
+        <div className="container">
+          <div className="row">
+            <div className="col-6 mx-auto text-center">
+              <h2 className="text-capitalize">Blog</h2>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+      <Checker no_login={true}>
         <section className="py-5 testimonials bg-tertiary">
           <div className="container">
             <div className="row justify-content-center">
               {articles.map((e, i) => {
                 return (
-                  <div className="col-sm-4 mb-4">
+                  <div className="col-sm-4 mb-4" key={i}>
                     <a href={`/blogdetails?id=${e.id}`}>
-                      <div className="card rounded bg-testimonial">
+                      <div className="card rounded bg-testimonial h-100">
                         <img
                           src={formatImage(e.image)}
                           className="card-img-top"

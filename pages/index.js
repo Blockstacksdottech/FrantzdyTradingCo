@@ -302,7 +302,7 @@ function Index() {
                   loading="lazy"
                   decoding="async"
                   src="./frontend/images/about-us.png"
-                  alt="About Ourselves"
+                  alt="About Frantzdy Trading CO"
                   className="img-fluid"
                 />
               </div>
@@ -578,7 +578,8 @@ function Index() {
                             loading="lazy"
                             decoding="async"
                             src="./frontend/images/payment-info.png"
-                            alt="How Much Can I Recive?"
+                            alt="Frantzdy Trading Co. Illuminates the Path to Financial
+                          Success"
                             className="img-fluid"
                           />
                         </div>
@@ -626,7 +627,7 @@ function Index() {
                             loading="lazy"
                             decoding="async"
                             src="./frontend/images/illustration-2.png"
-                            alt="How Much Does It Costs?"
+                            alt="Frantzdy Trading Co. Makes Trading Safe and Easy"
                             className="img-fluid"
                           />
                         </div>
@@ -680,7 +681,7 @@ function Index() {
                             loading="lazy"
                             decoding="async"
                             src="./frontend/images/illustration-1.png"
-                            alt="How Do I Repay?"
+                            alt="Frantzdy Trading Co. Keeps You in the Loop"
                             className="img-fluid"
                           />
                         </div>
@@ -1184,7 +1185,7 @@ function Index() {
                 return (
                   <div className="col-sm-3 mb-4">
                     <a href={`/blogdetails?id=${e.id}`}>
-                      <div className="card rounded bg-testimonial">
+                      <div className="card rounded bg-testimonial h-100">
                         <img
                           src={formatImage(e.image)}
                           className="card-img-top"
@@ -1301,7 +1302,7 @@ function Index() {
                       loading="lazy"
                       decoding="async"
                       src="./frontend/images/testimonials/01.jpg"
-                      alt="Leslie Alexander"
+                      alt="Michael J."
                       className="img-fluid"
                       width={65}
                       height={66}
