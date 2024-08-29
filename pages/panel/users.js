@@ -142,11 +142,11 @@ const Users = () => {
                                 {/* <th className="text-center">Team Member</th> */}
                                 <th className="text-center">Details</th>
                                 {
-                                  user.isAdmin && <th className="text-center">Hire</th>
-                                }
+                                  user.isAdmin && <><th className="text-center">Hire</th>
+                                
                                 
                                 <th className="text-center">Ban</th>
-                                <th className="text-center">Delete</th>
+                                <th className="text-center">Delete</th></>}
                               </tr>
                             </thead>
                             <tbody>
@@ -210,7 +210,7 @@ const Users = () => {
                                       </a>
                                     </td>
                                     {
-                                      user.isAdmin && <td
+                                      user.isAdmin && <> <td
                                       className="text-center"
                                       onClick={() =>
                                         addToMember(e.id, e.is_member)
@@ -226,7 +226,7 @@ const Users = () => {
                                         </a>
                                       )}
                                     </td>
-                                    }
+                                    
                                     
                                     <td
                                       className="text-center"
@@ -244,6 +244,7 @@ const Users = () => {
                                         <i className="fa fa-trash-alt"></i>
                                       </a>
                                     </td>
+                                    </>}
                                   </tr>
                                 );
                               })}
