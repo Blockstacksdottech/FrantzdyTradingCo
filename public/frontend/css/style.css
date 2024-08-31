@@ -723,7 +723,6 @@ progress {
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto;
-  overflow: hidden;
 }
 
 @media (min-width: 576px) {
@@ -9874,6 +9873,7 @@ blockquote::before {
 }
 
 @media (max-width: 991px) {
+
   .banner .block h1,
   .banner .block .h1 {
     font-size: 46px;
@@ -9886,24 +9886,46 @@ blockquote::before {
   .navbar-brand {
     margin-left: -2.5rem;
   }
+
   .navbar-brand img {
     width: 80%;
   }
+
+  .container {
+    overflow: hidden;
+  }
+
+  .navigation .nav-item.dropdown .nav-link::after {
+    margin-left: 5px;
+  }
 }
 @media (max-width: 767px) {
+
   .banner .block h1,
   .banner .block .h1 {
     font-size: 38px;
   }
+
   .video-background-content {
     width: 100%;
   }
+
   .navbar-brand {
     margin-left: -2.5rem;
   }
+
   .navbar-brand img {
     width: 80%;
   }
+
+  conatiner {
+    overflow: hidden;
+  }
+
+  .navigation .nav-item.dropdown .nav-link::after {
+    margin-left: 5px;
+  }
+  
 }
 .banner .has-shapes {
   z-index: -1;
