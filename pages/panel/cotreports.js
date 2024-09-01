@@ -19,6 +19,7 @@ import {
   Legend,
   Bar,
   ResponsiveContainer,
+  LabelList
 } from "recharts";
 import Downloader from "react-csv-downloader";
 import Checker from "../components/Checker";
@@ -26,6 +27,22 @@ import { UserContext } from "@/contexts/UserContextData";
 import DataTable from "datatables.net-react";
 import DT from "datatables.net-bs4";
 import "datatables.net-responsive-dt";
+
+
+const CustomizedLabel= (props) => {
+  const { x, y, stroke, value,payload } = props;
+  useEffect(() => {
+    /* console.log(`data here`)
+    console.log(payload)
+    console.log(props) */
+  },[])
+
+  return (
+    <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
+      {value}
+    </text>
+  );
+};
 
 const CotReport = () => {
   DataTable.use(DT);
@@ -41,6 +58,10 @@ const CotReport = () => {
   const [CommsentimentData, setCommSentimentData] = useState([]);
   const [selectedCommCrowded, setSelectedCommCrowded] = useState(null);
   const [selectedCommSentiment, setSelectedCommSentiment] = useState(null);
+  const [changeData,setChangeData] = useState([]);
+  const [selectedChangeSymbol,setSelectedChangeSymbol] = useState(null);
+  const [changeCommData,setChangeCommData] = useState([]);
+  const [selectedChangeCommSymbol,setSelectedChangeCommSymbol] = useState(null);
   const [keys, setKeys] = useState([]);
   const nav = useRouter();
   const [exportableData, setExportableData] = useState([]);
@@ -288,6 +309,10 @@ const CotReport = () => {
       setCommCrowdingData(response3);
       const response4 = await req("net_comm_speculative");
       setCommSentimentData(response4);
+      const response5 = await req("general-change-data")
+      setChangeData(response5)
+      const response6 = await req("general-comm-change-data")
+      setChangeCommData(response6)
       const keys = Object.keys(response1);
       console.log(keys);
       setKeys(keys);
@@ -295,6 +320,8 @@ const CotReport = () => {
       setSelectedSentiment(keys[0]);
       setSelectedCommCrowded(keys[0]);
       setSelectedCommSentiment(keys[0]);
+      setSelectedChangeSymbol(keys[0])
+      setSelectedChangeCommSymbol(keys[0])
     } catch (error) {
       console.log(error);
     } finally {
@@ -315,6 +342,10 @@ const CotReport = () => {
     const o = e.target;
     if (target === "crowded") {
       setSelectedCommCrowded(o.value);
+    }if (target == "nonchange"){
+      setSelectedChangeSymbol(o.value);
+    }if (target == "change"){
+      setSelectedChangeCommSymbol(o.value);
     } else {
       setSelectedCommSentiment(o.value);
     }
@@ -1704,6 +1735,157 @@ const CotReport = () => {
                               <Bar dataKey="long" fill="#05FFFF" />
                               <Bar dataKey="short" fill="#032950" />
                             </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <div className="card">
+                        <div className="card-header">
+                          <h5 className="card-title">
+                            52 weeks Signal (Non Commercial)
+                          </h5>
+                          <div className="card-tools">
+                            <select
+                              className="form-control form-control-sm form-control-select"
+                              onChange={(e) =>
+                                handleSelectCommChange(e, "nonchange")
+                              }
+                              value={selectedChangeSymbol}
+                            >
+                              <option selected="selected">
+                                Select Symbol Name
+                              </option>
+                              {keys.map((e, i) => {
+                                return (
+                                  <option key={e} value={e}>
+                                    {e}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        </div>
+                        <div className="card-body" style={{ fontSize: "11px" }}>
+                          <ResponsiveContainer width="100%" height={300}>
+                            <LineChart
+                              data={
+                                changeData &&
+                                changeData[selectedChangeSymbol]
+                              }
+                            >
+                              <Line
+                                type="monotone"
+                                dataKey="change"
+                                stroke="#05FFFF"
+                                onMouseOver={(e) => {
+                                  console.log(`mouse over `)
+                                  console.log(e)
+                                }}
+                              >{/* <LabelList content={<CustomizedLabel data={changeData[selectedChangeSymbol]} />} /> */}
+      </Line>
+                              <CartesianGrid
+                                stroke="#0b4a89"
+                                strokeDasharray="5 5"
+                              />
+                              <XAxis
+                                dataKey="date"
+                                tick={{ fill: "#b6ccf5" }}
+                                tickLine={{ stroke: "#b6ccf5" }}
+                              />
+                              <YAxis
+                                tick={{ fill: "#b6ccf5" }}
+                                tickLine={{ stroke: "#b6ccf5" }}
+                              />
+                              <Tooltip
+                                contentStyle={{
+                                  backgroundColor: "#083D72",
+                                }}
+                                itemStyle={{ color: "#b6ccf5" }}
+                                cursor={{ stroke: "transparent" }}
+                                formatter={(value,nam,props) => {
+                                  
+                                  return [value,`${props.payload.signal}`]
+                                }}
+                              />
+                            </LineChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-12">
+                    <div className="card">
+                        <div className="card-header">
+                          <h5 className="card-title">
+                            52 weeks Signal (Commercial)
+                          </h5>
+                          <div className="card-tools">
+                            <select
+                              className="form-control form-control-sm form-control-select"
+                              onChange={(e) =>
+                                handleSelectCommChange(e, "change")
+                              }
+                              value={selectedChangeCommSymbol}
+                            >
+                              <option selected="selected">
+                                Select Symbol Name
+                              </option>
+                              {keys.map((e, i) => {
+                                return (
+                                  <option key={e} value={e}>
+                                    {e}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        </div>
+                        <div className="card-body" style={{ fontSize: "11px" }}>
+                          <ResponsiveContainer width="100%" height={300}>
+                            <LineChart
+                              data={
+                                changeCommData &&
+                                changeCommData[selectedChangeCommSymbol]
+                              }
+                            >
+                              <Line
+                                type="monotone"
+                                dataKey="change"
+                                stroke="#05FFFF"
+                                onMouseOver={(e) => {
+                                  console.log(`mouse over `)
+                                  console.log(e)
+                                }}
+                              >{/* <LabelList content={<CustomizedLabel data={changeData[selectedChangeSymbol]} />} /> */}
+      </Line>
+                              <CartesianGrid
+                                stroke="#0b4a89"
+                                strokeDasharray="5 5"
+                              />
+                              <XAxis
+                                dataKey="date"
+                                tick={{ fill: "#b6ccf5" }}
+                                tickLine={{ stroke: "#b6ccf5" }}
+                              />
+                              <YAxis
+                                tick={{ fill: "#b6ccf5" }}
+                                tickLine={{ stroke: "#b6ccf5" }}
+                              />
+                              <Tooltip
+                                contentStyle={{
+                                  backgroundColor: "#083D72",
+                                }}
+                                itemStyle={{ color: "#b6ccf5" }}
+                                cursor={{ stroke: "transparent" }}
+                                formatter={(value,nam,props) => {
+                                  
+                                  return [value,`${props.payload.signal}`]
+                                }}
+                              />
+                            </LineChart>
                           </ResponsiveContainer>
                         </div>
                       </div>
