@@ -4091,8 +4091,7 @@ fieldset:disabled .btn {
 }
 
 .navbar-toggler {
-  padding: 0.25rem 0.75rem;
-  font-size: 1.25rem;
+  padding: 0.2rem 0.2rem;
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
@@ -9868,17 +9867,65 @@ blockquote::before {
 .banner .block .h1 {
   font-size: 52px;
 }
+
+.video-background-content {
+  width: 50%;
+}
+
 @media (max-width: 991px) {
+
   .banner .block h1,
   .banner .block .h1 {
     font-size: 46px;
   }
+
+  .video-background-content {
+    width: 100%;
+  }
+
+  .navbar-brand {
+    margin-left: -2.5rem;
+  }
+
+  .navbar-brand img {
+    width: 80%;
+  }
+
+  .container {
+    overflow: hidden;
+  }
+
+  .navigation .nav-item.dropdown .nav-link::after {
+    margin-left: 5px;
+  }
 }
 @media (max-width: 767px) {
+
   .banner .block h1,
   .banner .block .h1 {
     font-size: 38px;
   }
+
+  .video-background-content {
+    width: 100%;
+  }
+
+  .navbar-brand {
+    margin-left: -2.5rem;
+  }
+
+  .navbar-brand img {
+    width: 80%;
+  }
+
+  conatiner {
+    overflow: hidden;
+  }
+
+  .navigation .nav-item.dropdown .nav-link::after {
+    margin-left: 5px;
+  }
+  
 }
 .banner .has-shapes {
   z-index: -1;
@@ -9996,6 +10043,10 @@ blockquote::before {
 @media (max-width: 575px) {
   .translate-y-150 {
     transform: translateY(0);
+  }
+
+  .video-background-content {
+    width: 100%;
   }
 }
 

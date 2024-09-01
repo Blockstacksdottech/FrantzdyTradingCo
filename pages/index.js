@@ -75,7 +75,7 @@ function Index() {
           <video playsInline autoPlay muted loop>
             <source src="./frontend/cot-video.mp4" type="video/mp4" />
           </video>
-          <div className="video-background-content container w-50 h-100">
+          <div className="video-background-content container h-100">
             <div className="d-flex h-100  align-items-center">
               <div className="text-center">
                 <h1 className="text-uppercase mb-4 text-center">

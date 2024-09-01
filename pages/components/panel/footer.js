@@ -99,12 +99,12 @@ export default function Footer() {
               <h5>OTHERS</h5>
               <ul className="footer-list footer-menu">
                 <li className="list-item text-uppercase">
-                  <a className="text-white" href="./privacy">
+                  <a className="text-white" href="../privacy">
                     Privacy Policy
                   </a>
                 </li>
                 <li className="list-item text-uppercase">
-                  <a className="text-white" href="./terms">
+                  <a className="text-white" href="../terms">
                     Terms &amp; Conditions
                   </a>
                 </li>
