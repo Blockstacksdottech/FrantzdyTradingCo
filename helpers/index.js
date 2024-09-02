@@ -742,3 +742,13 @@ export function getSubName(tier) {
       return "Free";
   }
 }
+
+export function get_stars(a, b) {
+  const { stars, signal } = getRating(a, b);
+  return stars;
+}
+
+export function get_diff_signal(a, b) {
+  const { stars, signal } = getRating(a, b);
+  return signal;
+}
