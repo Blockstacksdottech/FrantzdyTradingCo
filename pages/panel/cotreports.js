@@ -6,7 +6,7 @@ import ScriptLink from "../components/panel/scriptlink";
 import Footer from "../components/panel/footer";
 import React, { Component, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { calculateNet, getThresholdSignal, isLogged, req } from "@/helpers";
+import { calculateNet, formatDateLocal, getThresholdSignal, isLogged, req } from "@/helpers";
 import { useRouter } from "next/router";
 import {
   LineChart,
@@ -66,6 +66,9 @@ const CotReport = () => {
   const nav = useRouter();
   const [exportableData, setExportableData] = useState([]);
   const [date, setDate] = useState(null);
+  // dates filter
+  const [dates,setDates] = useState([]);
+  const [selectedDate,setSelectedDate] = useState(null)
 
   const toPercentage = (num) => {
     // Check if the input is a valid number
@@ -294,13 +297,25 @@ const CotReport = () => {
     setExportableData(temp);
   };
 
-  const fetchData = async () => {
-    try {
-      const response = await req("data");
+  const fetchMainData = async (date) => {
+    let url = "data";
+    if (date){
+      url = `data?date=${date}`
+    }else{
+      url = `data`
+    }
+    const response = await req(url);
       console.log("formating export");
       handleExport(response[0].data);
       setData(response[0].data);
       setDate(response[0].date);
+  }
+
+  const fetchData = async () => {
+    try {
+      const resp = await req("dates")
+      setDates(resp)
+      setSelectedDate(resp[0].date)
       const response1 = await req("crowding_positions");
       setCrowdingData(response1);
       const response2 = await req("net_speculative");
@@ -350,6 +365,12 @@ const CotReport = () => {
       setSelectedCommSentiment(o.value);
     }
   };
+
+  useEffect(() => {
+    if (selectedDate){
+      fetchMainData(selectedDate)
+    }
+  },[user,selectedDate])
 
   useEffect(() => {
     if (user.logged) {
@@ -414,8 +435,29 @@ const CotReport = () => {
           <section className="content-header">
             <div className="container-fluid">
               <div className="row mb-2">
-                <div className="col-sm-12">
+                <div className="col-sm-8">
                   <h1>COT REPORTS</h1>
+                </div>
+                <div className="col-sm-4">
+                <select
+                              className="form-control form-control-sm form-control-select"
+                              onChange={(e) =>
+                                setSelectedDate(e.target.value)
+                              }
+                              value={selectedDate}
+
+                            >
+                              <option selected="selected">
+                                Select Date
+                              </option>
+                              {dates.map((e, i) => {
+                                return (
+                                  <option key={e.date} value={e.date}>
+                                    {formatDateLocal(e.date)}
+                                  </option>
+                                );
+                              })}
+                            </select>
                 </div>
               </div>
             </div>
