@@ -73,7 +73,8 @@ const CotReport = () => {
   const toPercentage = (num) => {
     // Check if the input is a valid number
     if (typeof num !== "number" || isNaN(num)) {
-      throw new Error("Input must be a valid number");
+      //throw new Error("Input must be a valid number");
+      return "0%"
     }
 
     // Convert the number to a percentage
@@ -392,6 +393,7 @@ const CotReport = () => {
       pair_long = entry.base_long + entry.quote_long;
       pair_short = entry.base_short + entry.quote_short;
     }
+    console.log(entry)
     return {
       pair_long,
       pair_short,
@@ -411,6 +413,7 @@ const CotReport = () => {
       pair_long = entry.base_comm_long + entry.quote_comm_long;
       pair_short = entry.base_comm_short + entry.quote_comm_short;
     }
+    console.log(entry)
     return {
       pair_long,
       pair_short,
