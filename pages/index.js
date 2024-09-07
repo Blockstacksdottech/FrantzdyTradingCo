@@ -69,7 +69,6 @@ function Index() {
       <Checker no_login={true}>
         <HeadLink />
         <Menu />
-
         <div className="video-background-holder">
           <div className="video-background-overlay"></div>
           <video playsInline autoPlay muted loop>
@@ -108,10 +107,10 @@ function Index() {
             <div className="row justify-content-center mb-5">
               <div className="col-12">
                 <div className="section-title text-center">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
+                  <h1 className="text-primary text-uppercase fw-bold mb-3">
                     Our Services
-                  </p>
-                  <h1>Unlock Market Insights with COT Data</h1>
+                  </h1>
+                  <p>Unlock Market Insights with COT Data</p>
                 </div>
               </div>
             </div>
@@ -272,7 +271,10 @@ function Index() {
             </svg>
           </div>
         </section>
-
+        <iframe
+          src="https://fxpricing.com/fx-widget/ticker-tape-widget.php?id=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24&border=show&speed=50&pair_weight=normal&click_target=blank&theme=dark&by-cr=28A745&sl-cr=DC3545&flags=circle&d_mode=regular&column=ask,bid,spread,chg,chg_per&lang=en"
+          style={{ width: "100%", height: "45px", border: "0" }}
+        />
         <section className="section">
           <div className="container">
             <div className="row">
@@ -394,11 +396,10 @@ function Index() {
             <div className="row align-items-center">
               <div className="col-lg-5" data-aos="fade-right">
                 <div className="section-title">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
-                    Frantzdy Trading CO
-                  </p>
-                  <h1>About Us</h1>
-                  <p className="lead mb-0 mt-4">
+                  <h1 className="text-primary text-uppercase fw-bold mb-3">
+                    About Us
+                  </h1>
+                  <p className="mt-4">
                     At Frantzdy Trading Co., we understand that trading requires
                     dedication and commitment. We're committed to providing you
                     with the tools, resources, and support you need to achieve
@@ -513,7 +514,7 @@ function Index() {
                     <p>
                       At Frantzdy Trading Co., we understand that your financial
                       security is paramount. That's why we've built our platform
-                      with a focus on
+                      with a focus
                     </p>
                     <p>
                       Join Frantzdy Trading Co. today and experience the
@@ -608,10 +609,10 @@ function Index() {
             <div className="row justify-content-center">
               <div className="col-lg-8 mb-4">
                 <div className="section-title text-center">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
+                  <h1 className="text-primary text-uppercase fw-bold mb-3">
                     Real-Time Market Insights
-                  </p>
-                  <h1>Informed Trading, Simplified</h1>
+                  </h1>
+                  <p>Informed Trading, Simplified</p>
                 </div>
               </div>
               <div className="col-lg-10">
@@ -893,12 +894,13 @@ function Index() {
             </svg>
           </div>
         </section>
-
         <section className="section">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-12 text-center">
-                <h1 className="section-title">Pricing</h1>
+                <h1 className="text-primary text-uppercase fw-bold mb-5">
+                  Pricing
+                </h1>
               </div>
               <div
                 className="col-md-6 col-lg-3 mb-5 mb-lg-0"
@@ -1098,16 +1100,15 @@ function Index() {
             </div>
           </div>
         </section>
-
         <section className="section testimonials overflow-hidden bg-tertiary">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-6">
                 <div className="section-title text-center">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
+                  <h1 className="text-primary text-uppercase fw-bold mb-3">
                     About Me
-                  </p>
-                  <h1 className="mb-4">The Ceo's Desk</h1>
+                  </h1>
+                  <p className="mb-4">The Ceo's Desk</p>
                 </div>
               </div>
             </div>
@@ -1217,16 +1218,15 @@ function Index() {
             </svg>
           </div>
         </section>
-
         <section className="section teams">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-12">
                 <div className="section-title text-center">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
+                  <h1 className="text-primary text-uppercase fw-bold mb-3">
                     Our Team
-                  </p>
-                  <h1>People Behind Us</h1>
+                  </h1>
+                  <p>People Behind Us</p>
                   <p className="mb-0">
                     Meet the passionate individuals who drive Frantzdy Trading
                     Co. to success. <br /> Our team is dedicated to providing
@@ -1262,77 +1262,18 @@ function Index() {
                   </div>
                 );
               })}
-
-              {/* <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
-                <div className="card bg-transparent border-0 text-center">
-                  <div className="card-img">
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src="./frontend/images/team/pm.jpg"
-                      alt="George Edward"
-                      className="rounded"
-                      width={300}
-                      height={332}
-                    />
-                  </div>
-                  <div className="card-body">
-                    <h3>George Edward</h3>
-                    <p>Market Strategist & Senior Analyst</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
-                <div className="card bg-transparent border-0 text-center">
-                  <div className="card-img">
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src="./frontend/images/team/kd.jpg"
-                      alt="Krishna Dipak"
-                      className="rounded"
-                      width={300}
-                      height={332}
-                    />
-                  </div>
-                  <div className="card-body">
-                    <h3>Krishna Dipak</h3>
-                    <p>Data & Quantitative Analyst</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-3 mt-4">
-                <div className="card bg-transparent border-0 text-center">
-                  <div className="card-img">
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src="./frontend/images/team/ad.jpg"
-                      alt="Ahmed Jabnati"
-                      className="rounded"
-                      width={300}
-                      height={332}
-                    />
-                  </div>
-                  <div className="card-body">
-                    <h3>Ahmed Jabnati</h3>
-                    <p>Technology Lead & Architect</p>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </section>
-
         <section className="section testimonials bg-tertiary">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-sm-12">
                 <div className="section-title text-center mb-5 pb-2">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
+                  <h1 className="text-primary text-uppercase fw-bold mb-3">
                     Blog
-                  </p>
-                  <h1>The Latest News & Updates</h1>
+                  </h1>
+                  <p>The Latest News & Updates</p>
                 </div>
               </div>
               {articles.map((e, i) => {
@@ -1435,16 +1376,15 @@ function Index() {
             </svg>
           </div>
         </section>
-
         <section className="section">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-6">
                 <div className="section-title text-center">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
+                  <h1 className="text-primary text-uppercase fw-bold mb-3">
                     Testimonials
-                  </p>
-                  <h1 className="mb-4">Trusted By 1.2K+ Peoples</h1>
+                  </h1>
+                  <p className="mb-4">Trusted By 1.2K+ Peoples</p>
                 </div>
               </div>
             </div>
