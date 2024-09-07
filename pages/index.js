@@ -280,7 +280,7 @@ function Index() {
             <div className="row">
               <div className="col-lg-4 col-md-6">
                 <div className="section-title pt-4">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
+                  <p className="text-primary text-uppercase fw-bold mb-3 lead">
                     Unlock the Power of COT Data
                   </p>
                   <h1>Gain a Deeper Understanding of Market Sentiment</h1>
@@ -503,7 +503,7 @@ function Index() {
             <div className="row align-items-center justify-content-between">
               <div className="col-lg-5" data-aos="fade-right">
                 <div className="section-title">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
+                  <p className="text-primary text-uppercase fw-bold mb-3 lead">
                     Secure Your Trading Future
                   </p>
                   <h1>
@@ -609,7 +609,7 @@ function Index() {
             <div className="row justify-content-center">
               <div className="col-lg-8 mb-4">
                 <div className="section-title text-center">
-                  <p className="text-primary text-uppercase fw-bold mb-3">
+                  <p className="text-primary text-uppercase fw-bold mb-3 lead">
                     Real-Time Market Insights
                   </p>
                   <h1>Informed Trading, Simplified</h1>
