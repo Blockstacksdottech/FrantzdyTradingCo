@@ -609,10 +609,10 @@ function Index() {
             <div className="row justify-content-center">
               <div className="col-lg-8 mb-4">
                 <div className="section-title text-center">
-                  <h1 className="text-primary text-uppercase fw-bold mb-3">
+                  <p className="text-primary text-uppercase fw-bold mb-3">
                     Real-Time Market Insights
-                  </h1>
-                  <p>Informed Trading, Simplified</p>
+                  </p>
+                  <h1>Informed Trading, Simplified</h1>
                 </div>
               </div>
               <div className="col-lg-10">
