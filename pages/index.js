@@ -110,7 +110,7 @@ function Index() {
                   <h1 className="text-primary text-uppercase fw-bold mb-3">
                     Our Services
                   </h1>
-                  <p>Unlock Market Insights with COT Data</p>
+                  <p className="lead">Unlock Market Insights with COT Data</p>
                 </div>
               </div>
             </div>
@@ -1108,7 +1108,7 @@ function Index() {
                   <h1 className="text-primary text-uppercase fw-bold mb-3">
                     About Me
                   </h1>
-                  <p className="mb-4">The Ceo's Desk</p>
+                  <p className="mb-4 lead">The Ceo's Desk</p>
                 </div>
               </div>
             </div>
@@ -1223,10 +1223,10 @@ function Index() {
             <div className="row justify-content-center">
               <div className="col-12">
                 <div className="section-title text-center">
-                  <h1 className="text-primary text-uppercase fw-bold mb-3">
+                  <h1 className="text-primary text-uppercase fw-bold mb-3 ">
                     Our Team
                   </h1>
-                  <p>People Behind Us</p>
+                  <p className="lead">People Behind Us</p>
                   <p className="mb-0">
                     Meet the passionate individuals who drive Frantzdy Trading
                     Co. to success. <br /> Our team is dedicated to providing
@@ -1273,7 +1273,7 @@ function Index() {
                   <h1 className="text-primary text-uppercase fw-bold mb-3">
                     Blog
                   </h1>
-                  <p>The Latest News & Updates</p>
+                  <p className="lead">The Latest News & Updates</p>
                 </div>
               </div>
               {articles.map((e, i) => {
@@ -1384,7 +1384,7 @@ function Index() {
                   <h1 className="text-primary text-uppercase fw-bold mb-3">
                     Testimonials
                   </h1>
-                  <p className="mb-4">Trusted By 1.2K+ Peoples</p>
+                  <p className="mb-4 lead">Trusted By 1.2K+ Peoples</p>
                 </div>
               </div>
             </div>
