@@ -66,7 +66,7 @@ export default function Menu({}) {
                 </li>
                 <li className="nav-item dropdown">
                   <a className="nav-link" data-bs-toggle="dropdown">
-                    OUR SERVICES
+                    FOR MEMBERS
                   </a>
                   <ul className="dropdown-menu dropdown-menu-dark">
                     <li>

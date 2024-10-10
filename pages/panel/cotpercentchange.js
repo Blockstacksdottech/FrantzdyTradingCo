@@ -149,7 +149,7 @@ const CotpercentChange = () => {
                   <div className="row">
                     <div className="col-lg-12">
                       <div className="card">
-                        <div className="card-header">
+                        <div className="card-header border-0">
                           <h5 className="card-title">Commercial Positions</h5>
                           <div className="card-tools">
                             {exportableData.length > 0 && (
@@ -464,7 +464,7 @@ const CotpercentChange = () => {
                   <div className="row">
                     <div className="col-lg-12">
                       <div className="card">
-                        <div className="card-header">
+                        <div className="card-header border-0">
                           <h5 className="card-title">
                             Non-Commercial positions
                           </h5>
@@ -752,7 +752,7 @@ const CotpercentChange = () => {
                   <div className="row">
                     <div className="col-lg-12">
                       <div className="card">
-                        <div className="card-header">
+                        <div className="card-header border-0">
                           <h5 className="card-title">Open Interest</h5>
                           <div className="card-tools">
                             {exportableData.length > 0 && (
