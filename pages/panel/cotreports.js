@@ -69,6 +69,12 @@ const CotReport = () => {
   // dates filter
   const [dates,setDates] = useState([]);
   const [selectedDate,setSelectedDate] = useState(null)
+  // economic calendar
+  const [calendarData,setCalendarData] = useState([]);
+  const [graphCalendarData,setGraphCalendarData] = useState([])
+  const [currencyOptions,setCurrencyOptions] = useState([])
+  const [calendarCurrency,setCalendarCurrency] = useState(null)
+  const [calendarEvent,setCalendarEvent] = useState("gdp");
 
   const toPercentage = (num) => {
     // Check if the input is a valid number
@@ -314,6 +320,18 @@ const CotReport = () => {
     setLoading(false)
   }
 
+  const fetchCalendarData = async () => {
+    const response = await req("fundamental");
+    if (response) {
+      console.log(response);
+      setCalendarData(response);
+      const currs = response.map(e => e.name)
+      setCurrencyOptions(currs)
+      setCalendarCurrency(currs[0])
+      //setDate(response.date);
+    }
+  }
+
   const fetchData = async () => {
     try {
       const resp = await req("dates")
@@ -331,6 +349,7 @@ const CotReport = () => {
       setChangeData(response5)
       const response6 = await req("general-comm-change-data")
       setChangeCommData(response6)
+      fetchCalendarData();
       const keys = Object.keys(response1);
       console.log(keys);
       setKeys(keys);
@@ -358,6 +377,9 @@ const CotReport = () => {
 
   const handleSelectCommChange = (e, target) => {
     const o = e.target;
+    if (target === "calendar"){
+      setCalendarCurrency(o.value)
+    }
     if (target === "crowded") {
       setSelectedCommCrowded(o.value);
     }if (target == "nonchange"){
@@ -368,6 +390,16 @@ const CotReport = () => {
       setSelectedCommSentiment(o.value);
     }
   };
+
+  useEffect(() => {
+    if (calendarCurrency && calendarEvent){
+      const tar = calendarData.filter(e => e.name === calendarCurrency)[0]
+      const tar_data = tar.latest_events.filter(e=> e.event_code === calendarEvent)[0]
+      const res = tar_data.data.map(e => {return {date : e.date,forecast : Number(e.forecast.toFixed(2)),actual: Number(e.actual.toFixed(2)),previous:Number(e.previous.toFixed(2))}})
+      console.log(res)
+      setGraphCalendarData(res)
+    }
+  },[calendarCurrency,calendarEvent])
 
   useEffect(() => {
     if (selectedDate){
@@ -393,7 +425,6 @@ const CotReport = () => {
       pair_long = entry.base_long + entry.quote_long;
       pair_short = entry.base_short + entry.quote_short;
     }
-    console.log(entry)
     return {
       pair_long,
       pair_short,
@@ -413,7 +444,6 @@ const CotReport = () => {
       pair_long = entry.base_comm_long + entry.quote_comm_long;
       pair_short = entry.base_comm_short + entry.quote_comm_short;
     }
-    console.log(entry)
     return {
       pair_long,
       pair_short,
@@ -2344,6 +2374,104 @@ const CotReport = () => {
                       </div>
                     </div>
                   </div>
+
+                  <div className="row">
+                    <div className="col-lg-12">
+                      <div className="card">
+                        <div className="card-header">
+                          <h5 className="card-title">
+                            Economic Calendar Events
+                          </h5>
+                          <div className="card-tools">
+                            <select
+                              className="form-control form-control-sm form-control-select"
+                              onChange={(e) =>
+                                handleSelectCommChange(e, "calendar")
+                              }
+                              value={calendarCurrency}
+                            >
+                              <option selected="selected" disabled={true}>
+                                Select Symbol Name
+                              </option>
+                              {currencyOptions.map((e, i) => {
+                                return (
+                                  <option key={e} value={e}>
+                                    {e}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                            <select
+                              className="form-control form-control-sm form-control-select"
+                              onChange={(e) =>
+                                setCalendarEvent(e.target.value)
+                              }
+                              value={calendarEvent}
+                            >
+                              <option selected="selected" disabled={true}>
+                                Select Event Name
+                              </option>
+                              
+                               
+                                  <option key={"gdp"} value={"gdp"}>
+                                    {"GDP"}
+                                  </option>
+                                  <option key={"cpi"} value={"cpi"}>
+                                    {"CPI"}
+                                  </option>
+                                  <option key={"employment"} value={"employment"}>
+                                    {"Employment Change"}
+                                  </option>
+                                  <option key={"unemployment"} value={"unemployment"}>
+                                    {"Unemployment Rate"}
+                                  </option>
+                                  <option key={"mpmi"} value={"mpmi"}>
+                                    {"MPMI"}
+                                  </option>
+                                  <option key={"spmi"} value={"spmi"}>
+                                    {"SPMI"}
+                                  </option>
+                                
+                            </select>
+                          </div>
+                        </div>
+                        <div className="card-body" style={{ fontSize: "11px" }}>
+                        <ResponsiveContainer width="100%" height={300}>
+                            <BarChart
+                              data={
+                                graphCalendarData && graphCalendarData
+                              }
+                            >
+                              <CartesianGrid
+                                stroke="#0b4a89"
+                                strokeDasharray="5 5"
+                              />
+                              <XAxis
+                                dataKey="date"
+                                tick={{ fill: "#b6ccf5" }}
+                                tickLine={{ stroke: "#b6ccf5" }}
+                              />
+                              <YAxis
+                                tick={{ fill: "#b6ccf5" }}
+                                tickLine={{ stroke: "#b6ccf5" }}
+                              />
+                              <Tooltip
+                                contentStyle={{
+                                  backgroundColor: "#083D72",
+                                }}
+                                itemStyle={{ color: "#b6ccf5" }}
+                                cursor={{ fill: "transparent" }}
+                              />
+                              <Legend />
+                              <Bar dataKey="previous" fill="#05FFFF" />
+                              <Bar dataKey="actual" fill="#032950" />
+                              <Bar dataKey="forecast" fill="#035550" />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
                 </div>
               </div>
             </>

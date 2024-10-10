@@ -117,6 +117,19 @@ export default function Sidebar({}) {
                 </li>
                 <li className="nav-item">
                   <a
+                    href="../panel/calendar"
+                    className={
+                      isActive("../panel/calendar")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    <i className="nav-icon fas fa-calendar" />
+                    <p>Calendar</p>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
                     href="../panel/sentimentdata"
                     className={
                       isActive("../panel/sentimentdata")
