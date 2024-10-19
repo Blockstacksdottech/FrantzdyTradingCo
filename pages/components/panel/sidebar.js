@@ -73,7 +73,7 @@ export default function Sidebar({}) {
                 role="menu"
                 data-accordion="false"
               >
-                <li className="nav-header">DATA</li>
+                <li className="nav-header">ADMIN DATA</li>
                 {user && user.isAdmin && (
                   <li className="nav-item">
                     <a
@@ -89,6 +89,7 @@ export default function Sidebar({}) {
                     </a>
                   </li>
                 )}
+                <li className="nav-header">DATA</li>
                 <li className="nav-item">
                   <a
                     href="../panel/cotscanner"
@@ -117,32 +118,6 @@ export default function Sidebar({}) {
                 </li>
                 <li className="nav-item">
                   <a
-                    href="../panel/premiumcot"
-                    className={
-                      isActive("../panel/calendar")
-                        ? "nav-link active"
-                        : "nav-link"
-                    }
-                  >
-                    <i className="nav-icon fas fa-calendar" />
-                    <p>Premium COT Data</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    href="../panel/calendar"
-                    className={
-                      isActive("../panel/calendar")
-                        ? "nav-link active"
-                        : "nav-link"
-                    }
-                  >
-                    <i className="nav-icon fas fa-calendar" />
-                    <p>Calendar</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
                     href="../panel/sentimentdata"
                     className={
                       isActive("../panel/sentimentdata")
@@ -155,7 +130,7 @@ export default function Sidebar({}) {
                   </a>
                 </li>
 
-                {/* <li className="nav-item">
+                <li className="nav-item">
                   <a
                     href="../panel/calendar"
                     className={
@@ -167,7 +142,21 @@ export default function Sidebar({}) {
                     <i className="nav-icon fas fa-calendar-alt" />
                     <p>Calendar</p>
                   </a>
-                </li> */}
+                </li>
+                <li className="nav-item">
+                  <a
+                    href="../panel/premiumcot"
+                    className={
+                      isActive("../panel/premiumcot")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    <i className="nav-icon fas fa-gift" />
+                    <p>Premium COT Data</p>
+                  </a>
+                </li>
+
                 <li className="nav-header">OTHERS</li>
 
                 <li className="nav-item">
