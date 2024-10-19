@@ -75,7 +75,7 @@ const CotReport = () => {
   const [currencyOptions,setCurrencyOptions] = useState([])
   const [calendarCurrency,setCalendarCurrency] = useState(null)
   const [calendarEvent,setCalendarEvent] = useState("gdp");
-  const [calendarYear,setCalendarYear] = useState(null)
+  const [calendarYear,setCalendarYear] = useState(new Date().getFullYear())
 
   const toPercentage = (num) => {
     // Check if the input is a valid number
