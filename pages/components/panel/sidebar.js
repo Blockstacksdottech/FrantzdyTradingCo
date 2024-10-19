@@ -117,6 +117,19 @@ export default function Sidebar({}) {
                 </li>
                 <li className="nav-item">
                   <a
+                    href="../panel/premiumcot"
+                    className={
+                      isActive("../panel/calendar")
+                        ? "nav-link active"
+                        : "nav-link"
+                    }
+                  >
+                    <i className="nav-icon fas fa-calendar" />
+                    <p>Premium COT Data</p>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
                     href="../panel/calendar"
                     className={
                       isActive("../panel/calendar")

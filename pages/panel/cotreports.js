@@ -6,7 +6,7 @@ import ScriptLink from "../components/panel/scriptlink";
 import Footer from "../components/panel/footer";
 import React, { Component, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { calculateNet, formatDateLocal, getThresholdSignal, isLogged, req,get_diff_signal,get_stars } from "@/helpers";
+import { calculateNet, formatDateLocal, getThresholdSignal, isLogged, req,get_diff_signal,get_stars,generateYears,isDateInCurrentYear } from "@/helpers";
 import { useRouter } from "next/router";
 import {
   LineChart,
@@ -75,6 +75,7 @@ const CotReport = () => {
   const [currencyOptions,setCurrencyOptions] = useState([])
   const [calendarCurrency,setCalendarCurrency] = useState(null)
   const [calendarEvent,setCalendarEvent] = useState("gdp");
+  const [calendarYear,setCalendarYear] = useState(null)
 
   const toPercentage = (num) => {
     // Check if the input is a valid number
@@ -392,14 +393,15 @@ const CotReport = () => {
   };
 
   useEffect(() => {
-    if (calendarCurrency && calendarEvent){
+    if (calendarCurrency && calendarEvent && calendarYear){
       const tar = calendarData.filter(e => e.name === calendarCurrency)[0]
       const tar_data = tar.latest_events.filter(e=> e.event_code === calendarEvent)[0]
-      const res = tar_data.data.map(e => {return {date : e.date,forecast : Number(e.forecast.toFixed(2)),actual: Number(e.actual.toFixed(2)),previous:Number(e.previous.toFixed(2))}})
+      const filtered = tar_data.data.filter(e => isDateInCurrentYear(e.date,Number(calendarYear)))
+      const res = filtered.map(e => {return {date : e.date,forecast : Number(e.forecast.toFixed(2)),actual: Number(e.actual.toFixed(2)),previous:Number(e.previous.toFixed(2))}})
       console.log(res)
       setGraphCalendarData(res)
     }
-  },[calendarCurrency,calendarEvent])
+  },[calendarCurrency,calendarEvent,calendarYear])
 
   useEffect(() => {
     if (selectedDate){
@@ -2431,6 +2433,33 @@ const CotReport = () => {
                                   <option key={"spmi"} value={"spmi"}>
                                     {"SPMI"}
                                   </option>
+                                  <option key={"retail"} value={"retail"}>
+                                    {"Retail Sales"}
+                                  </option>
+                                  <option key={"ppi"} value={"ppi"}>
+                                    {"PPI"}
+                                  </option>
+                                
+                            </select>
+
+                            <select
+                              className="form-control form-control-sm form-control-select"
+                              onChange={(e) =>
+                                setCalendarYear(e.target.value)
+                              }
+                              value={calendarYear}
+                            >
+                              <option selected="selected" disabled={true}>
+                                Select Year
+                              </option>
+                              
+                               {generateYears(2020).map((e,i) => {
+                                return <option key={e} value={e}>
+                                {e}
+                              </option>
+                               })}
+                                  
+                                  
                                 
                             </select>
                           </div>

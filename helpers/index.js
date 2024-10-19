@@ -752,3 +752,35 @@ export function get_diff_signal(a, b) {
   const { stars, signal } = getRating(a, b);
   return signal;
 }
+
+export function generateYears(startYear) {
+  const currentYear = new Date().getFullYear();
+  const years = [];
+
+  for (let year = startYear; year <= currentYear; year++) {
+      years.push(year);
+  }
+
+  return years;
+}
+
+
+export function isDateInCurrentYear(dateString,targetYear) {
+  // Parse the input date
+  const inputDate = new Date(dateString);
+  
+  
+  
+  // Check if the input date is within the current year
+  return inputDate.getFullYear() === targetYear;
+}
+
+export function extractYear(dateString) {
+  // Create a Date object from the date string
+  const date = new Date(dateString);
+
+  // Extract the year from the Date object
+  const year = date.getFullYear();
+
+  return year;
+}

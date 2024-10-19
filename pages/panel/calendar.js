@@ -119,13 +119,19 @@ const Calendar = () => {
   }, [user]);
 
   const getBias = (score) => {
-    if (score >= 11 && score <= 20) return 'Very Bullish';
-    if (score >= 7 && score < 11) return 'Bullish';
-    if (score >= -6 && score < 7) return 'Neutral';
-    if (score >= -10 && score < -7) return 'Bearish';
-    if (score >= -20 && score < -11) return 'Very Bearish';
+    
+    if (score >= 2) return 'Bullish';
+    if (score >= -2 && score < 2) return 'Neutral';
+    if (score < -2) return 'Bearish';
     return 'Neutral'; // Fallback
 };
+
+const getBackground = (score) => {
+  if (score >= 2) return 'bg-green';
+    if (score >= -2 && score < 2) return '';
+    if (score < -2) return 'bg-red';
+    return 'Neutral';
+}
 
 const tableRows = fx_symbols.map((symbol) => {
   if (!data) {
@@ -147,7 +153,8 @@ const tableRows = fx_symbols.map((symbol) => {
   const quoteSeasonality = {};
 
   events.forEach(event => {
-      const baseEvent = baseData.latest_events.find(e => e.event_code === event);
+      if (events.includes(event)){
+        const baseEvent = baseData.latest_events.find(e => e.event_code === event);
       const quoteEvent = quoteData.latest_events.find(e => e.event_code === event);
 
       baseScores[event] = baseEvent ? baseEvent.data.rescaled_score : 0;
@@ -156,6 +163,8 @@ const tableRows = fx_symbols.map((symbol) => {
       quoteTrends[event] = quoteEvent ? quoteEvent.data.rescaled_trend : 0;
       baseSeasonality[event] = baseEvent ? baseEvent.data.rescaled_avg_score : 0;
       quoteSeasonality[event] = quoteEvent ? quoteEvent.data.rescaled_avg_score : 0;
+      }
+      
   });
 
   // Calculate total scores
@@ -178,16 +187,16 @@ const tableRows = fx_symbols.map((symbol) => {
   return (
       <tr key={symbol}>
           <td>{symbol}</td>
-          <td>{getBias(Math.round(totalScore))}</td>
-          <td>{Math.round(totalScore)}</td>
-          <td>{Math.round(totalSeasonality)}</td>
-          <td>{Math.round(totalTrend)}</td>
-          <td>{Math.round(gdpScore)}</td>
-          <td>{Math.round(cpiScore)}</td>
-          <td>{Math.round(employment)}</td>
-          <td>{Math.round(unemployment)}</td>
-          <td>{Math.round(mpmi)}</td>
-          <td>{Math.round(spmi)}</td>
+          <td>{getBias(totalScore)}</td>
+          <td className={getBackground(totalScore)}>{totalScore.toFixed(2)}</td>
+          <td>{totalSeasonality.toFixed(2)}</td>
+          <td>{totalTrend.toFixed(2)}</td>
+          <td>{gdpScore.toFixed(2)}</td>
+          <td>{cpiScore.toFixed(2)}</td>
+          <td>{employment.toFixed(2)}</td>
+          <td>{unemployment.toFixed(2)}</td>
+          <td>{mpmi.toFixed(2)}</td>
+          <td>{spmi.toFixed(2)}</td>
       </tr>
   );
 });
