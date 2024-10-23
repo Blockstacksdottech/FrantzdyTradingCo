@@ -4,6 +4,7 @@ export const public_stripe_key =
 //;
 
 export const fx_symbols = [
+    'USD', 'EUR', 'GBP', 'JPY', 'CAD', 'CHF', 'NZD', 'MXN', 'AUD',
     "NZD/USD",
     "USD/JPY",
     "USD/CAD",

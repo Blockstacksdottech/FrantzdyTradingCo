@@ -89,6 +89,21 @@ export default function Sidebar({}) {
                     </a>
                   </li>
                 )}
+                {user && user.isAdmin && (
+                  <li className="nav-item">
+                    <a
+                      href="../panel/fundamentalreports"
+                      className={
+                        isActive("../panel/cotreports")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                    >
+                      <i className="nav-icon fas fa-chart-line" />
+                      <p>Fundamental</p>
+                    </a>
+                  </li>
+                )}
                 <li className="nav-header">DATA</li>
                 <li className="nav-item">
                   <a

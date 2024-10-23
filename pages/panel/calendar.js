@@ -25,6 +25,8 @@ const Calendar = () => {
   const nav = useRouter();
   const [exportableData, setExportableData] = useState([]);
   const [date, setDate] = useState(null);
+  const [sentiment,setSentiment] = useState(null);
+  const [scanner,setScanner] = useState(null);
 
   const toPercentage = (num) => {
     // Check if the input is a valid number
@@ -91,18 +93,100 @@ const Calendar = () => {
           csvRows.push(row); // Add each row
       });
   });
-    console.log("temp here");
-    console.log(csvRows);
     setExportableData(csvRows);
   };
+  const formatSentiment = (d) => {
+    const res = {}
+    d.forEach(e => {
+      const k = Object.keys(e)[0]
+      res[k] = {
+        short : Number(e[k]['Short']['percentage'].replace("%","")),
+        long : Number(e[k]['Long']['percentage'].replace("%",""))
+      }
+    })
+    return res
+  }
+  const calculate_percentage = (entry) => {
+    let pair_long = 0;
+    let pair_short = 0;
+    if (entry.is_contract) {
+      pair_long = entry.base_long;
+      pair_short = entry.base_short;
+    } else {
+      pair_long = entry.base_long + entry.quote_long;
+      pair_short = entry.base_short + entry.quote_short;
+    }
+    return {
+      pair_long,
+      pair_short,
+      perc_long: toPercentage(pair_long / (pair_long + pair_short)),
+      perc_short: toPercentage(pair_short / (pair_long + pair_short)),
+      pair_diff: pair_long - pair_short,
+    };
+  }; 
+  const formatScanner = (d) => {
+    const res = {}
+    d.data.forEach(e => {
+      if (fx_symbols.includes(e.pair)){
+        const calculated = calculate_percentage(e)
+        res[e.pair] = {
+          long : Number(calculated.perc_long.replace("%","")),
+          short : Number(calculated.perc_short.replace("%",""))
+        }
+      }
+    })
+    console.log(res)
+    return res
+  }
+
+  function calculateScore(longPercentage, shortPercentage) {
+    if (longPercentage + shortPercentage !== 100) {
+        throw new Error("The total percentage of long and short positions must equal 100.");
+    }
+
+    let score = 0;
+
+    if (longPercentage >= 50) {
+        // Long position dominant, assign positive scores
+        if (longPercentage >= 90) {
+            score = 5;
+        } else if (longPercentage >= 80) {
+            score = 4;
+        } else if (longPercentage >= 70) {
+            score = 3;
+        } else if (longPercentage >= 60) {
+            score = 2;
+        } else if (longPercentage >= 50) {
+            score = 1;
+        }
+    } else {
+        // Short position dominant, assign negative scores
+        if (shortPercentage >= 90) {
+            score = -5;
+        } else if (shortPercentage >= 80) {
+            score = -4;
+        } else if (shortPercentage >= 70) {
+            score = -3;
+        } else if (shortPercentage >= 60) {
+            score = -2;
+        } else if (shortPercentage >= 50) {
+            score = -1;
+        }
+    }
+
+    return score;
+}
 
   const fetchData = async () => {
     try {
       const response = await req("fundamental?latest=true");
-      if (response) {
-        console.log(response);
+      const resp2 = await postReq("scanner-data", {});
+      const resp3 = await postReq("sentiment-data", {});
+      if (response && resp2 && resp3) {
         handleExport(response);
         setData(response);
+        setSentiment(formatSentiment(resp3))
+        setScanner(formatScanner(resp2))
         //setDate(response.date);
       }
     } catch (error) {
@@ -137,14 +221,20 @@ const tableRows = fx_symbols.map((symbol) => {
   if (!data) {
     return <></>
   }
-  let baseData = data.find(item => item.name === symbol.split("/")[0]); // Get the base currency data
-  let quoteData = data.find(item => item.name === symbol.split("/")[1]); // Get the quote currency data
+  let base = symbol;
+  let quote = symbol;
+  if (symbol.includes("/")){
+    base = symbol.split("/")[0]
+    quote = symbol.split("/")[1]
+  }
+  let baseData = data.find(item => item.name === base); // Get the base currency data
+  let quoteData = data.find(item => item.name === quote); // Get the quote currency data
   console.log(baseData)
   console.log(quoteData)
   if (!baseData || !quoteData) return null; // Skip if data is not available
 
   // Calculate the score, seasonality, and trend for each event
-  const events = ['mpmi', 'spmi', 'employment', 'unemployment', 'cpi', 'gdp'];
+  const events = ['mpmi', 'spmi', 'employment', 'unemployment', 'cpi', 'gdp','interest'];
   const baseScores = {};
   const quoteScores = {};
   const baseTrends = {};
@@ -167,8 +257,20 @@ const tableRows = fx_symbols.map((symbol) => {
       
   });
 
+  let cot_score = 0;
+  if (Object.keys(scanner).includes(symbol)){
+    cot_score = calculateScore(scanner[symbol].long,scanner[symbol].short)
+  }
+
+  let sentiment_score = 0;
+  console.log(`sentiment symbol`)
+  console.log(Object.keys(sentiment))
+  if (Object.keys(sentiment).includes(symbol.replace('/',''))){
+    sentiment_score = calculateScore(sentiment[symbol.replace('/','')].long,sentiment[symbol.replace('/','')].short)
+  }
+
   // Calculate total scores
-  const totalScore = (Object.values(baseScores).reduce((acc, score) => acc + score, 0) / events.length) -
+  const totalScore = (Object.values(baseScores).concat([cot_score,sentiment_score]).reduce((acc, score) => acc + score, 0) / events.length) -
       (Object.values(quoteScores).reduce((acc, score) => acc + score, 0) / events.length);
 
   const totalSeasonality = (Object.values(baseSeasonality).reduce((acc, score) => acc + score, 0) / events.length) -
@@ -183,18 +285,22 @@ const tableRows = fx_symbols.map((symbol) => {
   const unemployment = baseScores['unemployment'] - quoteScores['unemployment'];
   const mpmi = baseScores['mpmi'] - quoteScores['mpmi'];
   const spmi = baseScores['spmi'] - quoteScores['spmi'];
+  const interest = baseScores['interest'] - quoteScores['interest']
 
   return (
       <tr key={symbol}>
           <td>{symbol}</td>
           <td>{getBias(totalScore)}</td>
           <td className={getBackground(totalScore)}>{totalScore.toFixed(2)}</td>
+          <td>{cot_score.toFixed(2)}</td>
+          <td>{sentiment_score.toFixed(2)}</td>
           <td>{totalSeasonality.toFixed(2)}</td>
           <td>{totalTrend.toFixed(2)}</td>
           <td>{gdpScore.toFixed(2)}</td>
           <td>{cpiScore.toFixed(2)}</td>
           <td>{employment.toFixed(2)}</td>
           <td>{unemployment.toFixed(2)}</td>
+          <td>{interest.toFixed(2)}</td>
           <td>{mpmi.toFixed(2)}</td>
           <td>{spmi.toFixed(2)}</td>
       </tr>
@@ -213,7 +319,7 @@ const tableRows = fx_symbols.map((symbol) => {
         />
       </Head>
 
-      <Checker tier={1}>
+      <Checker tier={2}>
         <HeadLink />
         <Menu user={user} />
         <Sidebar />
@@ -223,7 +329,7 @@ const tableRows = fx_symbols.map((symbol) => {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-12">
-                  <h1>COT % CHANGE</h1>
+                  <h1>Calendar</h1>
                 </div>
               </div>
             </div>
@@ -242,7 +348,7 @@ const tableRows = fx_symbols.map((symbol) => {
                     <div className="col-lg-12">
                       <div className="card">
                         <div className="card-header">
-                          <h5 className="card-title">Commercial Positions</h5>
+                          <h5 className="card-title">Calendar</h5>
                           <div className="card-tools">
                             {exportableData.length > 0 && (
                               <>
@@ -284,12 +390,15 @@ const tableRows = fx_symbols.map((symbol) => {
                     <th>Symbol</th>
                     <th>Bias</th>
                     <th>Score</th>
+                    <th>COT Score</th>
+                    <th>Sentiment Score</th>
                     <th>Seasonality</th>
                     <th>Trend</th>
                     <th>GDP</th>
                     <th>CPI</th>
                     <th>Employment Change</th>
                     <th>Unemployment Rate</th>
+                    <th>Interest Rate</th>
                     <th>MPMI</th>
                     <th>SPMI</th>
                 </tr>

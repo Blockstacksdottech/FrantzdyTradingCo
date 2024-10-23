@@ -104,6 +104,10 @@ const PremiumCot = () => {
         }
       });
     });
+
+    Object.keys(groupedData).forEach(e => {
+      groupedData[e] = groupedData[e].reverse()
+    })
   
     return groupedData;
   }
@@ -504,7 +508,7 @@ const PremiumCot = () => {
                                 selectedData.map((e, i) => {
                                     const c_d = calculate_comm_percentage(e)
                                   return (
-                                    <tr key={e.date}>
+                                    <tr key={"c"+e.date}>
                                       <td>{selectedPair}</td>
                                       <td>{formatDate(e.date)}</td>
                                       <td>{c_d.pair_long}</td>
