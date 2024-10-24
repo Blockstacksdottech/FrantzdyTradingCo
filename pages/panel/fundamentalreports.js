@@ -91,9 +91,10 @@ const FundamentalReports = () => {
       const tar = calendarData.filter(e => e.name === calendarCurrency)[0]
       const tar_data = tar.latest_events.filter(e=> e.event_code === calendarEvent)[0]
       const filtered = tar_data.data.filter(e => isDateInCurrentYear(e.date,Number(calendarYear)))
-      const seasonality = filtered.map(e => ({date : e.date,seasonality : Number(e.avg_score.toFixed(2)),trend : Number(e.trend.toFixed(2)) }))
-      const res = filtered.map(e => {return {date : e.date,forecast : Number(e.forecast.toFixed(2)),actual: Number(e.actual.toFixed(2)),previous:Number(e.previous.toFixed(2))}})
-      console.log(res)
+      const seasonality = filtered.map(e => ({date : e.date,seasonality : Number(e.avg_score.toFixed(4)),trend : Number(e.trend.toFixed(4)) }))
+      const res = filtered.map(e => {return {date : e.date,forecast : Number(e.forecast.toFixed(4)),actual: Number(e.actual.toFixed(4)),previous:Number(e.previous.toFixed(4))}})
+      res.sort((a, b) => new Date(a.date) - new Date(b.date))
+      seasonality.sort((a, b) => new Date(a.date) - new Date(b.date))
       setGraphCalendarData(res)
       setSeasonalityGraphData(seasonality)
     }

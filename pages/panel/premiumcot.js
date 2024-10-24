@@ -33,6 +33,25 @@ const PremiumCot = () => {
   const [pairs,setPairs] = useState([])
   const [selectedPair,setSelectedPair] = useState(null)
   const [selectedData,setSelectedData] = useState([]);
+  const [maxLong,setMaxLong] = useState(null);
+  const [minLong,setMinLong] = useState(null);
+  const [maxShort,setMaxShort] = useState(null);
+  const [minShort,setMinShort] = useState(null);
+  const [maxNet,setMaxNet] = useState(null)
+  const [minNet,setMinNet] = useState(null);
+  const [avgLong,setAvgLong] = useState(null);
+  const [avgShort,setAvgShort] = useState(null);
+  const [avgNet,setAvgNet] = useState(null);
+  const [comm_maxLong,setCommMaxLong] = useState(null);
+  const [comm_minLong,setCommMinLong] = useState(null);
+  const [comm_maxShort,setCommMaxShort] = useState(null);
+  const [comm_minShort,setCommMinShort] = useState(null);
+  const [comm_avgLong,setCommAvgLong] = useState(null);
+  const [comm_avgShort,setCommAvgShort] = useState(null);
+  const [comm_maxNet,setCommMaxNet] = useState(null)
+  const [comm_minNet,setCommMinNet] = useState(null);
+  const [comm_avgNet,setCommAvgNet] = useState(null);
+
 
   DataTable.use(DT);
 
@@ -54,6 +73,10 @@ const PremiumCot = () => {
   const toPercentage = (num) => {
     // Check if the input is a valid number
     if (typeof num !== "number" || isNaN(num)) {
+      console.log(`error here `)
+      console.log(num)
+      console.log(avgLong)
+      console.log(avgShort)
       throw new Error("Input must be a valid number");
     }
 
@@ -174,7 +197,12 @@ const PremiumCot = () => {
       const r = groupDataByPair(response)
       handleExport(r);
       setData(r);
-      setSelectedPair(Object.keys(r)[0])
+      if (!selectedPair){
+        setSelectedPair(Object.keys(r)[0])
+      }else{
+        setSelectedData(r[selectedPair])
+      }
+      
       if (!selectedYear){
         setSelectedYear(extractYear(response[0].date))
       }
@@ -183,27 +211,95 @@ const PremiumCot = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);
+      //setLoading(false);
     }
   };
 
   useEffect(() => {
     if (selectedPair){
-        setLoading(true)
         setSelectedData(data[selectedPair])
         
     }
   },[selectedPair])
 
-  useEffect(() => {
-    setLoading(false)
-  },[selectedData])
+
 
   useEffect(() => {
     if (user.logged) {
+      setLoading(true)
       fetchData();
     }
   }, [user,selectedYear]);
+
+  // Step 2: Calculate 13-week average for perc_long and perc_short
+
+  const getAverage = (values) => {
+    const sum = values.reduce((acc, curr) => acc + curr, 0);
+    return sum / values.length;
+  };
+
+  const handleAnalysis = (target) => {
+    console.log(`########### ${target} #########`)
+    console.log(selectedData)
+    const dataArray = selectedData.map((e) => {
+      const d = target === "nc" ? calculate_percentage(e) :calculate_comm_percentage(e)
+      return {...d,date : e.date}
+    })
+    console.log(dataArray)
+    const LongValues = dataArray.map(item => item.pair_long);
+    const ShortValues = dataArray.map(item => item.pair_short);
+    const netValues = dataArray.map(item => item.pair_diff);
+
+    const maxPercLong = Math.max(...LongValues);
+    const minPercLong = Math.min(...LongValues);
+    const maxPercShort = Math.max(...ShortValues);
+    const minPercShort = Math.min(...ShortValues);
+    const maxnet = Math.max(...netValues);
+    const minnet = Math.min(...netValues);
+
+    // Get the last 13 weeks (or fewer if the array has fewer than 13 elements)
+    const last13Weeks = dataArray.slice(0,13);
+    console.log(last13Weeks)
+    const percLongLast13Weeks = last13Weeks.map(item => item.pair_long);
+    const percShortLast13Weeks = last13Weeks.map(item => item.pair_short);
+    const LastNet13 = last13Weeks.map(item => item.pair_diff);
+
+    const avgPercLong = getAverage(percLongLast13Weeks);
+    const avgPercShort = getAverage(percShortLast13Weeks);
+    const avgNet = getAverage(LastNet13);
+    console.log(`calculating for ${target}`)
+    console.log(avgNet)
+    if (target === "nc"){
+      setMaxLong(maxPercLong)
+      setMinLong(minPercLong)
+      setMaxShort(maxPercShort)
+      setMinShort(minPercShort)
+      setMaxNet(maxnet)
+      setMinNet(minnet)
+      setAvgLong(avgPercLong)
+      setAvgShort(avgPercShort)
+      setAvgNet(avgNet)
+    }else{
+      setCommMaxLong(maxPercLong)
+      setCommMinLong(minPercLong)
+      setCommMaxShort(maxPercShort)
+      setCommMinShort(minPercShort)
+      setCommMaxNet(maxnet)
+      setCommMinNet(minnet)
+      setCommAvgLong(avgPercLong)
+      setCommAvgShort(avgPercShort)
+      setCommAvgNet(avgNet)
+
+    }
+  }
+
+  useEffect(() => {
+    if (selectedData && selectedData.length > 0 && selectedYear){
+      handleAnalysis('nc')
+      handleAnalysis('c')
+      setLoading(false)
+    }
+  },[selectedData,selectedYear])
 
   useEffect(() => {}, [data]);
 
@@ -276,7 +372,7 @@ const PremiumCot = () => {
             </h4>
           )}
 
-          {!loading && (
+          {!loading  && (
             <>
               <div className="content">
                 
@@ -307,7 +403,7 @@ const PremiumCot = () => {
                     <div className="col-lg-12 ">
                       <div className="card">
                       {
-                        data && <>
+                        selectedData && <>
                           <div className="card-header">
                           <h5 className="card-title">NON COMMERCIAL</h5>
                           <div className="card-tools">
@@ -337,7 +433,7 @@ const PremiumCot = () => {
                                 Select Pair
                               </option>
                               
-                               {Object.keys(data).map((e,i) => {
+                               {data && Object.keys(data).map((e,i) => {
                                 return <option key={e} value={e}>
                                 {e}
                               </option>
@@ -375,6 +471,7 @@ const PremiumCot = () => {
       <th>Date</th>
       <th>Non-Comm long</th>
       <th>Non-Comm Short</th>
+      <th>Total</th>
       <th>Non-Comm % Long</th>
       <th>Non-Comm % Short</th>
       <th>Non-Comm Net Position</th>
@@ -384,8 +481,80 @@ const PremiumCot = () => {
                             </thead>
                             <tbody>
                               {selectedData &&
-                                selectedData.length > 0 &&
-                                selectedData.map((e, i) => {
+                                selectedData.length > 0 && maxLong &&
+                                <>
+                                <tr>
+                                <td>{selectedPair}</td>
+                                      <td>MAX</td>
+                                      <td>{maxLong}</td>
+                                      <td>{maxShort}</td>
+                                      <td>{maxLong + maxShort}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>{maxNet}</td>
+                                </tr>
+                                <tr>
+                                <td>{selectedPair}</td>
+                                      <td>Min</td>
+                                      <td>{minLong}</td>
+                                      <td>{minShort}</td>
+                                      <td>{minLong + minShort}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>{minNet}</td>
+                                </tr>
+                                <tr>
+                                <td>{selectedPair}</td>
+                                      <td>13 Per.AVG</td>
+                                      <td>{avgLong}</td>
+                                      <td>{avgShort}</td>
+                                      <td>{avgLong + avgShort}</td>
+                                      <td>
+                                      <div
+                                          className="progress progress-sm"
+                                          style={{ height: "15px" }}
+                                        >
+                                          <div
+                                            className="progress-bar progress-bar-striped progress-bar-animated"
+                                            aria-valuenow={toPercentage((avgLong / (avgLong + avgShort))).replace("%", "")}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style={{
+                                              width: toPercentage((avgLong / (avgLong + avgShort))),
+                                            }}
+                                          ></div>
+                                        </div>
+                                        {toPercentage((avgLong / (avgLong + avgShort)))}
+                                      </td>
+                                      <td>
+                                      <div
+                                          className="progress progress-sm"
+                                          style={{ height: "15px" }}
+                                        >
+                                          <div
+                                            className="progress-bar progress-bar-striped progress-bar-animated"
+                                            aria-valuenow={toPercentage((avgShort / (avgLong + avgShort))).replace("%", "")}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style={{
+                                              width: toPercentage((avgShort / (avgLong + avgShort))),
+                                            }}
+                                          ></div>
+                                        </div>
+                                        {toPercentage((avgShort / (avgLong + avgShort)))}
+                                      </td>
+                                      <td>{avgNet}</td>
+                                </tr>
+                                {
+                                  selectedData.map((e, i) => {
                                     const n_d = calculate_percentage(e)
                                     const c_d = calculate_comm_percentage(e)
                                   return (
@@ -394,6 +563,7 @@ const PremiumCot = () => {
                                       <td>{formatDate(e.date)}</td>
                                       <td>{n_d.pair_long}</td>
                                       <td>{n_d.pair_short}</td>
+                                      <td>{n_d.pair_long + n_d.pair_short}</td>
                                       <td>
                                         <div
                                           className="progress progress-sm"
@@ -436,7 +606,10 @@ const PremiumCot = () => {
                                       
                                     </tr>
                                   );
-                                })}
+                                })
+                                }
+                                </>
+                                }
                             </tbody>
                           </DataTable>
                         </div>
@@ -496,6 +669,7 @@ const PremiumCot = () => {
       <th>Date</th>
       <th>Comm long</th>
       <th>Comm Short</th>
+      <th>Total</th>
       <th>Comm % Long</th>
       <th>Comm % Short</th>
       <th>Comm Net Position</th>
@@ -504,8 +678,79 @@ const PremiumCot = () => {
                             </thead>
                             <tbody>
                               {selectedData &&
-                                selectedData.length > 0 &&
-                                selectedData.map((e, i) => {
+                                selectedData.length > 0 && comm_maxLong && <>
+                                <tr>
+                                <td>{selectedPair}</td>
+                                      <td>MAX</td>
+                                      <td>{comm_maxLong}</td>
+                                      <td>{comm_maxShort}</td>
+                                      <td>{comm_maxLong + comm_maxShort}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>{comm_maxNet}</td>
+                                </tr>
+                                <tr>
+                                <td>{selectedPair}</td>
+                                      <td>Min</td>
+                                      <td>{comm_minLong}</td>
+                                      <td>{comm_minShort}</td>
+                                      <td>{comm_minLong + comm_minShort}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>{comm_minNet}</td>
+                                </tr>
+                                <tr>
+                                <td>{selectedPair}</td>
+                                      <td>13 Per.AVG</td>
+                                      <td>{comm_avgLong}</td>
+                                      <td>{comm_avgShort}</td>
+                                      <td>{comm_avgLong + comm_avgShort}</td>
+                                      <td>
+                                      <div
+                                          className="progress progress-sm"
+                                          style={{ height: "15px" }}
+                                        >
+                                          <div
+                                            className="progress-bar progress-bar-striped progress-bar-animated"
+                                            aria-valuenow={toPercentage((comm_avgLong / (comm_avgLong + comm_avgShort))).replace("%", "")}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style={{
+                                              width: toPercentage((comm_avgLong / (comm_avgLong + comm_avgShort))),
+                                            }}
+                                          ></div>
+                                        </div>
+                                        {toPercentage((comm_avgLong / (comm_avgLong + comm_avgShort)))}
+                                      </td>
+                                      <td>
+                                      <div
+                                          className="progress progress-sm"
+                                          style={{ height: "15px" }}
+                                        >
+                                          <div
+                                            className="progress-bar progress-bar-striped progress-bar-animated"
+                                            aria-valuenow={toPercentage((comm_avgShort / (comm_avgLong + comm_avgShort))).replace("%", "")}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style={{
+                                              width: toPercentage((comm_avgShort / (comm_avgLong + comm_avgShort))),
+                                            }}
+                                          ></div>
+                                        </div>
+                                        {toPercentage((comm_avgShort / (comm_avgLong + comm_avgShort)))}
+                                      </td>
+                                      <td>{comm_avgNet}</td>
+                                </tr>
+                                {
+                                  selectedData.map((e, i) => {
                                     const c_d = calculate_comm_percentage(e)
                                   return (
                                     <tr key={"c"+e.date}>
@@ -513,6 +758,7 @@ const PremiumCot = () => {
                                       <td>{formatDate(e.date)}</td>
                                       <td>{c_d.pair_long}</td>
                                       <td>{c_d.pair_short}</td>
+                                      <td>{c_d.pair_long + c_d.pair_short}</td>
                                       <td>
                                         <div
                                           className="progress progress-sm"
@@ -555,7 +801,10 @@ const PremiumCot = () => {
                                       
                                     </tr>
                                   );
-                                })}
+                                })
+                                }
+                                </>
+                                }
                             </tbody>
                           </DataTable>
                         </div>
