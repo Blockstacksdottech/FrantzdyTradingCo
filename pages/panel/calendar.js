@@ -234,7 +234,7 @@ const tableRows = fx_symbols.map((symbol) => {
   if (!baseData || !quoteData) return null; // Skip if data is not available
 
   // Calculate the score, seasonality, and trend for each event
-  const events = ['mpmi', 'spmi', 'employment', 'unemployment', 'cpi', 'gdp','interest'];
+  const events = ['mpmi', 'spmi', 'employment', 'unemployment', 'cpi', 'gdp','interest','retail'];
   const baseScores = {};
   const quoteScores = {};
   const baseTrends = {};
@@ -247,12 +247,12 @@ const tableRows = fx_symbols.map((symbol) => {
         const baseEvent = baseData.latest_events.find(e => e.event_code === event);
       const quoteEvent = quoteData.latest_events.find(e => e.event_code === event);
 
-      baseScores[event] = baseEvent ? baseEvent.data.rescaled_score : 0;
-      quoteScores[event] = quoteEvent ? quoteEvent.data.rescaled_score : 0;
-      baseTrends[event] = baseEvent ? baseEvent.data.rescaled_trend : 0;
-      quoteTrends[event] = quoteEvent ? quoteEvent.data.rescaled_trend : 0;
-      baseSeasonality[event] = baseEvent ? baseEvent.data.rescaled_avg_score : 0;
-      quoteSeasonality[event] = quoteEvent ? quoteEvent.data.rescaled_avg_score : 0;
+      baseScores[event] = baseEvent ? baseEvent.data.score : 0;
+      quoteScores[event] = quoteEvent ? quoteEvent.data.score : 0;
+      baseTrends[event] = baseEvent ? baseEvent.data.trend : 0;
+      quoteTrends[event] = quoteEvent ? quoteEvent.data.trend : 0;
+      baseSeasonality[event] = baseEvent ? baseEvent.data.avg_score : 0;
+      quoteSeasonality[event] = quoteEvent ? quoteEvent.data.avg_score : 0;
       }
       
   });
@@ -271,38 +271,40 @@ const tableRows = fx_symbols.map((symbol) => {
 
   // Calculate total scores
   const totalScore = (Object.values(baseScores).concat([cot_score,sentiment_score]).reduce((acc, score) => acc + score, 0) / events.length) -
-      (Object.values(quoteScores).reduce((acc, score) => acc + score, 0) / events.length);
+  symbol.includes("/") ? (Object.values(quoteScores).reduce((acc, score) => acc + score, 0) / events.length) : 0;
 
   const totalSeasonality = (Object.values(baseSeasonality).reduce((acc, score) => acc + score, 0) / events.length) -
-  (Object.values(quoteSeasonality).reduce((acc, score) => acc + score, 0) / events.length);
+  symbol.includes("/") ? (Object.values(quoteSeasonality).reduce((acc, score) => acc + score, 0) / events.length) : 0;
 
   const totalTrend = (Object.values(baseTrends).reduce((acc, score) => acc + score, 0) / events.length) -
-  (Object.values(quoteTrends).reduce((acc, score) => acc + score, 0) / events.length);
+  symbol.includes("/") ? (Object.values(quoteTrends).reduce((acc, score) => acc + score, 0) / events.length) : 0;
 
-  const gdpScore = baseScores['gdp'] - quoteScores['gdp'];
-  const cpiScore = baseScores['cpi'] - quoteScores['cpi'];
-  const employment = baseScores['employment'] - quoteScores['employment'];
-  const unemployment = baseScores['unemployment'] - quoteScores['unemployment'];
-  const mpmi = baseScores['mpmi'] - quoteScores['mpmi'];
-  const spmi = baseScores['spmi'] - quoteScores['spmi'];
-  const interest = baseScores['interest'] - quoteScores['interest']
+  const gdpScore = baseScores['gdp'] -  symbol.includes("/") ? quoteScores['gdp'] : 0;
+  const cpiScore = baseScores['cpi'] - symbol.includes("/") ? quoteScores['cpi'] : 0;
+  const employment = baseScores['employment'] - symbol.includes("/") ? quoteScores['employment'] : 0;
+  const unemployment = baseScores['unemployment'] - symbol.includes("/") ? quoteScores['unemployment'] : 0;
+  const mpmi = baseScores['mpmi'] - symbol.includes("/") ? quoteScores['mpmi'] : 0;
+  const spmi = baseScores['spmi'] - symbol.includes("/") ?quoteScores['spmi'] : 0;
+  const interest = baseScores['interest'] - symbol.includes("/") ?  quoteScores['interest'] : 0
+  const retail = baseScores['retail'] - symbol.includes("/") ?  quoteScores['retail'] : 0
 
   return (
       <tr key={symbol}>
           <td>{symbol}</td>
           <td>{getBias(totalScore)}</td>
-          <td className={getBackground(totalScore)}>{totalScore.toFixed(2)}</td>
-          <td>{cot_score.toFixed(2)}</td>
-          <td>{sentiment_score.toFixed(2)}</td>
-          <td>{totalSeasonality.toFixed(2)}</td>
-          <td>{totalTrend.toFixed(2)}</td>
-          <td>{gdpScore.toFixed(2)}</td>
-          <td>{cpiScore.toFixed(2)}</td>
-          <td>{employment.toFixed(2)}</td>
-          <td>{unemployment.toFixed(2)}</td>
-          <td>{interest.toFixed(2)}</td>
-          <td>{mpmi.toFixed(2)}</td>
-          <td>{spmi.toFixed(2)}</td>
+          <td className={getBackground(totalScore)}>{totalScore.toFixed(4)}</td>
+          <td>{cot_score.toFixed(4)}</td>
+          <td>{sentiment_score.toFixed(4)}</td>
+          <td>{totalSeasonality.toFixed(4)}</td>
+          <td>{totalTrend.toFixed(4)}</td>
+          <td>{gdpScore.toFixed(4)}</td>
+          <td>{cpiScore.toFixed(4)}</td>
+          <td>{employment.toFixed(4)}</td>
+          <td>{unemployment.toFixed(4)}</td>
+          <td>{interest.toFixed(4)}</td>
+          <td>{retail.toFixed(4)}</td>
+          <td>{mpmi.toFixed(4)}</td>
+          <td>{spmi.toFixed(4)}</td>
       </tr>
   );
 });
@@ -399,6 +401,7 @@ const tableRows = fx_symbols.map((symbol) => {
                     <th>Employment Change</th>
                     <th>Unemployment Rate</th>
                     <th>Interest Rate</th>
+                    <th>Retail Sales</th>
                     <th>MPMI</th>
                     <th>SPMI</th>
                 </tr>

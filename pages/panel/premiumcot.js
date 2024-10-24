@@ -211,7 +211,7 @@ const PremiumCot = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      //setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -297,7 +297,7 @@ const PremiumCot = () => {
     if (selectedData && selectedData.length > 0 && selectedYear){
       handleAnalysis('nc')
       handleAnalysis('c')
-      setLoading(false)
+      //setLoading(false)
     }
   },[selectedData,selectedYear])
 
