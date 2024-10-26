@@ -217,6 +217,34 @@ const getBackground = (score) => {
     return 'Neutral';
 }
 
+function calculateScore_(data) {
+    // Calculate Surprise: Actual - Forecast
+    const surprise = data.actual_perc - data.forecast_perc;
+    
+    // Calculate Trend: Actual - Previous
+    const trend = data.actual_perc - data.previous_perc;
+    
+    // Calculate Magnitude: |Surprise| + |Trend|
+    const magnitude = Math.abs(surprise) + Math.abs(trend);
+    
+    // Weights (all set to 1)
+    const alpha = 1;
+    const beta = 1;
+    const gamma = 1;
+    
+    // Calculate Score
+    const score = (alpha * surprise) + (beta * trend) + (gamma * magnitude);
+    
+    // Return the updated data with new calculations
+    return {
+        ...data,
+        surprise,
+        trend,
+        magnitude,
+        score
+    };
+}
+
 const tableRows = fx_symbols.map((symbol) => {
   if (!data) {
     return <></>
@@ -244,15 +272,21 @@ const tableRows = fx_symbols.map((symbol) => {
 
   events.forEach(event => {
       if (events.includes(event)){
+        console.log(`event here`)
+        console.log(symbol)
+        console.log(event)
         const baseEvent = baseData.latest_events.find(e => e.event_code === event);
       const quoteEvent = quoteData.latest_events.find(e => e.event_code === event);
-
-      baseScores[event] = baseEvent ? baseEvent.data.score : 0;
-      quoteScores[event] = quoteEvent ? quoteEvent.data.score : 0;
-      baseTrends[event] = baseEvent ? baseEvent.data.trend : 0;
-      quoteTrends[event] = quoteEvent ? quoteEvent.data.trend : 0;
-      baseSeasonality[event] = baseEvent ? baseEvent.data.avg_score : 0;
-      quoteSeasonality[event] = quoteEvent ? quoteEvent.data.avg_score : 0;
+      console.log(`test base event`)
+      console.log(baseEvent)
+      const base_d = baseEvent ? calculateScore_(baseEvent.data) : null
+      const quote_d = quoteEvent ? calculateScore_(baseEvent.data) : null
+      baseScores[event] = baseEvent ? base_d.score : 0;
+      quoteScores[event] = quoteEvent ? quote_d.score : 0;
+      baseTrends[event] = baseEvent ? base_d.trend : 0;
+      quoteTrends[event] = quoteEvent ? quote_d.trend : 0;
+      baseSeasonality[event] = baseEvent ? base_d.avg_score : 0;
+      quoteSeasonality[event] = quoteEvent ? quote_d.avg_score : 0;
       }
       
   });
