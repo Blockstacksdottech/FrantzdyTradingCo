@@ -27,6 +27,7 @@ const Calendar = () => {
   const [date, setDate] = useState(null);
   const [sentiment,setSentiment] = useState(null);
   const [scanner,setScanner] = useState(null);
+  const [seasonality,setSeasonality] = useState(null)
 
   const toPercentage = (num) => {
     // Check if the input is a valid number
@@ -139,6 +140,24 @@ const Calendar = () => {
     return res
   }
 
+  const get_seasonality = (symbol) => {
+    for (let d of seasonality){
+      if (d.symbol === symbol.replace("/","")){
+        return d.value.toFixed(4)
+      }
+    }
+    return "--"
+  }
+  const get_trend = (symbol) => {
+    for (let  d of seasonality){
+      if (d.symbol === symbol.replace("/","")){
+        return d.trend.toFixed(4)
+      }
+    }
+    return "--"
+  }
+
+
   function calculateScore(longPercentage, shortPercentage) {
     if (longPercentage + shortPercentage !== 100) {
         throw new Error("The total percentage of long and short positions must equal 100.");
@@ -182,11 +201,13 @@ const Calendar = () => {
       const response = await req("fundamental?latest=true");
       const resp2 = await postReq("scanner-data", {});
       const resp3 = await postReq("sentiment-data", {});
-      if (response && resp2 && resp3) {
+      const resp4 = await req("user-seasonality")
+      if (response && resp2 && resp3 && resp4) {
         handleExport(response);
         setData(response);
         setSentiment(formatSentiment(resp3))
         setScanner(formatScanner(resp2))
+        setSeasonality(resp4)
         //setDate(response.date);
       }
     } catch (error) {
@@ -279,14 +300,14 @@ const tableRows = fx_symbols.map((symbol) => {
       const quoteEvent = quoteData.latest_events.find(e => e.event_code === event);
       console.log(`test base event`)
       console.log(baseEvent)
-      const base_d = baseEvent ? calculateScore_(baseEvent.data) : null
-      const quote_d = quoteEvent ? calculateScore_(baseEvent.data) : null
-      baseScores[event] = baseEvent ? base_d.score : 0;
-      quoteScores[event] = quoteEvent ? quote_d.score : 0;
-      baseTrends[event] = baseEvent ? base_d.trend : 0;
-      quoteTrends[event] = quoteEvent ? quote_d.trend : 0;
-      baseSeasonality[event] = baseEvent ? base_d.avg_score : 0;
-      quoteSeasonality[event] = quoteEvent ? quote_d.avg_score : 0;
+      //const base_d = baseEvent ? calculateScore_(baseEvent.data.data) : null
+      //const quote_d = quoteEvent ? calculateScore_(baseEvent.data) : null
+      baseScores[event] = baseEvent ? baseEvent.data.score : 0;
+      quoteScores[event] = quoteEvent ? quoteEvent.data.score : 0;
+      baseTrends[event] = baseEvent ? baseEvent.data.trend : 0;
+      quoteTrends[event] = quoteEvent ? quoteEvent.data.trend : 0;
+      baseSeasonality[event] = baseEvent ? baseEvent.data.avg_score : 0;
+      quoteSeasonality[event] = quoteEvent ? quoteEvent.data.avg_score : 0;
       }
       
   });
@@ -307,11 +328,10 @@ const tableRows = fx_symbols.map((symbol) => {
   const totalScore = (Object.values(baseScores).concat([cot_score,sentiment_score]).reduce((acc, score) => acc + score, 0) / events.length) -
   symbol.includes("/") ? (Object.values(quoteScores).reduce((acc, score) => acc + score, 0) / events.length) : 0;
 
-  const totalSeasonality = (Object.values(baseSeasonality).reduce((acc, score) => acc + score, 0) / events.length) -
-  symbol.includes("/") ? (Object.values(quoteSeasonality).reduce((acc, score) => acc + score, 0) / events.length) : 0;
+  const totalSeasonality = get_seasonality(symbol)
 
-  const totalTrend = (Object.values(baseTrends).reduce((acc, score) => acc + score, 0) / events.length) -
-  symbol.includes("/") ? (Object.values(quoteTrends).reduce((acc, score) => acc + score, 0) / events.length) : 0;
+  const totalTrend = get_trend(symbol)
+  console.log(baseScores)
 
   const gdpScore = baseScores['gdp'] -  symbol.includes("/") ? quoteScores['gdp'] : 0;
   const cpiScore = baseScores['cpi'] - symbol.includes("/") ? quoteScores['cpi'] : 0;
@@ -329,8 +349,8 @@ const tableRows = fx_symbols.map((symbol) => {
           <td className={getBackground(totalScore)}>{totalScore.toFixed(4)}</td>
           <td>{cot_score.toFixed(4)}</td>
           <td>{sentiment_score.toFixed(4)}</td>
-          <td>{totalSeasonality.toFixed(4)}</td>
-          <td>{totalTrend.toFixed(4)}</td>
+          <td>{totalSeasonality}</td>
+          <td>{totalTrend}</td>
           <td>{gdpScore.toFixed(4)}</td>
           <td>{cpiScore.toFixed(4)}</td>
           <td>{employment.toFixed(4)}</td>

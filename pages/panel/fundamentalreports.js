@@ -39,9 +39,12 @@ const FundamentalReports = () => {
   const [calendarData,setCalendarData] = useState([]);
   const [graphCalendarData,setGraphCalendarData] = useState([])
   const [currencyOptions,setCurrencyOptions] = useState([])
+  const [seasonalityOptions,setSeasonalityOptions] = useState([])
   const [calendarCurrency,setCalendarCurrency] = useState(null)
   const [calendarEvent,setCalendarEvent] = useState("gdp");
-  const [calendarYear,setCalendarYear] = useState(new Date().getFullYear())  
+  const [calendarYear,setCalendarYear] = useState(new Date().getFullYear()) 
+  const [seasApi,setSeasApi] = useState([])
+  const [seasonalityCurrency,setSeasonalityCurrency] = useState(null);
 
   // seasonality
   const [seasonalityGraphData,setSeasonalityGraphData] = useState([])
@@ -56,12 +59,17 @@ const FundamentalReports = () => {
 
   const fetchCalendarData = async () => {
     const response = await req("fundamental");
-    if (response) {
+    const resp2 = await req("adm-seasonality")
+    if (response && resp2) {
       console.log(response);
       setCalendarData(response);
       const currs = response.map(e => e.name)
+      const currs2 = resp2.map(e => e.name)
       setCurrencyOptions(currs)
+      setSeasonalityOptions(currs2)
       setCalendarCurrency(currs[0])
+      setSeasonalityCurrency(currs2[0])
+      setSeasApi(resp2)
       //setDate(response.date);
     }
   }
@@ -96,9 +104,19 @@ const FundamentalReports = () => {
       res.sort((a, b) => new Date(a.date) - new Date(b.date))
       seasonality.sort((a, b) => new Date(a.date) - new Date(b.date))
       setGraphCalendarData(res)
-      setSeasonalityGraphData(seasonality)
+      //setSeasonalityGraphData(seasonality)
     }
   },[calendarCurrency,calendarEvent,calendarYear])
+
+  useEffect(() => {
+    console.log(`calculating again`)
+    console.log(seasApi)
+    console.log(seasonalityCurrency)
+    const t_data = seasApi.filter(e => e.name === seasonalityCurrency)
+    console.log(t_data)
+    const res = t_data.length > 0 ? t_data[0].seasonalities.map(e => {return {date : `${e.month}/${e.year}`,seasonality:e.value,trend:t_data[0].trend}}) : []
+    setSeasonalityGraphData(res)
+  },[seasonalityCurrency])
 
 
 
@@ -296,6 +314,29 @@ const FundamentalReports = () => {
                           <h5 className="card-title">
                             Seasonality & Trend
                           </h5>
+                          <div className="card-tools">
+                            <select
+                              className="form-control form-control-sm form-control-select"
+                              onChange={(e) =>{
+                                console.log(e.target.value)
+                               setSeasonalityCurrency(e.target.value)
+
+                              }
+                              }
+                              value={seasonalityCurrency}
+                            >
+                              <option selected="selected" disabled={true}>
+                                Select Symbol Name
+                              </option>
+                              {seasonalityOptions.map((e, i) => {
+                                return (
+                                  <option key={e} value={e}>
+                                    {e}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                            </div>
                           
                         </div>
                         <div className="card-body" style={{ fontSize: "11px" }}>
