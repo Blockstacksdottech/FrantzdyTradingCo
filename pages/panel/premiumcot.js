@@ -77,7 +77,7 @@ const PremiumCot = () => {
       console.log(num)
       console.log(avgLong)
       console.log(avgShort)
-      throw new Error("Input must be a valid number");
+      return 0
     }
 
     // Convert the number to a percentage
@@ -214,6 +214,14 @@ const PremiumCot = () => {
       setLoading(false);
     }
   };
+  const fetchData2 = async () => {
+    try {
+      let url = "all-data"
+      let response = await req(url);
+    }catch (error) {
+
+    }
+  }
 
   useEffect(() => {
     if (selectedPair){
@@ -226,8 +234,9 @@ const PremiumCot = () => {
 
   useEffect(() => {
     if (user.logged) {
-      setLoading(true)
-      fetchData();
+      //setLoading(true)
+      //fetchData();
+      fetchAndAnalyzeData();
     }
   }, [user,selectedYear]);
 
@@ -340,6 +349,108 @@ const PremiumCot = () => {
       pair_diff: pair_long - pair_short,
     };
   };
+
+  const fetchAndAnalyzeData = async () => {
+    setLoading(true);
+    const startYear = 2020;
+  let allData = [];
+  let current_year = new Date().getFullYear();
+
+  try {
+    let url = "all-data"
+    if (selectedYear){
+      url = `all-data?year=${selectedYear}`
+    }
+    const initialData = await req(url);
+    allData = allData.concat(initialData);
+
+    if (!selectedYear) {
+      current_year = extractYear(initialData[0].date);
+      setSelectedYear(extractYear(initialData[0].date));
+    }else{
+      current_year = selectedYear
+    }
+    const r = groupDataByPair(initialData)
+    handleExport(r);
+    
+      
+
+    if (current_year) {
+      const previousYear = current_year - 1;
+      const prevData = await req(`all-data/?year=${previousYear}`);
+      allData = allData.concat(prevData);
+      const groupedData = groupDataByPair(allData);
+  
+    for (const pair in groupedData) {
+      groupedData[pair] = calculateWeeklyChanges(groupedData[pair]);
+    }
+  
+    const results = organizeDataByYear(groupedData);
+    console.log('analyzing results')
+  console.log(results);
+  setData(results[current_year]);
+  if (!selectedPair){
+  setSelectedPair(Object.keys(results[current_year])[0])
+
+  }
+
+  setSelectedData(results[current_year][selectedPair ? selectedPair : Object.keys(results[current_year])[0]])
+  if (prevData || current_year ===  startYear){
+  
+  setLoading(false);
+
+  }
+    }
+  } catch (error) {
+    console.error(`Error fetching data:`, error);
+  }
+  
+    
+  };
+
+  const calculateWeeklyChanges = (data) => {
+    console.log(`calculating weekly changes`)
+    console.log(data)
+    return data.map((entry, index, arr) => {
+      if (index === data.length - 1) return { ...entry, changes: null };
+  
+      const prev = arr[index + 1];
+      const nc_data_current = calculate_percentage(entry);
+      const nc_data_prev = calculate_percentage(prev);
+      const c_data_current = calculate_comm_percentage(entry);
+      const c_data_prev = calculate_comm_percentage(prev); 
+      return {
+        ...entry,
+        changes: {
+          nc_pair_long_change: toPercentage(((nc_data_current.pair_long - nc_data_prev.pair_long) / nc_data_prev.pair_long)),
+          nc_pair_short_change: toPercentage(((nc_data_current.pair_short - nc_data_prev.pair_short) / nc_data_prev.pair_short)),
+          nc_pair_diff_change: toPercentage(((nc_data_current.pair_long - nc_data_current.pair_short) - (nc_data_prev.pair_long - nc_data_prev.pair_short)) / (nc_data_prev.pair_long - nc_data_prev.pair_short)),
+          c_pair_long_change: toPercentage(((c_data_current.pair_long - c_data_prev.pair_long) / c_data_prev.pair_long)),
+          c_pair_short_change: toPercentage(((c_data_current.pair_short - c_data_prev.pair_short) / c_data_prev.pair_short)),
+          c_pair_diff_change: toPercentage(((c_data_current.pair_long - c_data_current.pair_short) - (c_data_prev.pair_long - c_data_prev.pair_short)) / (c_data_prev.pair_long - c_data_prev.pair_short)),
+        },
+      };
+    });
+  };
+  
+  const organizeDataByYear = (groupedData) => {
+    const organizedData = {};
+    for (const pair in groupedData) {
+      groupedData[pair].forEach(entry => {
+        const year = new Date(entry.date).getFullYear();
+        if (!organizedData[year]) {
+          organizedData[year] = {};
+        }
+        if (!organizedData[year][pair]) {
+          organizedData[year][pair] = [];
+        }
+        organizedData[year][pair].push(entry);
+      });
+    }
+    return organizedData;
+  };
+  
+
 
   return (
     <>
@@ -475,6 +586,9 @@ const PremiumCot = () => {
       <th>Non-Comm % Long</th>
       <th>Non-Comm % Short</th>
       <th>Non-Comm Net Position</th>
+      <th>Non-Comm % change long</th>
+      <th>Non-Comm % change short</th>
+      <th>Non-Comm % change Net Position</th>
       
     
                               </tr>
@@ -496,6 +610,15 @@ const PremiumCot = () => {
                                         --
                                       </td>
                                       <td>{maxNet}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
                                 </tr>
                                 <tr>
                                 <td>{selectedPair}</td>
@@ -510,6 +633,15 @@ const PremiumCot = () => {
                                         --
                                       </td>
                                       <td>{minNet}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
                                 </tr>
                                 <tr>
                                 <td>{selectedPair}</td>
@@ -552,9 +684,19 @@ const PremiumCot = () => {
                                         {toPercentage((avgShort / (avgLong + avgShort)))}
                                       </td>
                                       <td>{avgNet}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
                                 </tr>
                                 {
                                   selectedData.map((e, i) => {
+                                    
                                     const n_d = calculate_percentage(e)
                                     const c_d = calculate_comm_percentage(e)
                                   return (
@@ -599,6 +741,9 @@ const PremiumCot = () => {
                                         {n_d.perc_short}
                                       </td>
                                       <td>{n_d.pair_diff}</td>
+                                      <td>{e.changes ? e.changes.nc_pair_long_change : "--"}</td>
+                                      <td>{e.changes ? e.changes.nc_pair_short_change : "--"}</td>
+                                      <td>{e.changes ? e.changes.nc_pair_diff_change : "--"}</td>
                                       
 
 
@@ -673,6 +818,9 @@ const PremiumCot = () => {
       <th>Comm % Long</th>
       <th>Comm % Short</th>
       <th>Comm Net Position</th>
+      <th>Comm % change long</th>
+      <th>Comm % change short</th>
+      <th>Comm % change Net Position</th>
     
                               </tr>
                             </thead>
@@ -692,6 +840,15 @@ const PremiumCot = () => {
                                         --
                                       </td>
                                       <td>{comm_maxNet}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
                                 </tr>
                                 <tr>
                                 <td>{selectedPair}</td>
@@ -706,6 +863,15 @@ const PremiumCot = () => {
                                         --
                                       </td>
                                       <td>{comm_minNet}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
                                 </tr>
                                 <tr>
                                 <td>{selectedPair}</td>
@@ -748,6 +914,15 @@ const PremiumCot = () => {
                                         {toPercentage((comm_avgShort / (comm_avgLong + comm_avgShort)))}
                                       </td>
                                       <td>{comm_avgNet}</td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
+                                      <td>
+                                        --
+                                      </td>
                                 </tr>
                                 {
                                   selectedData.map((e, i) => {
@@ -794,6 +969,9 @@ const PremiumCot = () => {
                                         {c_d.perc_short}
                                       </td>
                                       <td>{c_d.pair_diff}</td>
+                                      <td>{e.changes ? e.changes.c_pair_long_change : "--"}</td>
+                                      <td>{e.changes ? e.changes.c_pair_short_change : "--"}</td>
+                                      <td>{e.changes ? e.changes.c_pair_diff_change : "--"}</td>
                                       
 
 

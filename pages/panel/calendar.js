@@ -467,6 +467,22 @@ const tableRows = fx_symbols.map((symbol) => {
                         </div>
                       </div>
                     </div>
+                    <div className="col-lg-12">
+                      <div className="card">
+                      
+                      <>
+  
+  <div style={{ marginTop: 10,minHeight:600 }}>
+  <iframe
+    src="https://widget.myfxbook.com/widget/calendar.html?lang=en&impacts=2,3&countries=Afghanistan,Albania,Algeria,American%20Samoa,Andorra,Angola,Anguilla,Antarctica,Antigua%20and%20Barbuda,Argentina,Armenia,Aruba,Australia,Austria,Azerbaijan,Bahamas,Bahrain,Bangladesh,Barbados,Belarus,Belgium,Belize,Benin,Bermuda,Bhutan,Bolivia,Bonaire,Bosnia%20And%20Herzegovina,Botswana,Bouvet%20Island,Brazil,British%20Indian%20Ocean%20Territory,British%20Virgin%20Islands,Brunei,Bulgaria,Burkina%20Faso,Burundi,Cambodia,Cameroon,Canada,Cape%20Verde,Cayman%20Islands,Central%20African%20Republic,Chad,Chile,China,Christmas%20Island,Cocos%20Keeling%20Islands,Colombia,Comoros,Congo,Cook%20Islands,Costa%20Rica,Croatia,Cuba,Curacao,Cyprus,Czech%20Republic,Denmark,Djibouti,Dominica,Dominican%20Republic,East%20Timor,Ecuador,Egypt,El%20Salvador,Equatorial%20Guinea,Eritrea,Estonia,Ethiopia,Euro%20Area,European%20Union,FS%20Micronesia,Falkland%20Islands,Faroe%20Islands,Fiji,Finland,France,French%20Guiana,French%20Polynesia,French%20Southern%20and%20Antarctic%20Lands,Gabon,Gambia,Georgia,Germany,Ghana,Gibraltar,Greece,Greenland,Grenada,Guadeloupe,Guam,Guatemala,Guernsey,Guinea,Guinea%20Bissau,Guyana,Haiti,Heard%20Island%20and%20McDonald%20Islands,Honduras,Hong%20Kong,Hungary,Iceland,India,Indonesia,Iran,Iraq,Ireland,Isle%20of%20Man,Israel,Italy,Ivory%20Coast,Jamaica,Japan,Jersey,Jordan,Kazakhstan,Kenya,Kiribati,Kuwait,Kyrgyzstan,Laos,Latvia,Lebanon,Lesotho,Liberia,Libya,Liechtenstein,Lithuania,Luxembourg,Macau,Macedonia,Madagascar,Malawi,Malaysia,Maldives,Mali,Malta,Marshall%20Islands,Martinique,Mauritania,Mauritius,Mayotte,Mexico,Micronesia,Moldova,Monaco,Mongolia,Montenegro,Montserrat,Morocco,Mozambique,Myanmar,Namibia,Nauru,Nepal,Netherlands,New%20Caledonia,New%20Zealand,Nicaragua,Niger,Nigeria,Niue,Norfolk%20Island,North%20Korea,Northern%20Mariana%20Islands,Norway,Oman,Pakistan,Palau,Palestine,Panama,Papua%20New%20Guinea,Paraguay,Peru,Philippines,Pitcairn%20Islands,Poland,Portugal,Puerto%20Rico,Qatar,Republic%20of%20Kosovo,Republic%20of%20the%20Congo,Reunion,Romania,Russia,Rwanda,Saint%20Barth%C3%A9lemy,Saint%20Lucia,Saint%20Maarten,Saint%20Martin%20(French%20part),Samoa,San%20Marino,Sao%20Tome%20And%20Principe,Saudi%20Arabia,Senegal,Serbia,Seychelles,Sierra%20Leone,Singapore,Slovakia,Slovenia,Solomon%20Islands,Somalia,South%20Africa,South%20Georgia%20and%20the%20South%20Sandwich%20Islands,South%20Korea,South%20Sudan,Spain,Sri%20Lanka,St%20Helena,St%20Kitts%20and%20Nevis,St%20Lucia,St%20Pierre%20and%20Miquelon,St%20Vincent%20and%20the%20Grenadines,Sudan,Suriname,Svalbard%20and%20Jan%20Mayen,Swaziland,Sweden,Switzerland,Syria,Taiwan,Tajikistan,Tanzania,Thailand,Togo,Tokelau,Tonga,Trinidad%20And%20Tobago,Tunisia,Turkey,Turkmenistan,Turks%20and%20Caicos%20Isds,Tuvalu,Uganda,Ukraine,United%20Arab%20Emirates,United%20Kingdom,United%20States,United%20States%20Minor%20Outlying%20Islands,Uruguay,Uzbekistan,Vanuatu,Vatican%20City%20State,Venezuela,Vietnam,Virgin%20Islands,Wallis%20and%20Futuna,Western%20Sahara,Yemen,Zambia,Zimbabwe,%C3%85land%20Islands"
+    style={{ border: 0, width: "100%", height: 600 }}
+  />
+  </div>
+</>
+            
+
+                      </div>
+                    </div>
                   </div>
 
                   
