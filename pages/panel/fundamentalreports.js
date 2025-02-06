@@ -60,19 +60,31 @@ const FundamentalReports = () => {
   const fetchCalendarData = async () => {
     const response = await req("fundamental");
     const resp2 = await req("adm-seasonality")
-    if (response && resp2) {
+    if (response ) {
       console.log(response);
       setCalendarData(response);
       const currs = response.map(e => e.name)
-      const currs2 = resp2.map(e => e.name)
+
       setCurrencyOptions(currs)
-      setSeasonalityOptions(currs2)
+
       setCalendarCurrency(currs[0])
+
+      //setDate(response.date);
+    }
+  }
+  const fetchDataSeasonality = async (year) => {
+    const resp2 = await req(`adm-seasonality?year=${year}`)
+    if (resp2) {
+      const currs2 = resp2.map(e => e.name)
+      setSeasonalityOptions(currs2)
+      if (!seasonalityCurrency){
       setSeasonalityCurrency(currs2[0])
+      }
       setSeasApi(resp2)
       //setDate(response.date);
     }
   }
+
 
   const fetchData = async () => {
     try {
@@ -109,14 +121,21 @@ const FundamentalReports = () => {
   },[calendarCurrency,calendarEvent,calendarYear])
 
   useEffect(() => {
-    console.log(`calculating again`)
-    console.log(seasApi)
-    console.log(seasonalityCurrency)
+    if (calendarYear){
+      fetchDataSeasonality(calendarYear)
+    }
+  },[calendarYear])
+
+  useEffect(() => {
+
     const t_data = seasApi.filter(e => e.name === seasonalityCurrency)
     console.log(t_data)
-    const res = t_data.length > 0 ? t_data[0].seasonalities.map(e => {return {date : `${e.month}/${e.year}`,seasonality:e.value,trend:t_data[0].trend}}) : []
+    console.log(calendarYear)
+    const seas_data = t_data.length > 0 ? t_data[0].seasonalities.filter(e => e.year === Number(calendarYear)) : []
+    console.log(seas_data)
+    const res = t_data.length > 0 ? seas_data.map(e => {return {date : `${e.month}/${e.year}`,seasonality:e.value,trend:t_data[0].trend}}) : []
     setSeasonalityGraphData(res)
-  },[seasonalityCurrency])
+  },[seasonalityCurrency,seasApi])
 
 
 
