@@ -112,7 +112,7 @@ const FundamentalReports = () => {
       const tar_data = tar.latest_events.filter(e=> e.event_code === calendarEvent)[0]
       const filtered = tar_data.data.filter(e => isDateInCurrentYear(e.date,Number(calendarYear)))
       const seasonality = filtered.map(e => ({date : e.date,seasonality : Number(e.avg_score.toFixed(4)),trend : Number(e.trend.toFixed(4)) }))
-      const res = filtered.map(e => {return {date : e.date,forecast : Number(e.forecast.toFixed(4)),actual: Number(e.actual.toFixed(4)),previous:Number(e.previous.toFixed(4)),score:Number(e.score.toFixed(4))}})
+      const res = filtered.map(e => {return {date : e.date,forecast : Number(e.forecast_perc.toFixed(4)),actual: Number(e.actual_perc.toFixed(4)),previous:Number(e.previous_perc.toFixed(4)),surprise:Number((e.forecast_perc - e.actual_perc).toFixed(4))}})
       res.sort((a, b) => new Date(a.date) - new Date(b.date))
       seasonality.sort((a, b) => new Date(a.date) - new Date(b.date))
       setGraphCalendarData(res)
@@ -321,7 +321,7 @@ const FundamentalReports = () => {
                               ></Line>
                               <Line
                                 type="monotone"
-                                dataKey="score"
+                                dataKey="surprise"
                                 stroke="#034550"
                               ></Line>
                               
