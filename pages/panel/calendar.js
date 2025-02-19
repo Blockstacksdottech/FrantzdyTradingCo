@@ -331,16 +331,14 @@ const tableRows = fx_symbols.map((symbol) => {
   const totalSeasonality = get_seasonality(symbol)
 
   const totalTrend = get_trend(symbol)
-  console.log(baseScores)
-
-  const gdpScore = baseScores['gdp'] -  symbol.includes("/") ? quoteScores['gdp'] : 0;
-  const cpiScore = baseScores['cpi'] - symbol.includes("/") ? quoteScores['cpi'] : 0;
-  const employment = baseScores['employment'] - symbol.includes("/") ? quoteScores['employment'] : 0;
-  const unemployment = baseScores['unemployment'] - symbol.includes("/") ? quoteScores['unemployment'] : 0;
-  const mpmi = baseScores['mpmi'] - symbol.includes("/") ? quoteScores['mpmi'] : 0;
-  const spmi = baseScores['spmi'] - symbol.includes("/") ?quoteScores['spmi'] : 0;
-  const interest = baseScores['interest'] - symbol.includes("/") ?  quoteScores['interest'] : 0
-  const retail = baseScores['retail'] - symbol.includes("/") ?  quoteScores['retail'] : 0
+  const gdpScore = baseScores['gdp'] -  (symbol.includes("/") ? quoteScores['gdp'] : 0);
+  const cpiScore = baseScores['cpi'] - (symbol.includes("/") ? quoteScores['cpi'] : 0);
+  const employment = baseScores['employment'] - (symbol.includes("/") ? quoteScores['employment'] : 0);
+  const unemployment = baseScores['unemployment'] - (symbol.includes("/") ? quoteScores['unemployment'] : 0);
+  const mpmi = baseScores['mpmi'] - (symbol.includes("/") ? quoteScores['mpmi'] : 0);
+  const spmi = baseScores['spmi'] - (symbol.includes("/") ?quoteScores['spmi'] : 0);
+  const interest = baseScores['interest'] - (symbol.includes("/") ?  quoteScores['interest'] : 0)
+  const retail = baseScores['retail'] - (symbol.includes("/") ?  quoteScores['retail'] : 0)
 
   return (
       <tr key={symbol}>
