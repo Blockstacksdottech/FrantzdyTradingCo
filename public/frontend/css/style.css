@@ -33,6 +33,12 @@
   );
 }
 
+.bg-light-green { background-color: #90ee90 !important; } /* Light Green */
+.bg-dark-green { background-color: #008000 !important; } /* Dark Green */
+.bg-light-red { background-color: #ffcccb !important; } /* Light Red */
+.bg-dark-red { background-color: #8b0000 !important; } /* Dark Red */
+.bg-white { background-color: #ffffff !important; } /* Neutral */
+
 *,
 *::before,
 *::after {

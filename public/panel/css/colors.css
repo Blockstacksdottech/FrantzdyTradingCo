@@ -1,0 +1,24 @@
+.bg-light-green { 
+    background-color: #90ee90 !important;  /* Light Green for Buy */
+    color: #000000 !important;            /* Black text for contrast */
+}
+
+.bg-dark-green { 
+    background-color: #008000 !important;  /* Dark Green for Strong Buy */
+    color: #ffffff !important;            /* White text for contrast */
+}
+
+.bg-light-red { 
+    background-color: #ffcccb !important;  /* Light Red for Sell */
+    color: #000000 !important;            /* Black text for contrast */
+}
+
+.bg-dark-red { 
+    background-color: #8b0000 !important;  /* Dark Red for Strong Sell */
+    color: #ffffff !important;            /* White text for contrast */
+}
+
+.bg-neutral { 
+    background-color: #f8f9fa !important;  /* Light Grayish White for Neutral */
+    color: #000000 !important;            /* Black text for contrast */
+}

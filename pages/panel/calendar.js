@@ -223,7 +223,7 @@ const Calendar = () => {
     }
   }, [user]);
 
-  const getBias = (score) => {
+  /* const getBias = (score) => {
     
     if (score >= 2) return 'Bullish';
     if (score >= -2 && score < 2) return 'Neutral';
@@ -236,7 +236,23 @@ const getBackground = (score) => {
     if (score >= -2 && score < 2) return '';
     if (score < -2) return 'bg-red';
     return 'Neutral';
-}
+} */
+
+    const getBias = (score) => {
+      if (score >= 0.601) return 'Strong Buy';
+      if (score >= 0.201) return 'Buy';
+      if (score >= -0.200 && score <= 0.200) return 'Neutral';
+      if (score >= -0.600) return 'Sell';
+      return 'Strong Sell';
+  };
+  
+  const getBackground = (score) => {
+      if (score >= 0.601) return 'bg-dark-green';  // Strong Buy (Dark Green)
+      if (score >= 0.201) return 'bg-light-green'; // Buy (Light Green)
+      if (score >= -0.200 && score <= 0.200) return 'bg-white'; // Neutral (White or any neutral color)
+      if (score >= -0.600) return 'bg-light-red'; // Sell (Light Red)
+      return 'bg-dark-red'; // Strong Sell (Dark Red)
+  };
 
 function calculateScore_(data) {
     // Calculate Surprise: Actual - Forecast

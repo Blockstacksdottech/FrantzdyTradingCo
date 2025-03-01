@@ -14,6 +14,7 @@ export default function HeadLink() {
         href="../panel/plugins/fontawesome-free/css/all.min.css"
       />
       <link rel="stylesheet" href="../panel/css/adminlte.css" />
+      <link rel="stylesheet" href="../panel/css/colors.css" />
     </>
   );
 }
