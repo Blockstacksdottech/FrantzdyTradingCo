@@ -282,6 +282,16 @@ function calculateScore_(data) {
     };
 }
 
+const getSentimentBackground = (score) => {
+  if (score >= 1 && score <= 2) return 'sentiment-white';      // Neutral (White)
+  if (score === 3) return 'sentiment-light-green';             // Light Green for Sentiment 3
+  if (score >= 4) return 'sentiment-dark-green';               // Dark Green for Sentiment 4 and 5
+  if (score >= -2 && score <= -1) return 'sentiment-white';    // Neutral (White)
+  if (score === -3) return 'sentiment-light-red';              // Light Red for Sentiment -3
+  if (score <= -4) return 'sentiment-dark-red';                // Dark Red for Sentiment -4 and -5
+  return 'sentiment-white'; // Default to white if score is outside expected range
+};
+
 const tableRows = fx_symbols.map((symbol) => {
   if (!data) {
     return <></>
@@ -364,7 +374,7 @@ const tableRows = fx_symbols.map((symbol) => {
           <td>{getBias(totalScore)}</td>
           <td className={getBackground(totalScore)}>{totalScore.toFixed(4)}</td>
           <td>{cot_score.toFixed(4)}</td>
-          <td>{sentiment_score.toFixed(4)}</td>
+          <td className={getSentimentBackground(sentiment_score)}>{sentiment_score.toFixed(4)}</td>
           <td>{totalSeasonality}</td>
           <td>{totalTrend}</td>
           <td>{gdpScore.toFixed(4)}</td>

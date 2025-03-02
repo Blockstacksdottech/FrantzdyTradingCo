@@ -39,6 +39,34 @@
 .bg-dark-red { background-color: #8b0000 !important; } /* Dark Red */
 .bg-white { background-color: #ffffff !important; } /* Neutral */
 
+/* Positive Sentiment */
+.sentiment-white { 
+  background-color: #ffffff !important;  /* White for Neutral (1 to 2, -1 to -2) */
+  color: #000000 !important;             /* Black text for contrast */
+}
+
+.sentiment-light-green { 
+  background-color: #90ee90 !important;  /* Light Green for Sentiment 3 */
+  color: #000000 !important;             /* Black text for contrast */
+}
+
+.sentiment-dark-green { 
+  background-color: #008000 !important;  /* Dark Green for Sentiment 4 and 5 */
+  color: #ffffff !important;             /* White text for contrast */
+}
+
+/* Negative Sentiment */
+.sentiment-light-red { 
+  background-color: #ffcccb !important;  /* Light Red for Sentiment -3 */
+  color: #000000 !important;             /* Black text for contrast */
+}
+
+.sentiment-dark-red { 
+  background-color: #8b0000 !important;  /* Dark Red for Sentiment -4 and -5 */
+  color: #ffffff !important;             /* White text for contrast */
+}
+
+
 *,
 *::before,
 *::after {
