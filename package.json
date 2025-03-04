@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@stripe/stripe-js": "^4.1.0",
+    "@tawk.to/tawk-messenger-react": "^2.0.2",
     "aos": "^2.3.4",
     "axios": "^1.7.2",
     "datatables.net": "^2.1.4",
