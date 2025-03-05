@@ -19,8 +19,8 @@ export default function App({ Component, pageProps }) {
         <Component {...pageProps} />
       </UserProvider>
       <TawkMessengerReact
-                propertyId="67c7796c47285a190ee0afd7"
-                widgetId="1ilhj4kjs"
+                propertyId="67c857c0efe65a1911671295"
+                widgetId="1ilj9dik2"
                 ref={tawkMessengerRef}/>
 
       <ToastContainer
