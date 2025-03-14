@@ -15,7 +15,11 @@ export default function Footer() {
             <nav className="col-lg-12 align-self-center mb-1">
               <div className="row">
                 <div className="col-sm-6">
-                  <img src="./logo.png" className="img-fluid mb-3" />
+                  <img
+                    src="./logo.png"
+                    className="img-fluid mb-3"
+                    alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                  />
 
                   <ul className="list-unstyled list-inline mb-1 social-icons">
                     <li className="list-inline-item me-3">
@@ -24,7 +28,11 @@ export default function Footer() {
                         href="https://t.me/frantzdytradingco"
                         target="_blank"
                       >
-                        <img src="./telegram.png" className="img-fluid" />
+                        <img
+                          src="./telegram.png"
+                          className="img-fluid"
+                          alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                        />
                       </a>
                     </li>
                     <li className="list-inline-item me-3">
@@ -33,7 +41,11 @@ export default function Footer() {
                         href="https://discord.gg/TaeYTC3n33"
                         target="_blank"
                       >
-                        <img src="./discord.png" className="img-fluid" />
+                        <img
+                          src="./discord.png"
+                          className="img-fluid"
+                          alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                        />
                       </a>
                     </li>
                     <li className="list-inline-item me-3">
@@ -42,7 +54,11 @@ export default function Footer() {
                         href="https://www.linkedin.com/in/frantzdy-trading-co-llc-179121318/"
                         target="_blank"
                       >
-                        <img src="./linkedin.png" className="img-fluid" />
+                        <img
+                          src="./linkedin.png"
+                          className="img-fluid"
+                          alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                        />
                       </a>
                     </li>
                     <li className="list-inline-item me-3">
@@ -51,7 +67,11 @@ export default function Footer() {
                         href="https://x.com/Frantzdytrading"
                         target="_blank"
                       >
-                        <img src="./x-twitter.png" className="img-fluid" />
+                        <img
+                          src="./x-twitter.png"
+                          className="img-fluid"
+                          alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                        />
                       </a>
                     </li>
                     <li className="list-inline-item me-3">
@@ -60,7 +80,11 @@ export default function Footer() {
                         href="https://www.youtube.com/@frantzdytradingco"
                         target="_blank"
                       >
-                        <img src="./youtube.png" className="img-fluid" />
+                        <img
+                          src="./youtube.png"
+                          className="img-fluid"
+                          alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                        />
                       </a>
                     </li>
                   </ul>
