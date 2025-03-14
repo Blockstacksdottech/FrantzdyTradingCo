@@ -11,8 +11,17 @@ export default function Privacy() {
   return (
     <>
       <Head>
-        <title>Frantzdy Trading Co</title>
-        <meta name="description" content="Frantzdy Trading Co" />
+        <title>
+          Privacy Policy | Frantzdy Trading CO - Your Data Protection Rights
+        </title>
+        <meta
+          name="description"
+          content="Learn how Frantzdy Trading CO collects, uses, and protects your personal information. Our Privacy Policy outlines your data protection rights and our commitment to safeguarding your privacy."
+        />
+        <meta
+          name="keywords"
+          content="Frantzdy Trading CO privacy policy, data protection, personal information usage, user privacy rights, information security"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Checker no_login={true}>

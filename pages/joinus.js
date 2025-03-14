@@ -97,8 +97,16 @@ export default function Joinus(props) {
       <>
         <Head>
           <title>
-            Frantzdy Trading CO - Trading become easier when you trade with us
+            Join Frantzdy Trading CO | Choose Your COT Report Analysis Plan
           </title>
+          <meta
+            name="description"
+            content="Explore Frantzdy Trading CO's subscription plans for comprehensive Commitment of Traders (COT) report analysis. Select from Basic, Standard, Premium, or Enterprise plans to enhance your trading strategies with expert insights and tools."
+          />
+          <meta
+            name="keywords"
+            content="Frantzdy Trading CO subscription plans, COT report analysis, trading strategies, Basic plan, Standard plan, Premium plan, Enterprise plan, market insights"
+          />
         </Head>
         <HeadLink />
         <Menu />

@@ -48,8 +48,18 @@ export default function VideosPdf() {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Videos & PDF</title>
-        <meta name="description" content="Frantzdy Trading Co - Videos & PDF" />
+        <title>
+          Educational Videos & PDFs | Frantzdy Trading CO - Enhance Your Trading
+          Knowledge
+        </title>
+        <meta
+          name="description"
+          content="Access a curated collection of educational videos and PDFs from Frantzdy Trading CO. Enhance your trading strategies with expert insights and comprehensive guides."
+        />
+        <meta
+          name="keywords"
+          content="trading education videos, trading strategy PDFs, Frantzdy Trading CO resources, trading tutorials, investment guides"
+        />
       </Head>
       <Checker tier={1}>
         <HeadLink />

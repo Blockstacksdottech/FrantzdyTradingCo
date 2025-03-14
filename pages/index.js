@@ -63,8 +63,17 @@ function Index() {
     <>
       <Head>
         <title>
-          Frantzdy Trading CO - Trading become easier when you trade with us
+          Frantzdy Trading CO | Empowering Your Trading Journey with Expert
+          Tools
         </title>
+        <meta
+          name="description"
+          content="Unlock the power of COT report analysis with Frantzdy Trading CO. Access interactive charting tools, market sentiment insights, and expert support to make informed trading decisions."
+        />
+        <meta
+          name="keywords"
+          content="Frantzdy Trading CO, COT report analysis, trading tools, market sentiment, trading support, financial security, trading platform"
+        />
       </Head>
       <Checker no_login={true}>
         <HeadLink />
@@ -107,9 +116,9 @@ function Index() {
             <div className="row justify-content-center mb-5">
               <div className="col-12">
                 <div className="section-title text-center">
-                  <h1 className="text-primary text-uppercase fw-bold mb-3">
+                  <h3 className="h1 text-primary text-uppercase fw-bold mb-3">
                     Our Services
-                  </h1>
+                  </h3>
                   <p className="lead">Unlock Market Insights with COT Data</p>
                 </div>
               </div>
@@ -273,6 +282,7 @@ function Index() {
         </section>
         <iframe
           src="https://fxpricing.com/fx-widget/ticker-tape-widget.php?id=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24&border=show&speed=50&pair_weight=normal&click_target=blank&theme=dark&by-cr=28A745&sl-cr=DC3545&flags=circle&d_mode=regular&column=ask,bid,spread,chg,chg_per&lang=en"
+          title="Frantzdy Trading CO - Trading become easier when you trade with us"
           style={{ width: "100%", height: "45px", border: "0" }}
         />
         <section className="section">
@@ -283,7 +293,9 @@ function Index() {
                   <p className="text-primary text-uppercase fw-bold mb-3 lead">
                     Unlock the Power of COT Data
                   </p>
-                  <h1>Gain a Deeper Understanding of Market Sentiment</h1>
+                  <h3 className="h1">
+                    Gain a Deeper Understanding of Market Sentiment
+                  </h3>
 
                   <p className="mb-0">
                     Frantzdy Trading Co. provides you with the tools to analyze
@@ -396,9 +408,9 @@ function Index() {
             <div className="row align-items-center">
               <div className="col-lg-5" data-aos="fade-right">
                 <div className="section-title">
-                  <h1 className="text-primary text-uppercase fw-bold mb-3">
+                  <h4 className="h1 text-primary text-uppercase fw-bold mb-3">
                     About Us
-                  </h1>
+                  </h4>
                   <p className="mt-4">
                     At Frantzdy Trading Co., we understand that trading requires
                     dedication and commitment. We're committed to providing you
@@ -506,10 +518,10 @@ function Index() {
                   <p className="text-primary text-uppercase fw-bold mb-3 lead">
                     Secure Your Trading Future
                   </p>
-                  <h1>
+                  <h5 className="h1">
                     Frantzdy Trading Co. Provides the Protection and Support You
                     Need
-                  </h1>
+                  </h5>
                   <div className="content mb-0 mt-4">
                     <p>
                       At Frantzdy Trading Co., we understand that your financial
@@ -612,7 +624,7 @@ function Index() {
                   <p className="text-primary text-uppercase fw-bold mb-3 lead">
                     Real-Time Market Insights
                   </p>
-                  <h1>Informed Trading, Simplified</h1>
+                  <h4 className="h1">Informed Trading, Simplified</h4>
                 </div>
               </div>
               <div className="col-lg-10">
@@ -898,9 +910,9 @@ function Index() {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-12 text-center">
-                <h1 className="text-primary text-uppercase fw-bold mb-5">
+                <h3 className="h1 text-primary text-uppercase fw-bold mb-5">
                   Pricing
-                </h1>
+                </h3>
               </div>
               <div
                 className="col-md-6 col-lg-3 mb-5 mb-lg-0"
@@ -910,12 +922,12 @@ function Index() {
                 <div className="card h-100 border-0 rounded pricing-table table-1">
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>BASIC</h3>
-                    <h1 className="mb-0">
+                    <h4 className="h1 mb-0">
                       <span>$</span>
                       {getPrice("basic")
                         ? getPrice("basic").toFixed(2)
                         : "Undefined"}
-                    </h1>
+                    </h4>
                     <span className="text-primary">Monthly</span>
                   </div>
                   <div className="card-body p-0">
@@ -954,12 +966,12 @@ function Index() {
                 <div className="card h-100 border-0 rounded pricing-table table-2">
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>STANDARD</h3>
-                    <h1 className="mb-0">
+                    <h4 className="h1 mb-0">
                       <span>$</span>
                       {getPrice("standard")
                         ? getPrice("standard").toFixed(2)
                         : "Undefined"}
-                    </h1>
+                    </h4>
                     <span className="text-primary">Monthly</span>
                   </div>
                   <div className="card-body p-0">
@@ -1004,12 +1016,12 @@ function Index() {
                 <div className="card h-100 border-0 rounded pricing-table table-1">
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>PREMIUM</h3>
-                    <h1 className="mb-0">
+                    <h4 className="h1 mb-0">
                       <span>$</span>
                       {getPrice("premium")
                         ? getPrice("premium").toFixed(2)
                         : "Undefined"}
-                    </h1>
+                    </h4>
                     <span className="text-primary">Monthly</span>
                   </div>
                   <div className="card-body p-0">
@@ -1053,12 +1065,12 @@ function Index() {
                 <div className="card h-100 border-0 rounded pricing-table table-1">
                   <div className="card-header pt-4 pb-1 bg-transparent text-center">
                     <h3>ENTERPRISE</h3>
-                    <h1 className="mb-0">
+                    <h4 className="h1 mb-0">
                       <span>$</span>
                       {getPrice("custom")
                         ? getPrice("custom").toFixed(2)
                         : "Undefined"}
-                    </h1>
+                    </h4>
                     <span className="text-primary">for 2 Years</span>
                   </div>
                   <div className="card-body p-0">
@@ -1105,9 +1117,9 @@ function Index() {
             <div className="row justify-content-center">
               <div className="col-lg-6">
                 <div className="section-title text-center">
-                  <h1 className="text-primary text-uppercase fw-bold mb-3">
+                  <h4 className="h1 text-primary text-uppercase fw-bold mb-3">
                     About Me
-                  </h1>
+                  </h4>
                   <p className="mb-4 lead">The Ceo's Desk</p>
                 </div>
               </div>
@@ -1223,9 +1235,9 @@ function Index() {
             <div className="row justify-content-center">
               <div className="col-12">
                 <div className="section-title text-center">
-                  <h1 className="text-primary text-uppercase fw-bold mb-3 ">
+                  <h4 className="h1 text-primary text-uppercase fw-bold mb-3 ">
                     Our Team
-                  </h1>
+                  </h4>
                   <p className="lead">People Behind Us</p>
                   <p className="mb-0">
                     Meet the passionate individuals who drive Frantzdy Trading
@@ -1270,9 +1282,9 @@ function Index() {
             <div className="row justify-content-center">
               <div className="col-sm-12">
                 <div className="section-title text-center mb-5 pb-2">
-                  <h1 className="text-primary text-uppercase fw-bold mb-3">
+                  <h3 className="h1 text-primary text-uppercase fw-bold mb-3">
                     Blog
-                  </h1>
+                  </h3>
                   <p className="lead">The Latest News & Updates</p>
                 </div>
               </div>
@@ -1381,9 +1393,9 @@ function Index() {
             <div className="row justify-content-center">
               <div className="col-lg-6">
                 <div className="section-title text-center">
-                  <h1 className="text-primary text-uppercase fw-bold mb-3">
+                  <h4 className="h1 text-primary text-uppercase fw-bold mb-3">
                     Testimonials
-                  </h1>
+                  </h4>
                   <p className="mb-4 lead">Trusted By 1.2K+ Peoples</p>
                 </div>
               </div>

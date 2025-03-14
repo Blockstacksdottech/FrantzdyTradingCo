@@ -89,10 +89,17 @@ const Sentimentdata = () => {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Sentiment Data</title>
+        <title>
+          Market Sentiment Data | Frantzdy Trading CO - Real-Time Trading
+          Insights
+        </title>
         <meta
           name="description"
-          content="Commitments of Traders (COT) Reports"
+          content="Access Frantzdy Trading CO's real-time market sentiment data to gauge investor emotions and enhance your trading strategies. Stay ahead with up-to-date sentiment analysis and insights."
+        />
+        <meta
+          name="keywords"
+          content="market sentiment data, trading insights, investor sentiment analysis, real-time market data, Frantzdy Trading CO, trading strategies"
         />
       </Head>
       <Checker tier={2}>

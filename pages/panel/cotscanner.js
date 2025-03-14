@@ -190,10 +190,17 @@ const Cotscanner = () => {
   return (
     <>
       <Head>
-        <title>COT SCANNER</title>
+        <title>
+          COT Scanner | Frantzdy Trading CO - Commitment of Traders Analysis
+          Tool
+        </title>
         <meta
           name="description"
-          content="Commitments of Traders (COT) Reports"
+          content="Utilize Frantzdy Trading CO's COT Scanner to analyze Commitment of Traders reports. Gain insights into market sentiment and enhance your trading strategies with real-time data."
+        />
+        <meta
+          name="keywords"
+          content="COT scanner, Commitment of Traders analysis, market sentiment, trading strategies, Frantzdy Trading CO"
         />
       </Head>
       <Checker tier={1}>

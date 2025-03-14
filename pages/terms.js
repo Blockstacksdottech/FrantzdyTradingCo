@@ -11,8 +11,17 @@ export default function Terms() {
   return (
     <>
       <Head>
-        <title>Frantzdy Trading Co</title>
-        <meta name="description" content="Frantzdy Trading Co" />
+        <title>
+          Terms & Conditions | Frantzdy Trading CO - Service Usage Policies
+        </title>
+        <meta
+          name="description"
+          content="Review the Terms & Conditions governing the use of Frantzdy Trading CO's services, including subscription details, payment terms, and user responsibilities. Understand your rights and obligations when accessing our COT report analysis tools."
+        />
+        <meta
+          name="keywords"
+          content="Frantzdy Trading CO terms and conditions, service usage policies, subscription terms, payment policies, user responsibilities, COT report analysis terms"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Checker no_login={true}>

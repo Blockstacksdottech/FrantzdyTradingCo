@@ -27,10 +27,15 @@ export default function Announcement() {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-          Frantzdy Trading CO - Trading become easier when you trade with us
-        </title>
-        <meta name="description" content="Frantzdy Trading Co - Announcement" />
+        <title>Announcements | Frantzdy Trading CO - Latest Updates</title>
+        <meta
+          name="description"
+          content="Stay informed with the latest announcements from Frantzdy Trading CO. Access important updates, new features, and company news to keep your trading strategies aligned with our services."
+        />
+        <meta
+          name="keywords"
+          content="Frantzdy Trading CO announcements, company updates, new features, trading news, service updates"
+        />
       </Head>
       <Checker tier={1}>
         <HeadLink />

@@ -28,7 +28,7 @@ export default function BlogDetails() {
   const slug = router.query.slug;
 
   useEffect(() => {
-    console.log(`Slug ${slug}`)
+    console.log(`Slug ${slug}`);
     if (slug && slug.length > 0) {
       fetchArticle(slug);
       fetchBlogs();

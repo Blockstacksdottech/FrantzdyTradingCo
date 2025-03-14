@@ -34,8 +34,16 @@ export default function ContactUs() {
     <>
       <Head>
         <title>
-          Frantzdy Trading CO - Trading become easier when you trade with us
+          Contact Frantzdy Trading CO | Expert Trading Support & Inquiries
         </title>
+        <meta
+          name="description"
+          content="Reach out to Frantzdy Trading CO for personalized trading support and inquiries. Contact us via phone at +1 (407) 969-8519 or email at contact@frantzdytradingco.com. We're here to assist you Monday through Friday, 9 AM to 8 PM Eastern Time."
+        />
+        <meta
+          name="keywords"
+          content="Frantzdy Trading CO contact, trading support, trading inquiries, customer service, trading assistance, contact information"
+        />
       </Head>
       <Checker no_check={true} no_login={true}>
         <HeadLink />

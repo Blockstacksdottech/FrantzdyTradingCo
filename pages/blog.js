@@ -24,8 +24,18 @@ export default function Blog() {
   return (
     <>
       <Head>
-        <title>Frantzdy Trading Co | BLOG</title>
-        <meta name="description" content="Frantzdy Trading Co" />
+        <title>
+          Frantzdy Trading CO Blog | Expert Insights on COT Reports & Market
+          Trends
+        </title>
+        <meta
+          name="description"
+          content="Explore the Frantzdy Trading CO Blog for in-depth analyses of Commitment of Traders (COT) reports, market sentiment data, and trading strategies to enhance your financial decisions."
+        />
+        <meta
+          name="keywords"
+          content="Frantzdy Trading CO blog, COT report analysis, market trends, trading strategies, financial insights, market sentiment, trader resources"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
