@@ -133,7 +133,7 @@ const Blog = () => {
                                     </td>
                                     <td className="text-right">
                                       <a
-                                        href={"/panel/editblog?id=" + e.id}
+                                        href={"/panel/editblog?id=" + e.slug}
                                         className="btn btn-sm btn-table-dark"
                                       >
                                         <i className="fa fa-edit"></i>
@@ -141,7 +141,7 @@ const Blog = () => {
                                     </td>
                                     <td
                                       className="text-right"
-                                      onClick={() => delPost(e.id)}
+                                      onClick={() => delPost(e.slug)}
                                     >
                                       <a className="btn btn-sm btn-danger">
                                         <i className="fa fa-trash-alt"></i>
