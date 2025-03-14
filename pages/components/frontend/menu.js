@@ -34,12 +34,12 @@ export default function Menu({}) {
       <header data-aos="fade-down" className="fixed-top navigation bg-tertiary">
         <nav className="navbar navbar-expand-xl navbar-light text-center">
           <div className="container">
-            <a className="navbar-brand" href="./">
+            <a className="navbar-brand" href="/">
               <img
                 loading="prelaod"
                 decoding="async"
                 className="img-fluid"
-                src="./logo.png"
+                src="/logo.png"
                 alt="Frantzdy Trading CO - Trading become easier when you trade with us"
               />
             </a>
@@ -60,7 +60,7 @@ export default function Menu({}) {
             >
               <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li className="nav-item ">
-                  <a className="nav-link" href="./">
+                  <a className="nav-link" href="/">
                     HOME
                   </a>
                 </li>
@@ -70,37 +70,37 @@ export default function Menu({}) {
                   </a>
                   <ul className="dropdown-menu dropdown-menu-dark">
                     <li>
-                      <a className="dropdown-item" href="./panel/cotscanner">
+                      <a className="dropdown-item" href="/panel/cotscanner">
                         COT SCANNER
                       </a>
                     </li>
                     <li>
                       <a
                         className="dropdown-item"
-                        href="./panel/cotpercentchange"
+                        href="/panel/cotpercentchange"
                       >
                         COT % CHANGE
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="./panel/sentimentdata">
+                      <a className="dropdown-item" href="/panel/sentimentdata">
                         SENTIMENT DATA
                       </a>
                     </li>
                   </ul>
                 </li>
                 <li className="nav-item ">
-                  <a className="nav-link" href="./blog">
+                  <a className="nav-link" href="/blog">
                     BLOG
                   </a>
                 </li>
                 <li className="nav-item ">
-                  <a className="nav-link" href="./faq">
+                  <a className="nav-link" href="/faq">
                     FAQ
                   </a>
                 </li>
                 <li className="nav-item ">
-                  <a className="nav-link" href="./contact">
+                  <a className="nav-link" href="/contact">
                     CONTACT
                   </a>
                 </li>
@@ -108,10 +108,10 @@ export default function Menu({}) {
 
               {(!user || !user.logged) && (
                 <>
-                  <a href="./login" className="btn btn-outline-primary">
+                  <a href="/login" className="btn btn-outline-primary">
                     LOGIN
                   </a>
-                  <a href="./register" className="btn btn-primary ms-2 ms-lg-3">
+                  <a href="/register" className="btn btn-primary ms-2 ms-lg-3">
                     REGISTER
                   </a>
                 </>
@@ -136,7 +136,7 @@ export default function Menu({}) {
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark">
                       <li>
-                        <a className="dropdown-item" href="./panel/profile">
+                        <a className="dropdown-item" href="/panel/profile">
                           Profile
                         </a>
                       </li>
@@ -144,7 +144,7 @@ export default function Menu({}) {
                         <a
                           onClick={() => logout(nav, setUser)}
                           className="dropdown-item"
-                          href="./login"
+                          href="/login"
                         >
                           Logout
                         </a>

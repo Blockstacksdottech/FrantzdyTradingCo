@@ -48,7 +48,7 @@ export default function Blog() {
               {articles.map((e, i) => {
                 return (
                   <div className="col-sm-4 mb-4" key={i}>
-                    <a href={`/blogdetails?id=${e.id}`}>
+                    <a href={`/blogdetails/${e.slug}`}>
                       <div className="card rounded bg-testimonial h-100">
                         <img
                           src={formatImage(e.image)}

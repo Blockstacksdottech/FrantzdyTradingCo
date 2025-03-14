@@ -8,7 +8,7 @@ import { formatDateLocal, formatImage, req } from "@/helpers";
 import Checker from "./components/Checker";
 import { useSearchParams } from "next/navigation";
 
-export default function BlogDetails() {
+export default function BlogDetailsOld() {
   const [loading, setLoading] = useState(true);
   const [article, setArticle] = useState({});
   const [content, setContent] = useState("");
