@@ -1291,7 +1291,7 @@ function Index() {
               {articles.map((e, i) => {
                 return (
                   <div className="col-sm-3 mb-4">
-                    <a href={`/blogdetails?id=${e.id}`}>
+                    <a href={`/blogdetails/${e.slug}`}>
                       <div className="card rounded bg-testimonial h-100">
                         <img
                           src={formatImage(e.image)}
@@ -1316,7 +1316,7 @@ function Index() {
               })}
 
               <div className="col-sm-12 text-center">
-                <a href="./blog" className="btn btn-primary ml-lg-3 box-shadow">
+                <a href="/blog" className="btn btn-primary ml-lg-3 box-shadow">
                   View All Blogs
                 </a>
               </div>

@@ -15,11 +15,7 @@ export default function Footer() {
             <nav className="col-lg-12 align-self-center mb-1">
               <div className="row">
                 <div className="col-sm-6">
-                  <img
-                    src="./logo.png"
-                    className="img-fluid mb-3"
-                    alt="Frantzdy Trading CO - Trading become easier when you trade with us"
-                  />
+                  <img src="./logo.png" className="img-fluid mb-3" />
 
                   <ul className="list-unstyled list-inline mb-1 social-icons">
                     <li className="list-inline-item me-3">
@@ -28,11 +24,7 @@ export default function Footer() {
                         href="https://t.me/frantzdytradingco"
                         target="_blank"
                       >
-                        <img
-                          src="./telegram.png"
-                          className="img-fluid"
-                          alt="Telegram - Frantzdy Trading CO - Trading become easier when you trade with us"
-                        />
+                        <img src="./telegram.png" className="img-fluid" />
                       </a>
                     </li>
                     <li className="list-inline-item me-3">
@@ -41,11 +33,7 @@ export default function Footer() {
                         href="https://discord.gg/TaeYTC3n33"
                         target="_blank"
                       >
-                        <img
-                          src="./discord.png"
-                          className="img-fluid"
-                          alt="Discord - Frantzdy Trading CO - Trading become easier when you trade with us"
-                        />
+                        <img src="./discord.png" className="img-fluid" />
                       </a>
                     </li>
                     <li className="list-inline-item me-3">
@@ -54,11 +42,7 @@ export default function Footer() {
                         href="https://www.linkedin.com/in/frantzdy-trading-co-llc-179121318/"
                         target="_blank"
                       >
-                        <img
-                          src="./linkedin.png"
-                          className="img-fluid"
-                          alt="LinkedIN - Frantzdy Trading CO - Trading become easier when you trade with us"
-                        />
+                        <img src="./linkedin.png" className="img-fluid" />
                       </a>
                     </li>
                     <li className="list-inline-item me-3">
@@ -67,11 +51,7 @@ export default function Footer() {
                         href="https://x.com/Frantzdytrading"
                         target="_blank"
                       >
-                        <img
-                          src="./x-twitter.png"
-                          className="img-fluid"
-                          alt="X - Frantzdy Trading CO - Trading become easier when you trade with us"
-                        />
+                        <img src="./x-twitter.png" className="img-fluid" />
                       </a>
                     </li>
                     <li className="list-inline-item me-3">
@@ -80,50 +60,46 @@ export default function Footer() {
                         href="https://www.youtube.com/@frantzdytradingco"
                         target="_blank"
                       >
-                        <img
-                          src="./youtube.png"
-                          className="img-fluid"
-                          alt="Youtube - Frantzdy Trading CO - Trading become easier when you trade with us"
-                        />
+                        <img src="./youtube.png" className="img-fluid" />
                       </a>
                     </li>
                   </ul>
 
                   <p className="mb-0">
                     &copy; {year}{" "}
-                    <a href="./" className="me-2">
+                    <a href="/" className="me-2">
                       Frantzdy Trading Co
                     </a>{" "}
                     |{" "}
-                    <a href="./sitemap.xml" className="ms-2 text-dark">
+                    <a href="/sitemap.xml" className="ms-2 text-dark">
                       Sitemap
                     </a>
                   </p>
                   <p className="mb-0">
                     Designed & Developed by
-                    <a href="./"> Blockstacks Technologies Limited</a>
+                    <a href="/"> Blockstacks Technologies Limited</a>
                   </p>
                 </div>
                 <div className="col-sm-2">
                   <h5>QUICK LINKS</h5>
                   <ul className="footer-list footer-menu">
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./">
+                      <a className="text-dark" href="/">
                         Home
                       </a>
                     </li>
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./faq">
+                      <a className="text-dark" href="/faq">
                         FAQ
                       </a>
                     </li>
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./blog">
+                      <a className="text-dark" href="/blog">
                         Blog
                       </a>
                     </li>
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./contact">
+                      <a className="text-dark" href="/contact">
                         Contact
                       </a>
                     </li>
@@ -133,17 +109,17 @@ export default function Footer() {
                   <h5>FOR MEMBERS</h5>
                   <ul className="footer-list footer-menu">
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./panel/cotpercentchange">
+                      <a className="text-dark" href="/panel/cotpercentchange">
                         Cot % Change
                       </a>
                     </li>
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./panel/sentimentdata">
+                      <a className="text-dark" href="/panel/sentimentdata">
                         Sentiment Data
                       </a>
                     </li>
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./panel/cotscanner">
+                      <a className="text-dark" href="/panel/cotscanner">
                         Cot Scanner
                       </a>
                     </li>
@@ -153,17 +129,17 @@ export default function Footer() {
                   <h5>OTHERS</h5>
                   <ul className="footer-list footer-menu">
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./panel/videospdf">
+                      <a className="text-dark" href="/panel/videospdf">
                         Video's & PDF
                       </a>
                     </li>
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./privacy">
+                      <a className="text-dark" href="/privacy">
                         Privacy Policy
                       </a>
                     </li>
                     <li className="list-item text-uppercase">
-                      <a className="text-dark" href="./terms">
+                      <a className="text-dark" href="/terms">
                         Terms &amp; Conditions
                       </a>
                     </li>
