@@ -49,6 +49,7 @@ export default function BlogDetails() {
         <title>Frantzdy Trading Co | BLOG Title</title>
         <meta name="description" content="Frantzdy Trading Co" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{article ? article.title : "Blog"}</title>
       </Head>
       <Checker no_login={true}>
         <HeadLink />
