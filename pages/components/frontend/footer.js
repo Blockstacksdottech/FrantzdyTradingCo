@@ -16,7 +16,7 @@ export default function Footer() {
               <div className="row">
                 <div className="col-sm-6">
                   <img
-                    src="./logo.png"
+                    src="/logo.png"
                     className="img-fluid mb-3"
                     alt="Frantzdy Trading CO - Trading become easier when you trade with us"
                   />
@@ -29,7 +29,7 @@ export default function Footer() {
                         target="_blank"
                       >
                         <img
-                          src="./telegram.png"
+                          src="/telegram.png"
                           className="img-fluid"
                           alt="Frantzdy Trading CO - Trading become easier when you trade with us"
                         />
@@ -42,7 +42,7 @@ export default function Footer() {
                         target="_blank"
                       >
                         <img
-                          src="./discord.png"
+                          src="/discord.png"
                           className="img-fluid"
                           alt="Frantzdy Trading CO - Trading become easier when you trade with us"
                         />
@@ -55,7 +55,7 @@ export default function Footer() {
                         target="_blank"
                       >
                         <img
-                          src="./linkedin.png"
+                          src="/linkedin.png"
                           className="img-fluid"
                           alt="Frantzdy Trading CO - Trading become easier when you trade with us"
                         />
@@ -68,7 +68,7 @@ export default function Footer() {
                         target="_blank"
                       >
                         <img
-                          src="./x-twitter.png"
+                          src="/x-twitter.png"
                           className="img-fluid"
                           alt="Frantzdy Trading CO - Trading become easier when you trade with us"
                         />
@@ -81,7 +81,7 @@ export default function Footer() {
                         target="_blank"
                       >
                         <img
-                          src="./youtube.png"
+                          src="/youtube.png"
                           className="img-fluid"
                           alt="Frantzdy Trading CO - Trading become easier when you trade with us"
                         />
