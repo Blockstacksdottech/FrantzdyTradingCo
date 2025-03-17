@@ -146,7 +146,7 @@ const Teams = () => {
                                 <th>Email</th>
                                 <th>Date of Joining</th>
                                 <th>Status</th>
-                                <th>Details</th>
+                                {/* <th>Details</th> */}
                                 <th>Demote</th>
                                 <th>Ban</th>
                                 <th>Delete</th>
@@ -187,11 +187,11 @@ const Teams = () => {
                                         </a>
                                       )}
                                     </td>
-                                    <td>
+                                    {/* <td>
                                       <a className="btn btn-sm btn-table-dark">
                                         <i className="far fa-eye"></i>
                                       </a>
-                                    </td>
+                                    </td> */}
                                     <td
                                       onClick={() =>
                                         addToMember(e.id, e.is_member)

@@ -140,7 +140,7 @@ const Users = () => {
                                 <th>Date of Joining</th>
                                 <th className="text-center">Status</th>
                                 {/* <th className="text-center">Team Member</th> */}
-                                <th className="text-center">Details</th>
+                                {/* <th className="text-center">Details</th> */}
                                 {
                                   user.isAdmin && <><th className="text-center">Hire</th>
                                 
@@ -204,11 +204,11 @@ const Users = () => {
                                         </a>
                                       )}
                                     </td> */}
-                                    <td className="text-center">
+                                    {/* <td className="text-center">
                                       <a className="btn btn-sm btn-table-dark">
                                         <i className="far fa-eye"></i>
                                       </a>
-                                    </td>
+                                    </td> */}
                                     {
                                       user.isAdmin && <> <td
                                       className="text-center"
