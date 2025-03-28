@@ -104,6 +104,21 @@ export default function Sidebar({}) {
                     </a>
                   </li>
                 )}
+                {user && user.isAdmin && (
+                  <li className="nav-item">
+                    <a
+                      href="../panel/admcalendar"
+                      className={
+                        isActive("../panel/admcalendar")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                    >
+                      <i className="nav-icon fas fa-chart-line" />
+                      <p>Historical calendar</p>
+                    </a>
+                  </li>
+                )}
                 <li className="nav-header">DATA</li>
                 <li className="nav-item">
                   <a

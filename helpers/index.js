@@ -4,6 +4,16 @@ import axios from "axios";
 export const base = "https://frantzdytradingco.com";
 export const api = base + "/api/";
 //var fileDownload = require('js-file-download');
+
+export const  formatDateYYYY = (date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+
 function set_header(token = null) {
   try {
     console.log(token);
