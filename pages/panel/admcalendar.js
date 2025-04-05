@@ -29,6 +29,7 @@ const AdmCalendar = () => {
   const [scanner, setScanner] = useState(null);
   const [seasonality, setSeasonality] = useState(null);
   const [selectedDate,setSelectedDate] = useState(formatDateYYYY(new Date()));
+  const [trends,setTrends] = useState([]);
 
   const toPercentage = (num) => {
     // Check if the input is a valid number
@@ -164,7 +165,7 @@ const AdmCalendar = () => {
     return "--";
   };
   const get_trend = (symbol) => {
-    for (let d of seasonality) {
+    for (let d of trends) {
       if (d.symbol === symbol.replace("/", "")) {
         return d.trend.toFixed(4);
       }
@@ -218,12 +219,14 @@ const AdmCalendar = () => {
       const resp2 = await req(`adm-date-scanner?date=${selectedDate}`);
       const resp3 = await postReq(`sentiment-data`,{});
       const resp4 = await req(`adm-date-seasonality?date=${selectedDate}`);
-      if (response && resp2 && resp3 && resp4) {
+      const resp5 = await req(`adm-date-trend?date=${selectedDate}`);
+      if (response && resp2 && resp3 && resp4 && resp5) {
         handleExport(response);
         setData(response);
         setSentiment(formatSentiment(resp3));
         setScanner(formatScanner(resp2));
         setSeasonality(resp4);
+        setTrends(resp5);
         //setDate(response.date);
       }
     } catch (error) {
