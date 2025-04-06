@@ -166,6 +166,9 @@ const AdmCalendar = () => {
   };
   const get_trend = (symbol) => {
     for (let d of trends) {
+      if (!d){
+        continue;
+      }
       if (d.symbol === symbol.replace("/", "")) {
         return d.trend.toFixed(4);
       }
