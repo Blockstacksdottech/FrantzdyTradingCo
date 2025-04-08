@@ -397,9 +397,9 @@ const getBackground = (score) => {
     /* const totalScore = (Object.values(baseScores).concat([cot_score,sentiment_score]).reduce((acc, score) => acc + score, 0) / events.length) -
   symbol.includes("/") ? (Object.values(quoteScores).reduce((acc, score) => acc + score, 0) / events.length) : 0; */
     const totalScore =
-      Object.values(baseScores).reduce((acc, score) => acc + score, 0) -
+      Object.values(baseScores).reduce((acc, score) => score ?  acc + score : acc , 0) -
       (symbol.includes("/")
-        ? Object.values(quoteScores).reduce((acc, score) => acc + score, 0)
+        ? Object.values(quoteScores).reduce((acc, score) => score ?  acc + score : acc, 0)
         : 0);
 
     const totalSeasonality = get_seasonality(symbol);
