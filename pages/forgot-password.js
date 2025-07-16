@@ -27,14 +27,14 @@ export default function Forgotpassword() {
   return (
     <>
       <Head>
-        <title>Reset Password | Frantzdy Trading CO Account Recovery</title>
+        <title>Reset Password | Frantzdy Trading & Co., LLC Account Recovery</title>
         <meta
           name="description"
-          content="Forgot your password? Easily reset and recover your Frantzdy Trading CO account."
+          content="Forgot your password? Easily reset and recover your Frantzdy Trading & Co., LLC account."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO password reset, account recovery, forgot password, trading account access, secure password reset"
+          content="Frantzdy Trading & Co., LLC password reset, account recovery, forgot password, trading account access, secure password reset"
         />
       </Head>
       <HeadLink />

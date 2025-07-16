@@ -45,7 +45,7 @@ const Blog = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Blog</title>
-        <meta name="description" content="Frantzdy Trading Co - Blog" />
+        <meta name="description" content="Frantzdy Trading & Co., LLC - Blog" />
       </Head>
       <HeadLink />
       <Menu />

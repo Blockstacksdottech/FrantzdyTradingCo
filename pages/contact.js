@@ -34,15 +34,15 @@ export default function ContactUs() {
     <>
       <Head>
         <title>
-          Contact Frantzdy Trading CO | Expert Trading Support & Inquiries
+          Contact Frantzdy Trading & Co., LLC | Expert Trading Support & Inquiries
         </title>
         <meta
           name="description"
-          content="Reach out to Frantzdy Trading CO for personalized trading support and inquiries. Contact us via phone at +1 (407) 969-8519 or email at contact@frantzdytradingco.com. We're here to assist you Monday through Friday, 9 AM to 8 PM Eastern Time."
+          content="Reach out to Frantzdy Trading & Co., LLC for personalized trading support and inquiries. Contact us via phone at +1 (407) 969-8519 or email at contact@frantzdytradingco.com. We're here to assist you Monday through Friday, 9 AM to 8 PM Eastern Time."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO contact, trading support, trading inquiries, customer service, trading assistance, contact information"
+          content="Frantzdy Trading & Co., LLC contact, trading support, trading inquiries, customer service, trading assistance, contact information"
         />
       </Head>
       <Checker no_check={true} no_login={true}>

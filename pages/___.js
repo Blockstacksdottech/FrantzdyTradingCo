@@ -42,8 +42,8 @@ export default function BlogDetailsOld() {
   return (
     <>
       <Head>
-        <title>Frantzdy Trading Co | BLOG Title</title>
-        <meta name="description" content="Frantzdy Trading Co" />
+        <title>Frantzdy Trading & Co., LLC | BLOG Title</title>
+        <meta name="description" content="Frantzdy Trading & Co., LLC" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Checker no_login={true}>

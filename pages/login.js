@@ -70,15 +70,15 @@ export default function Login() {
     <>
       <Head>
         <title>
-          Frantzdy Trading CO Login | Access Your COT Report Analysis
+          Frantzdy Trading & Co., LLC Login | Access Your COT Report Analysis
         </title>
         <meta
           name="description"
-          content="Log in to your Frantzdy Trading CO account to access comprehensive Commitment of Traders (COT) report analyses, trading tools, and personalized market insights. Enhance your trading strategies with our expert data."
+          content="Log in to your Frantzdy Trading & Co., LLC account to access comprehensive Commitment of Traders (COT) report analyses, trading tools, and personalized market insights. Enhance your trading strategies with our expert data."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO login, COT report analysis access, trading account login, market insights, trading tools"
+          content="Frantzdy Trading & Co., LLC login, COT report analysis access, trading account login, market insights, trading tools"
         />
       </Head>
       <HeadLink />

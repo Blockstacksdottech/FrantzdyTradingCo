@@ -63,16 +63,16 @@ function Index() {
     <>
       <Head>
         <title>
-          Frantzdy Trading CO | Empowering Your Trading Journey with Expert
+          Frantzdy Trading & Co., LLC | Empowering Your Trading Journey with Expert
           Tools
         </title>
         <meta
           name="description"
-          content="Unlock the power of COT report analysis with Frantzdy Trading CO. Access interactive charting tools, market sentiment insights, and expert support to make informed trading decisions."
+          content="Unlock the power of COT report analysis with Frantzdy Trading & Co., LLC. Access interactive charting tools, market sentiment insights, and expert support to make informed trading decisions."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO, COT report analysis, trading tools, market sentiment, trading support, financial security, trading platform"
+          content="Frantzdy Trading & Co., LLC, COT report analysis, trading tools, market sentiment, trading support, financial security, trading platform"
         />
       </Head>
       <Checker no_login={true}>
@@ -282,7 +282,7 @@ function Index() {
         </section>
         <iframe
           src="https://fxpricing.com/fx-widget/ticker-tape-widget.php?id=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24&border=show&speed=50&pair_weight=normal&click_target=blank&theme=dark&by-cr=28A745&sl-cr=DC3545&flags=circle&d_mode=regular&column=ask,bid,spread,chg,chg_per&lang=en"
-          title="Frantzdy Trading CO - Trading become easier when you trade with us"
+          title="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
           style={{ width: "100%", height: "45px", border: "0" }}
         />
         <section className="section">
@@ -298,7 +298,7 @@ function Index() {
                   </h3>
 
                   <p className="mb-0">
-                    Frantzdy Trading Co. provides you with the tools to analyze
+                    Frantzdy Trading & Co., LLC. provides you with the tools to analyze
                     the Commitment of Traders (COT) report, a crucial indicator
                     of market sentiment. Our platform empowers you to
                   </p>
@@ -412,7 +412,7 @@ function Index() {
                     About Us
                   </h4>
                   <p className="mt-4">
-                    At Frantzdy Trading Co., we understand that trading requires
+                    At Frantzdy Trading & Co., LLC., we understand that trading requires
                     dedication and commitment. We're committed to providing you
                     with the tools, resources, and support you need to achieve
                     your trading goals.
@@ -438,7 +438,7 @@ function Index() {
                   loading="lazy"
                   decoding="async"
                   src="./frontend/images/about-us.png"
-                  alt="About Frantzdy Trading CO"
+                  alt="About Frantzdy Trading & Co., LLC"
                   className="img-fluid"
                 />
               </div>
@@ -519,17 +519,17 @@ function Index() {
                     Secure Your Trading Future
                   </p>
                   <h5 className="h1">
-                    Frantzdy Trading Co. Provides the Protection and Support You
+                    Frantzdy Trading & Co., LLC. Provides the Protection and Support You
                     Need
                   </h5>
                   <div className="content mb-0 mt-4">
                     <p>
-                      At Frantzdy Trading Co., we understand that your financial
+                      At Frantzdy Trading & Co., LLC., we understand that your financial
                       security is paramount. That's why we've built our platform
                       with a focus
                     </p>
                     <p>
-                      Join Frantzdy Trading Co. today and experience the
+                      Join Frantzdy Trading & Co., LLC. today and experience the
                       security and support you deserve.
                     </p>
                     <a
@@ -686,7 +686,7 @@ function Index() {
                     <div className="row align-items-center">
                       <div className="col-md-12">
                         <h3 className="mb-4">
-                          Frantzdy Trading Co. Illuminates the Path to Financial
+                          Frantzdy Trading & Co., LLC. Illuminates the Path to Financial
                           Success
                         </h3>
                       </div>
@@ -694,7 +694,7 @@ function Index() {
                         <div className="content-block">
                           <div className="content">
                             <p>
-                              At Frantzdy Trading Co., we believe in empowering
+                              At Frantzdy Trading & Co., LLC., we believe in empowering
                               traders to achieve their financial goals. Our
                               platform is designed to provide you with the
                               knowledge, tools, and support you need to make
@@ -726,7 +726,7 @@ function Index() {
                             loading="lazy"
                             decoding="async"
                             src="./frontend/images/payment-info.png"
-                            alt="Frantzdy Trading Co. Illuminates the Path to Financial
+                            alt="Frantzdy Trading & Co., LLC. Illuminates the Path to Financial
                           Success"
                             className="img-fluid"
                           />
@@ -743,14 +743,14 @@ function Index() {
                     <div className="row align-items-center">
                       <div className="col-md-12">
                         <h3 className="mb-4">
-                          Frantzdy Trading Co. Makes Trading Safe and Easy
+                          Frantzdy Trading & Co., LLC. Makes Trading Safe and Easy
                         </h3>
                       </div>
                       <div className="col-md-6 order-1 order-md-0">
                         <div className="content-block">
                           <div className="content">
                             <p>
-                              At Frantzdy Trading Co., we understand that your
+                              At Frantzdy Trading & Co., LLC., we understand that your
                               financial security is a top priority. That's why
                               we've built our platform with a focus on:
                             </p>
@@ -775,7 +775,7 @@ function Index() {
                             loading="lazy"
                             decoding="async"
                             src="./frontend/images/illustration-2.png"
-                            alt="Frantzdy Trading Co. Makes Trading Safe and Easy"
+                            alt="Frantzdy Trading & Co., LLC. Makes Trading Safe and Easy"
                             className="img-fluid"
                           />
                         </div>
@@ -791,14 +791,14 @@ function Index() {
                     <div className="row align-items-center">
                       <div className="col-md-12">
                         <h3 className="mb-4">
-                          Frantzdy Trading Co. Keeps You in the Loop
+                          Frantzdy Trading & Co., LLC. Keeps You in the Loop
                         </h3>
                       </div>
                       <div className="col-md-6 order-1 order-md-0">
                         <div className="content-block">
                           <div className="content">
                             <p>
-                              At Frantzdy Trading Co., we believe in keeping you
+                              At Frantzdy Trading & Co., LLC., we believe in keeping you
                               connected and informed. Our platform provides you
                               with the tools and resources you need to stay
                               up-to-date on market trends and make informed
@@ -829,7 +829,7 @@ function Index() {
                             loading="lazy"
                             decoding="async"
                             src="./frontend/images/illustration-1.png"
-                            alt="Frantzdy Trading Co. Keeps You in the Loop"
+                            alt="Frantzdy Trading & Co., LLC. Keeps You in the Loop"
                             className="img-fluid"
                           />
                         </div>
@@ -1423,7 +1423,7 @@ function Index() {
                     </div>
                   </div>
                   <div className="content">
-                    Frantzdy Trading Co. has been instrumental in my trading
+                    Frantzdy Trading & Co., LLC. has been instrumental in my trading
                     success. Their deep COT and CFTC data analysis has given me
                     the edge I needed to make informed decisions. Their insights
                     are always spot-on and timely. I highly recommend their
@@ -1453,7 +1453,7 @@ function Index() {
                     </div>
                   </div>
                   <div className="content">
-                    I've been using Frantzdy Trading Co.'s COT and CFTC reports
+                    I've been using Frantzdy Trading & Co., LLC.'s COT and CFTC reports
                     for the past year, and the results have been phenomenal.
                     Their data is comprehensive, and their analysis is easy to
                     understand and apply. I've significantly improved my trading
@@ -1483,7 +1483,7 @@ function Index() {
                     </div>
                   </div>
                   <div className="content">
-                    Frantzdy Trading Co. provides unparalleled detail in their
+                    Frantzdy Trading & Co., LLC. provides unparalleled detail in their
                     COT and CFTC reports. The accuracy and depth of their
                     analysis have helped me stay ahead of market trends. Their
                     customer support is also exceptional, always ready to assist
@@ -1513,7 +1513,7 @@ function Index() {
                     </div>
                   </div>
                   <div className="content">
-                    The expertise of Frantzdy Trading Co. in COT and CFTC data
+                    The expertise of Frantzdy Trading & Co., LLC. in COT and CFTC data
                     analysis is truly impressive. Their reports have become a
                     crucial part of my trading strategy. The actionable insights
                     I gained from their analysis have led to more profitable
@@ -1544,7 +1544,7 @@ function Index() {
                   </div>
                   <div className="content">
                     As a seasoned trader, I've relied on various sources for
-                    market data, but Frantzdy Trading Co. stands out with its
+                    market data, but Frantzdy Trading & Co., LLC. stands out with its
                     exceptional COT and CFTC reports. Their detailed analysis
                     and clear presentation make it easy to grasp complex market
                     movements. I trust their insights to guide my trading
@@ -1574,7 +1574,7 @@ function Index() {
                     </div>
                   </div>
                   <div className="content">
-                    Frantzdy Trading Co. has been a game-changer for my trading
+                    Frantzdy Trading & Co., LLC. has been a game-changer for my trading
                     approach. Their thorough analysis of COT and CFTC data has
                     provided me with valuable insights that have consistently
                     translated into profitable trades. Their dedication to

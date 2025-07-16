@@ -16,7 +16,7 @@ export default function Footer() {
               <img
                 src="../logo.png"
                 className="img-fluid"
-                alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
               />
               <ul className="list-unstyled list-inline my-3 social-icons">
                 <li className="list-inline-item mr-3">
@@ -28,7 +28,7 @@ export default function Footer() {
                     <img
                       src="../telegram.png"
                       className="img-fluid"
-                      alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                      alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
                     />
                   </a>
                 </li>
@@ -41,7 +41,7 @@ export default function Footer() {
                     <img
                       src="../discord.png"
                       className="img-fluid"
-                      alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                      alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
                     />
                   </a>
                 </li>
@@ -54,7 +54,7 @@ export default function Footer() {
                     <img
                       src="../linkedin.png"
                       className="img-fluid"
-                      alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                      alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
                     />
                   </a>
                 </li>
@@ -67,7 +67,7 @@ export default function Footer() {
                     <img
                       src="../x-twitter.png"
                       className="img-fluid"
-                      alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                      alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
                     />
                   </a>
                 </li>
@@ -80,14 +80,14 @@ export default function Footer() {
                     <img
                       src="../youtube.png"
                       className="img-fluid"
-                      alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                      alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
                     />
                   </a>
                 </li>
               </ul>
 
               <p className="mb-1">
-                &copy; {year} <a href="../">Frantzdy Trading Co</a>
+                &copy; {year} <a href="../">Frantzdy Trading & Co., LLC</a>
               </p>
               <p className="mb-1">
                 Designed & Developed by

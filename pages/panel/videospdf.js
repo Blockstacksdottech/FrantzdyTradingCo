@@ -49,16 +49,16 @@ export default function VideosPdf() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-          Educational Videos & PDFs | Frantzdy Trading CO - Enhance Your Trading
+          Educational Videos & PDFs | Frantzdy Trading & Co., LLC - Enhance Your Trading
           Knowledge
         </title>
         <meta
           name="description"
-          content="Access a curated collection of educational videos and PDFs from Frantzdy Trading CO. Enhance your trading strategies with expert insights and comprehensive guides."
+          content="Access a curated collection of educational videos and PDFs from Frantzdy Trading & Co., LLC. Enhance your trading strategies with expert insights and comprehensive guides."
         />
         <meta
           name="keywords"
-          content="trading education videos, trading strategy PDFs, Frantzdy Trading CO resources, trading tutorials, investment guides"
+          content="trading education videos, trading strategy PDFs, Frantzdy Trading & Co., LLC resources, trading tutorials, investment guides"
         />
       </Head>
       <Checker tier={1}>

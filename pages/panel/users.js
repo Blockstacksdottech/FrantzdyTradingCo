@@ -87,7 +87,7 @@ const Users = () => {
         <title>Registered Users</title>
         <meta
           name="description"
-          content="Frantzdy Trading Co - Registered Users"
+          content="Frantzdy Trading & Co., LLC - Registered Users"
         />
       </Head>
       <HeadLink />

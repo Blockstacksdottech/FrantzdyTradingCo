@@ -74,7 +74,7 @@ const CreateBlog = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Write a Blog</title>
-        <meta name="description" content="Frantzdy Trading Co - Write a Blog" />
+        <meta name="description" content="Frantzdy Trading & Co., LLC - Write a Blog" />
       </Head>
       <HeadLink />
       <Menu />

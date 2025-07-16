@@ -461,7 +461,7 @@ const CotReport = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>COT Report Exclusive for Admin</title>
-        <meta name="description" content="Frantzdy Trading Co - COT Report" />
+        <meta name="description" content="Frantzdy Trading & Co., LLC - COT Report" />
       </Head>
       <Checker only_admin={true} strict_admin={true}>
         <HeadLink />

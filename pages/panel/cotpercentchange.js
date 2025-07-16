@@ -115,16 +115,16 @@ const CotpercentChange = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-          COT % Change Analysis | Frantzdy Trading CO - Commitment of Traders
+          COT % Change Analysis | Frantzdy Trading & Co., LLC - Commitment of Traders
           Insights
         </title>
         <meta
           name="description"
-          content="Analyze the percentage changes in the Commitment of Traders (COT) reports with Frantzdy Trading CO. Understand market sentiment shifts and enhance your trading strategies with our detailed COT % change data."
+          content="Analyze the percentage changes in the Commitment of Traders (COT) reports with Frantzdy Trading & Co., LLC. Understand market sentiment shifts and enhance your trading strategies with our detailed COT % change data."
         />
         <meta
           name="keywords"
-          content="COT % change, Commitment of Traders analysis, market sentiment shifts, trading strategies, Frantzdy Trading CO"
+          content="COT % change, Commitment of Traders analysis, market sentiment shifts, trading strategies, Frantzdy Trading & Co., LLC"
         />
       </Head>
 

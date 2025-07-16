@@ -454,15 +454,15 @@ const getBackground = (score) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-          Trading Events Calendar | Frantzdy Trading CO - Upcoming Market Events
+          Trading Events Calendar | Frantzdy Trading & Co., LLC - Upcoming Market Events
         </title>
         <meta
           name="description"
-          content="Stay updated with Frantzdy Trading CO's comprehensive calendar of upcoming trading events, market holidays, and key financial dates. Plan your trading strategies effectively with our regularly updated schedule."
+          content="Stay updated with Frantzdy Trading & Co., LLC's comprehensive calendar of upcoming trading events, market holidays, and key financial dates. Plan your trading strategies effectively with our regularly updated schedule."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO trading events, market calendar, financial events schedule, trading holidays, upcoming market events"
+          content="Frantzdy Trading & Co., LLC trading events, market calendar, financial events schedule, trading holidays, upcoming market events"
         />
       </Head>
 

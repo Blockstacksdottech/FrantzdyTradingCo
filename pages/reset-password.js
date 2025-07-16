@@ -69,7 +69,7 @@ export default function ResetPassword() {
               <a href="/">
                 <img
                   src="/logo.png"
-                  alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                  alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
                   className="img-fluid"
                 />
               </a>

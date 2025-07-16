@@ -12,15 +12,15 @@ export default function Faq() {
     <>
       <Head>
         <title>
-          Frantzdy Trading CO FAQ | Your Questions on COT Reports Answered
+          Frantzdy Trading & Co., LLC FAQ | Your Questions on COT Reports Answered
         </title>
         <meta
           name="description"
-          content="Find answers to common questions about Commitment of Traders (COT) reports, trading signals, and market analysis at Frantzdy Trading CO. Enhance your trading strategy with our expert insights."
+          content="Find answers to common questions about Commitment of Traders (COT) reports, trading signals, and market analysis at Frantzdy Trading & Co., LLC. Enhance your trading strategy with our expert insights."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO FAQ, COT report questions, trading signals, market analysis, trader support, trading strategies"
+          content="Frantzdy Trading & Co., LLC FAQ, COT report questions, trading signals, market analysis, trader support, trading strategies"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>

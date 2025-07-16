@@ -86,7 +86,7 @@ const Teams = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>TEAM MEMBERS</title>
-        <meta name="description" content="Frantzdy Trading Co - TEAM MEMBERS" />
+        <meta name="description" content="Frantzdy Trading & Co., LLC - TEAM MEMBERS" />
       </Head>
       <HeadLink />
       <Menu user={user} />

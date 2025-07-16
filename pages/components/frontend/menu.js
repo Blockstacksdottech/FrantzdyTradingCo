@@ -40,7 +40,7 @@ export default function Menu({}) {
                 decoding="async"
                 className="img-fluid"
                 src="/logo.png"
-                alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
               />
             </a>
             <button
@@ -128,7 +128,7 @@ export default function Menu({}) {
                             : "/frontend/images/team/team-1.png"
                         }
                         className="user-div me-2"
-                        alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                        alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
                       />
                       <span className="d-md-inline text-uppercase">
                         {user && user.username}

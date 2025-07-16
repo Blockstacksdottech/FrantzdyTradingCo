@@ -32,7 +32,7 @@ export default function Sidebar({}) {
         <a href="../" className="brand-link">
           <img
             src="../logo.png"
-            alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+            alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
             className="brand-image"
           />
         </a>
@@ -47,7 +47,7 @@ export default function Sidebar({}) {
                       : "../frontend/images/team/team-1.png"
                   }
                   className="img-circle elevation-2"
-                  alt="Frantzdy Trading CO - Trading become easier when you trade with us"
+                  alt="Frantzdy Trading & Co., LLC - Trading become easier when you trade with us"
                 />
               </div>
               <div className="info">

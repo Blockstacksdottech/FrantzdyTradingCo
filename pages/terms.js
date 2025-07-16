@@ -12,15 +12,15 @@ export default function Terms() {
     <>
       <Head>
         <title>
-          Terms & Conditions | Frantzdy Trading CO - Service Usage Policies
+          Terms & Conditions | Frantzdy Trading & Co., LLC - Service Usage Policies
         </title>
         <meta
           name="description"
-          content="Review the Terms & Conditions governing the use of Frantzdy Trading CO's services, including subscription details, payment terms, and user responsibilities. Understand your rights and obligations when accessing our COT report analysis tools."
+          content="Review the Terms & Conditions governing the use of Frantzdy Trading & Co., LLC's services, including subscription details, payment terms, and user responsibilities. Understand your rights and obligations when accessing our COT report analysis tools."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO terms and conditions, service usage policies, subscription terms, payment policies, user responsibilities, COT report analysis terms"
+          content="Frantzdy Trading & Co., LLC terms and conditions, service usage policies, subscription terms, payment policies, user responsibilities, COT report analysis terms"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -45,10 +45,10 @@ export default function Terms() {
                 <div className="content">
                   <h3>Introduction</h3>
                   <p>
-                    Welcome to Frantzdy Trading Co. LLC. These Terms and
+                    Welcome to Frantzdy Trading & Co., LLC. LLC. These Terms and
                     Conditions (“Terms”, “Terms and Conditions”) govern your use
                     of our website located at frantzdytradingco.com (together or
-                    individually “Service”) operated by Frantzdy Trading co. LLC
+                    individually “Service”) operated by Frantzdy Trading & Co., LLC. LLC
                   </p>
                   <p>
                     Our Privacy Policy also governs your use of our Service and
@@ -127,7 +127,7 @@ export default function Terms() {
                   <p>
                     At the end of each Billing Cycle, your Subscription will
                     automatically renew under the exact same conditions unless
-                    you cancel it or Frantzdy Trading Co. LLC cancels it. You
+                    you cancel it or Frantzdy Trading & Co., LLC. LLC cancels it. You
                     may cancel your Subscription renewal either through your
                     online account management page or by contacting Frantzdy
                     Trading Co. LLC’s customer support team.
@@ -139,26 +139,26 @@ export default function Terms() {
                     including full name, address, state, zip code, telephone
                     number, and a valid payment method information. By
                     submitting such payment information, you automatically
-                    authorize Frantzdy Trading Co. LLC to charge all
+                    authorize Frantzdy Trading & Co., LLC. LLC to charge all
                     Subscription fees incurred through your account to any such
                     payment instruments.
                   </p>
                   <p>
                     Should automatic billing fail to occur for any reason,
-                    Frantzdy Trading Co. LLC will issue an electronic invoice
+                    Frantzdy Trading & Co., LLC. LLC will issue an electronic invoice
                     indicating that you must proceed manually, within a certain
                     deadline date, with the full payment corresponding to the
                     billing period as indicated on the invoice.
                   </p>
                   <h3>Fee Changes</h3>
                   <p>
-                    Frantzdy Trading Co. LLC, in its sole discretion and at any
+                    Frantzdy Trading & Co., LLC. LLC, in its sole discretion and at any
                     time, may modify Subscription fees for the Subscriptions.
                     Any Subscription fee change will become effective at the end
                     of the then-current Billing Cycle.
                   </p>
                   <p>
-                    Frantzdy Trading Co. LLC will provide you with a reasonable
+                    Frantzdy Trading & Co., LLC. LLC will provide you with a reasonable
                     prior notice of any change in Subscription fees to give you
                     an opportunity to terminate your Subscription before such
                     change becomes effective.
@@ -171,8 +171,8 @@ export default function Terms() {
                   <h3>Refunds</h3>
                   <p>
                     Certain refund requests for Subscriptions may be considered
-                    by Frantzdy Trading Co. LLC on a case-by-case basis and
-                    granted at the sole discretion of Frantzdy Trading Co. LLC.
+                    by Frantzdy Trading & Co., LLC. LLC on a case-by-case basis and
+                    granted at the sole discretion of Frantzdy Trading & Co., LLC. LLC.
                   </p>
                 </div>
               </div>

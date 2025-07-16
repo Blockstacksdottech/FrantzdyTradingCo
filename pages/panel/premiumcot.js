@@ -463,16 +463,16 @@ const PremiumCot = () => {
     <>
       <Head>
         <title>
-          Premium COT Analysis | Frantzdy Trading CO - In-Depth Commitment of
+          Premium COT Analysis | Frantzdy Trading & Co., LLC - In-Depth Commitment of
           Traders Reports
         </title>
         <meta
           name="description"
-          content="Access Frantzdy Trading CO's Premium Commitment of Traders (COT) Analysis for comprehensive insights into market positions. Enhance your trading strategies with detailed reports and expert interpretations."
+          content="Access Frantzdy Trading & Co., LLC's Premium Commitment of Traders (COT) Analysis for comprehensive insights into market positions. Enhance your trading strategies with detailed reports and expert interpretations."
         />
         <meta
           name="keywords"
-          content="Premium COT analysis, Commitment of Traders reports, market positions, trading strategies, Frantzdy Trading CO, futures market analysis, trader insights"
+          content="Premium COT analysis, Commitment of Traders reports, market positions, trading strategies, Frantzdy Trading & Co., LLC, futures market analysis, trader insights"
         />
       </Head>
       <Checker tier={3}>

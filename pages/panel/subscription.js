@@ -142,7 +142,7 @@ export default function Subscription(props) {
       <>
         <Head>
           <title>
-            Frantzdy Trading CO - Trading become easier when you trade with us
+            Frantzdy Trading & Co., LLC - Trading become easier when you trade with us
           </title>
         </Head>
         <HeadLink />

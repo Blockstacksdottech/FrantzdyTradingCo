@@ -109,15 +109,15 @@ export default function Register() {
     <>
       <Head>
         <title>
-          Register | Frantzdy Trading CO - Join Our Trading Community
+          Register | Frantzdy Trading & Co., LLC - Join Our Trading Community
         </title>
         <meta
           name="description"
-          content="Create your Frantzdy Trading CO account to access advanced Commitment of Traders (COT) analysis tools, sentiment data, and personalized trading insights. Join our community today to enhance your trading strategies."
+          content="Create your Frantzdy Trading & Co., LLC account to access advanced Commitment of Traders (COT) analysis tools, sentiment data, and personalized trading insights. Join our community today to enhance your trading strategies."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO registration, create trading account, COT analysis tools, trading community, market sentiment data"
+          content="Frantzdy Trading & Co., LLC registration, create trading account, COT analysis tools, trading community, market sentiment data"
         />
       </Head>
       <HeadLink />

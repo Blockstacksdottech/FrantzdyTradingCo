@@ -12,15 +12,15 @@ export default function Privacy() {
     <>
       <Head>
         <title>
-          Privacy Policy | Frantzdy Trading CO - Your Data Protection Rights
+          Privacy Policy | Frantzdy Trading & Co., LLC - Your Data Protection Rights
         </title>
         <meta
           name="description"
-          content="Learn how Frantzdy Trading CO collects, uses, and protects your personal information. Our Privacy Policy outlines your data protection rights and our commitment to safeguarding your privacy."
+          content="Learn how Frantzdy Trading & Co., LLC collects, uses, and protects your personal information. Our Privacy Policy outlines your data protection rights and our commitment to safeguarding your privacy."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO privacy policy, data protection, personal information usage, user privacy rights, information security"
+          content="Frantzdy Trading & Co., LLC privacy policy, data protection, personal information usage, user privacy rights, information security"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -44,7 +44,7 @@ export default function Privacy() {
               <div className="col-lg-10 mx-auto">
                 <div class="content">
                   <p>
-                    Welcome to Frantzdy Trading Co! Your privacy is important to
+                    Welcome to Frantzdy Trading & Co., LLC! Your privacy is important to
                     us. This Privacy Policy outlines how we collect, use,
                     disclose, and protect your information when you use our
                     services.
@@ -61,7 +61,7 @@ export default function Privacy() {
                   </ul>
                   <h3>How We Use Your Information</h3>
                   <p>
-                    Frantzdy Trading Co may use your information for the
+                    Frantzdy Trading & Co., LLC may use your information for the
                     following purposes:
                   </p>
                   <ul>

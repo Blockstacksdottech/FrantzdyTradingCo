@@ -63,7 +63,7 @@ export default function CreateAnnouncement() {
         <title>Create Announcement</title>
         <meta
           name="description"
-          content="Frantzdy Trading Co - Create Announcement"
+          content="Frantzdy Trading & Co., LLC - Create Announcement"
         />
       </Head>
 

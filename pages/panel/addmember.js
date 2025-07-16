@@ -97,14 +97,14 @@ const AddMember = () => {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Add Team Member | Frantzdy Trading CO Admin Panel</title>
+        <title>Add Team Member | Frantzdy Trading & Co., LLC Admin Panel</title>
         <meta
           name="description"
-          content="Manage your Frantzdy Trading CO team by adding new members through the admin panel. Input member details such as username, email, and designation to expand your team efficiently."
+          content="Manage your Frantzdy Trading & Co., LLC team by adding new members through the admin panel. Input member details such as username, email, and designation to expand your team efficiently."
         />
         <meta
           name="keywords"
-          content="Frantzdy Trading CO add team member, admin panel, user management, team expansion, member registration"
+          content="Frantzdy Trading & Co., LLC add team member, admin panel, user management, team expansion, member registration"
         />
       </Head>
       <HeadLink />
