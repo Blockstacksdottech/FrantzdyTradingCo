@@ -74,6 +74,7 @@ export default function Sidebar({}) {
                 data-accordion="false"
               >
                 <li className="nav-header">ADMIN DATA</li>
+
                 {user && user.isAdmin && (
                   <li className="nav-item">
                     <a
@@ -253,6 +254,21 @@ export default function Sidebar({}) {
                   </>
                 )}
                 <li className="nav-header">SETTINGS</li>
+                {user && user.isAdmin && (
+                  <li className="nav-item">
+                    <a
+                      href="../panel/taskcontrol"
+                      className={
+                        isActive("../panel/taskcontrol")
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                    >
+                      <i className="nav-icon fas fa-cog" />
+                      <p>Task Control</p>
+                    </a>
+                  </li>
+                )}
                 <li className="nav-item">
                   <a
                     href="../panel/profile"
