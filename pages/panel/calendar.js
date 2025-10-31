@@ -169,7 +169,7 @@ const Calendar = () => {
         continue;
       }
       if (d.symbol === symbol.replace("/", "")) {
-        return d.trend.toFixed(4);
+        return d.user_trend.toFixed(4);
       }
     }
     return "--";
