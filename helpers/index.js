@@ -5,7 +5,7 @@ export const base = "https://frantzdytradingco.com";
 export const api = base + "/api/";
 //var fileDownload = require('js-file-download');
 
-export const  formatDateYYYY = (date) => {
+export const formatDateYYYY = (date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
   const day = String(date.getDate()).padStart(2, '0');
@@ -705,7 +705,7 @@ export function getThresholdSignal(interest) {
 }
 
 export function formatImage(path) {
-  return base + ("/media"+path.split("media")[1]);
+  return base + ("/media" + path.split("media")[1]);
 }
 
 export function calculateNet(entry) {
@@ -768,19 +768,19 @@ export function generateYears(startYear) {
   const years = [];
 
   for (let year = startYear; year <= currentYear; year++) {
-      years.push(year);
+    years.push(year);
   }
 
   return years;
 }
 
 
-export function isDateInCurrentYear(dateString,targetYear) {
+export function isDateInCurrentYear(dateString, targetYear) {
   // Parse the input date
   const inputDate = new Date(dateString);
-  
-  
-  
+
+
+
   // Check if the input date is within the current year
   return inputDate.getFullYear() === targetYear;
 }
